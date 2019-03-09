@@ -42,30 +42,42 @@
                     <!-- Default panel contents -->
                     <div ng-app="product">
                         <div ng-controller="productController">
-                            <h2 class="pageHeader">Product List</h2>
+                            <strong>Enable/Disable Restaurant</strong>
+                            <div class="OnOffSwitch">
+                                <input id="c01" name="TriSea1" type="checkbox">
+                                <label for="c01" class="label-success"></label>
+                            </div>
+                            <h2 class="pageHeader">Product Item List</h2>
                             <div class="searchFilter pull-right">
-                                <input type="text" ng-model="searchText" placeholder="Search by name & type" />
+                                <input type="text" ng-model="searchText" placeholder="Search by Item Name" />
                                 <i class='fa fa-search'></i>
                             </div>
                             <table id="productList" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col" ng-click="sortData('name')">Name <i ng-class="getSortClass('name')" class="pull-right"></i></th>
+                                        <th scope="col" ng-click="sortData('name')">Item Name <i ng-class="getSortClass('name')" class="pull-right"></i></th>
                                         <th scope="col" ng-click="sortData('type')">Type <i ng-class="getSortClass('type')" class="pull-right"></i></th>
                                         <th scope="col" ng-click="sortData('price')">Price <i ng-class="getSortClass('price')" class="pull-right"></i></th>
                                         @*<th scope="col" ng-click="sortData('Quality')">Quality <i ng-class="getSortClass('Quality')" class="pull-right"></i></th>
                                         <th scope="col">Image URL</th>*@
-                                        <th scope="col">Action</th>
+                                        <th scope="col">ON/OFF</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="product in productData | orderBy:sortColumn:reverseSort | filter:search">
+                                    @*<tr ng-repeat="product in productData | orderBy:sortColumn:reverseSort | filter:search">*@
+                                    <tr ng-repeat="product in productData | filter:search">
                                         <td>{{product.name}}</td>
                                         <td>{{product.type}}</td>
                                         <td>{{product.price}}</td>
                                         @*<td>{{product.quality}}</td>
-                                        <td>{{product.imageUrl}}</td>*@
-                                        <td><button class="btn btn-default">Edit</button></td>
+            <td>{{product.imageUrl}}</td>
+                <td><button class="btn btn-default">Edit</button></td>*@
+                                        <td>
+                                            <div class="OnOffSwitch">
+                                                <input id="c01" name="TriSea1" type="checkbox">
+                                                <label for="c01" class="label-success"></label>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -77,6 +89,7 @@
     </div>
     <!-- Start Footer -->
     @*@Html.Partial("~/Views/Shared/Footer.cshtml")*@
+    <!-- End Footer -->
     <!-- End Footer -->
     <!-- jQuery library -->
     <script src="~/assets/js/jquery.min.js"></script>

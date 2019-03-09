@@ -37,10 +37,12 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-
+    <div style="text-align:right;display:none" id="partner">
+        <a href="/home/partner" target="_blank" class="w3-button w3-red">Want to become Partner?</a>
+    </div><br />
     <div class="theme_style_switcher">
         <div class="style-switch-button" style="display:none">
             <i class="fa fa-cog fa-spin"></i>
@@ -69,7 +71,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="logo">
-                        <!--<img src="assets/img/logo.png"/>-->
+                        <img src="assets/img/logo.png"/>
                     </div>
                     <div class="banner-grads">
                         <!--<div class="ratingsGrads">
@@ -88,7 +90,8 @@
                             <span>Delivery Time</span>
                         </div>-->
                         <div class="paymentOptionGards">
-                            <span>Online Payment test<span>&#124;</span> Cash On Delivery</span>
+                            <span>Opens from 10AM to 11PM</span><br />
+                            <span> Upcoming Offers..</span>
                         </div>
                     </div>
                 </div>
@@ -148,7 +151,7 @@
                 </div>
                 <div class="col-md-7 pList">
                     <div class="viewList">
-                        <div class="viewListHeader">                            
+                        <div class="viewListHeader">
                         </div>
                         @{
                             @Html.Partial("FoodItems");
@@ -246,6 +249,7 @@
                                 <option>Lodha Casa Rio</option>
                                 <option>Lodha Casa Rio Gold</option>
                                 <option>Lakeshore Greens Palava</option>
+                                <option>Others</option>
                             </select>
                         </div>
                         <div class="form-group col-md-12">
@@ -253,9 +257,9 @@
                             <textarea class="form-control" autocomplete="off" id="cAddress" rows="3"></textarea>
                         </div>
                         <div class="form-group col-md-12 paymentOptions">
-                            <div class="w-100 paytm"><i class="icon-check"></i><span>Paytm</span></div>
+                            <div class="w-100 paytm"><i class="icon-check"></i><span>Pay Online</span>
+                             <button type="button" class="btn btn-success" onclick="RazorPay()">Pay with RazorPay</button></div>
                             <div class="w-100 cod"><i class="icon-check"></i><span>Cash on delivery</span></div>
-                            <button type="button" class="btn btn-success" onclick="RazorPay()">Pay with RazorPay</button>
                         </div>
                     </form>
                 </div>
