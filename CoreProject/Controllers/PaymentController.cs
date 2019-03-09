@@ -22,7 +22,7 @@ namespace CoreProject.Controllers
     {
         public IActionResult Index()
         {
-            ViewBag.RazorPayKey = "rzp_test_1gE6SLnkHHnitJ";
+            ViewBag.RazorPayKey = "rzp_test_1gE6SLnkHHnitJ";//Live Key: rzp_live_ETkFO4ZYpbcxRr//testKey: rzp_test_1gE6SLnkHHnitJ
             return View();
         }
 
@@ -34,6 +34,15 @@ namespace CoreProject.Controllers
         public IActionResult Fail()
         {
             return View();
+        }
+        
+        [HttpGet]
+        public JsonResult SendSuccessSMS()
+        {
+            ArrayList arrUserDetails = new ArrayList();
+            bool isOTPSent = SendMessage.OrderConfirmation("9967248008","123456");
+
+            return Json(isOTPSent);
         }
     }
 }

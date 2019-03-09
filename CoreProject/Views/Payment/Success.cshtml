@@ -4,8 +4,27 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Success</title>
+    @*<script src="~/assets/js/jquery-3.1.0.slim.js"></script>*@
+    <script src="~/assets/js/jquery.min.js"></script>
 </head>
-<body>
-    Payment Successfully processed. Your Order Id is 998569 .
+<body onload="SuccessSMS()">
+    Payment Successfully processed. Your Order Id is 998569.
+    <script type="text/javascript">
+        function SuccessSMS() {
+            $.ajax(
+                {
+                    type: "GET", //HTTP GET Method
+                    url: "SendSuccessSMS", // Controller/View                   
+                    success: function (data) {
+                        if (data == "true") {
+                            alert('Confirmation SMS has been sent on your registered Mobile number.')
+                        }
+                    },
+                    error: function () {
+                        alert("No Data");
+                    }
+                });
+        }
+    </script>
 </body>
 </html>

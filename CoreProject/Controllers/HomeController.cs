@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -7,13 +6,8 @@ using CoreProject.Models;
 using System.Collections;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
-using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
-using System.Linq;
-using CoreProject.Models.db;
-using System.Data.Entity.Core.EntityClient;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -102,7 +96,8 @@ namespace CoreProject.Controllers
             Random generator = new Random();
             string OTP = generator.Next(0, 999999).ToString("D6");
             var rsa = new RSAHelper(RSAType.RSA2, Encoding.UTF8, privateKey, publicKey);
-            bool isOTPSent = SendSMS(OTP);
+            string Message = smsUrl + smsKey + "&senderid=" + senderId + "&route=" + route + "&number=" + number + "&message=" + message + OTP;
+            bool isOTPSent = SendMessage.SendSMS(OTP,Message);
             //bool isOTPSent = true;
             if (isOTPSent == true)
             {                
@@ -142,23 +137,22 @@ namespace CoreProject.Controllers
             Random generator = new Random();
             return Convert.ToString(generator.Next(0, 999999).ToString("D6"));
         }
-        public bool SendSMS(string OTP)
-        {
-            string sURL = smsUrl + smsKey + "&senderid=" + senderId + "&route=" + route + "&number=" + number + "&message=" + message + OTP;
-            try
-            {
-                using (WebClient client = new WebClient())
-                {
-                    string s = client.DownloadString(sURL);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                ex.ToString();
-                return false;
-            }
-        }
+        //public bool SendSMS(string OTP, string Message)
+        //{
+        //    try
+        //    {
+        //        using (WebClient client = new WebClient())
+        //        {
+        //            string s = client.DownloadString(Message);
+        //        }
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ex.ToString();
+        //        return false;
+        //    }
+        //}
         public class Enduser
         {
             public string Name

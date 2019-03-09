@@ -405,10 +405,10 @@ function validateDetails() {
         $('#cAddress').focus();
         return false;
     }
-    if ($('.cod.active').length < 1 && $('.paytm.active').length < 1) {
-        alert('please select atleast one payment option!');
-        return false;
-    }
+    //if ($('.cod.active').length < 1 && $('.paytm.active').length < 1) {
+    //    alert('please select atleast one payment option!');
+    //    return false;
+    //}
     else {
         return true;
     }
@@ -417,31 +417,46 @@ function Payment() {
     var i = validateDetails();
     if (i == false) { }
     else {
-        if ($('.w-100.cod.active') != undefined) {
-            if ($('.w-100.cod.active').length > 0) {
-                $.ajax({
-                    url: "/Home/GetOTP",
-                    method: 'GET',
-                    success: function (data) {
-                        var xhttp = new XMLHttpRequest();
-                        xhttp.onreadystatechange = function () {
-                            if (this.readyState == 4 && this.status == 200) {
-                                alert(this.responseText);
-                            }
-                        };
-                        var encrypted = data[0];
-                        $('#EncryptedOTP').val(encrypted);
-                        $('#OTP').show();
+        $.ajax({
+            url: "/Home/GetOTP",
+            method: 'GET',
+            success: function (data) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        alert(this.responseText);
                     }
-                });
+                };
+                var encrypted = data[0];
+                $('#EncryptedOTP').val(encrypted);
+                $('#OTP').show();
             }
-            else {
-                console.log('code for PAYTM');
-            }
-        }
-        else {
-            console.log('code for PAYTM');
-        }
+        });
+        //if ($('.w-100.cod.active') != undefined) {
+        //    if ($('.w-100.cod.active').length > 0) {
+        //        $.ajax({
+        //            url: "/Home/GetOTP",
+        //            method: 'GET',
+        //            success: function (data) {
+        //                var xhttp = new XMLHttpRequest();
+        //                xhttp.onreadystatechange = function () {
+        //                    if (this.readyState == 4 && this.status == 200) {
+        //                        alert(this.responseText);
+        //                    }
+        //                };
+        //                var encrypted = data[0];
+        //                $('#EncryptedOTP').val(encrypted);
+        //                $('#OTP').show();
+        //            }
+        //        });
+        //    }
+        //    else {
+        //        console.log('code for PAYTM');
+        //    }
+        //}
+        //else {
+        //    console.log('code for PAYTM');
+        //}
     }
 }
 // Code For 6 digit OTP
@@ -474,7 +489,8 @@ $(document).ready(function () {
                     success: function (data) {
                         if (data == "Error") {
                             alert('Wrong OTP Entered!');
-                            //$('#codeError').val('Wrong OTP Entered!')
+                            $('.pincode-input-text').val('');
+                            $('#1st').focus();
                             return false;
                         }
                         else {

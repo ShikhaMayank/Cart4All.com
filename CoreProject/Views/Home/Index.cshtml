@@ -67,45 +67,39 @@
     <!-- END SCROLL TOP BUTTON -->
     <!-- Start header section -->
     <header class="topSection">
-        <div class="container">
+        @*<div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="logo">
-                        <img src="assets/img/logo.png"/>
-                    </div>
-                    <div class="banner-grads">
-                        <!--<div class="ratingsGrads">
-                            <div class="ratingCount">
-                                <i class="icon-favourite"></i>
-                                <span>4</span>
-                            </div>
-                            <div class="totalRating">
-                                <span>100+ Ratings</span>
-                            </div>
-                        </div>
-                        <div class="deliveryTimeGards">
-                            <div class="expTime">
-                                <span class="extTime">28</span><span class="extFormat">Mins</span>
-                            </div>
-                            <span>Delivery Time</span>
-                        </div>-->
-                        <div class="paymentOptionGards">
-                            <span>Opens from 10AM to 11PM</span><br />
-                            <span> Upcoming Offers..</span>
-                        </div>
-                    </div>
+        <div class="logo">
+            <img src="assets/img/logo.png"/>
+        </div>
+        <div class="banner-grads">
+            <!--<div class="ratingsGrads">
+                <div class="ratingCount">
+                    <i class="icon-favourite"></i>
+                    <span>4</span>
+                </div>
+                <div class="totalRating">
+                    <span>100+ Ratings</span>
                 </div>
             </div>
+            <div class="deliveryTimeGards">
+                <div class="expTime">
+                    <span class="extTime">28</span><span class="extFormat">Mins</span>
+                </div>
+                <span>Delivery Time</span>
+            </div>-->
+            <div class="paymentOptionGards">
+                <span>Opens from 10AM to 11PM</span><br />
+                <span> Upcoming Offers..</span>
+            </div>
+            </div>
+            </div>
         </div>
+        </div>*@
         <section class="searchContent">
             <div class="container">
                 <div class="row text-center">
-
-                    @*<div class="searchArea">
-                            <i class="glyphicon glyphicon-search"></i>
-                            <input type="text" class="searchInput" placeholder="Search" />
-                        </div>*@
-
                     <div class="onlyVeg">
                         <a class="btn onlyVegBtn">Pure Veg <i class="icon-squer"></i></a>
                     </div>
@@ -115,24 +109,6 @@
                     <div class="Eggetarian">
                         <a class="btn EggBtn">Contains Egg<i class="icon-squer"></i></a>
                     </div>
-
-                    <!--<div class="btn-group foodType">
-                    <button type="button" class="form-control btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <span>Select Food Type</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Veg</a></li>
-                        <li><a href="#">Nonveg</a></li>
-                        <li><a href="#">Veg-Nonveg</a></li>
-                    </ul>
-                    </div>-->
-                    <!--<div class="fav-btn">
-                    <button class="btn favButton">
-                    <i class="icon-favourite"></i>
-                    <span class="favList">Favourite</span>
-                    </button>
-                    </div>-->
-
                 </div>
             </div>
         </section>
@@ -160,7 +136,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="cartList">
-                        <h2>Cart</h2>
+                        <h2>Shopping Cart</h2>
                         <div class="emptyCart text-center"> Your Cart is Empty</div>
                         <div class="cartListItems"></div>
                         <div class="cartTotal">
@@ -256,18 +232,19 @@
                             <label for="cAddress">Address</label>
                             <textarea class="form-control" autocomplete="off" id="cAddress" rows="3"></textarea>
                         </div>
-                        <div class="form-group col-md-12 paymentOptions">
-                            <div class="w-100 paytm"><i class="icon-check"></i><span>Pay Online</span>
-                             <button type="button" class="btn btn-success" onclick="RazorPay()">Pay with RazorPay</button></div>
-                            <div class="w-100 cod"><i class="icon-check"></i><span>Cash on delivery</span></div>
+                        <div class="form-group col-md-12 paymentOptions" style="align-items:center">
+                            <div>
+                                <button type="button" class="btn btn-success" onclick="RazorPay()">Pay Online</button>
+                                <button type="button" class="btn btn-info" onclick="Payment()">Cash On Delivery</button>
+                                <button type="button" class="btn cancel" data-dismiss="modal">Cancel</button>
+                            </div>
+                            
                         </div>
                     </form>
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn cancel" data-dismiss="modal">Cancel</button>
-                    <a onclick="Payment()" class="btn proceedButton">Proceed</a>
                 </div>
 
             </div>
@@ -276,10 +253,14 @@
     <div class="modal" id="OTP" style="display: none; padding-left: 17px;">
         <div class="modal-dialog">
             <div class="modal-content">
+                <div class="modal-header" style="background-color:indianred;color:white">
+                    <button type="button" class="close" onclick="closeOTPBox()">&times;</button>
+                    <h6 class="modal-title">Please enter 6 digit OTP</h6>
+                </div>
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div>
-                        <h6 class="modal-title">Please enter 6 digit OTP</h6>
+                        
                         <div class="pincode-input-container">
                             <input type="text" id="1st" maxlength="1" autocomplete="off" class="form-control pincode-input-text first" onkeyup="moveOnMax(this,'a')">
                             <input type="text" id="a" maxlength="1" autocomplete="off" class="form-control pincode-input-text mid" onkeyup="moveOnMax(this,'b')">
@@ -294,7 +275,7 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" id="otpCancel" class="btn cancel" onclick="closeOTPBox()">Cancel</button>
-                    <a id="aVerifyOTP" class="btn proceedButton">Verify OTP</a>
+                    <a id="aVerifyOTP" class="btn proceedButton" style="background-color:indianred;color:white">Verify OTP</a>
                 </div>
             </div>
         </div>

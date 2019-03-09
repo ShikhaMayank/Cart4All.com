@@ -58,15 +58,21 @@
 </head>
 <body>
     <h2>Cart4 All RazorPay Interface</h2>
-    <button id="rzp-button1" class="btn btn-success">Pay With RazorPay</button>
-    <hr class="new5">
-    <div class="container">
-        <div class="well name">name</div>
-        <div class="well description">descr</div>
-        <div class="well address">address</div>
-        <div class="well spnTotalAmount">price</div>
+    <button id="rzp-button1" class="btn btn-success">Pay Here</button>
+    <button class="btn btn-default" onclick="BackToHome();">Back to Cart</button>
+    @*<button class="btn btn-default" onclick="printDiv();">Print Receipt</button>*@
+    <div id='DivIdToPrint'>
+        <hr class="new5">
+        <h4>Cart4All - Order Receipt</h4>
+        <div id="datetime"></div>
+        <div class="container" style="color:blue;background-color:white">
+            <div class="well name" style="background-color:white">name</div>
+            <div class="well description" style="background-color:white">descr</div>
+            <div class="well address" style="background-color:white">address</div>
+            <div class="well spnTotalAmount" style="background-color:white">price</div>
+        </div>
+        <hr class="new5">
     </div>
-    <hr class="new5">
     <script>
         var options = {
             "key": razorPayKey,
@@ -77,7 +83,7 @@
             "handler": function (response) {
                 //alert(response.razorpay_payment_id);
                 location.href = '/payment/success';
-                
+
             },
             "prefill": {
                 "name": name,
@@ -102,7 +108,23 @@
         $('.spnTotalAmount').html("<strong>Total Cart Price: </strong>₹" + price);
         $('.description').html("<strong>Item Details:</strong><br />" + descr);
         $('.address').html("<strong>Delivery Address:</strong> " + address);
-        $('#rzp-button1').text('Pay ₹' + price + ' with RazorPay');
+        $('#rzp-button1').text('Pay ₹' + price);
+        function BackToHome() {
+            if (confirm("Are you sure you want to cancel transaction and move back to Cart?"))
+                window.location.href = "/";
+            else
+                return false;
+        }
+        //function printDiv() {
+        //    var time = new Date().toLocaleString("en-GB");
+        //    $('#datetime').html(time);
+        //    var divToPrint = document.getElementById('DivIdToPrint');
+        //    var newWin = window.open('', 'Print-Window');
+        //    newWin.document.open();
+        //    newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+        //    newWin.document.close();
+        //    setTimeout(function () { newWin.close(); }, 10);
+        //}
     </script>
 </body>
 </html>
