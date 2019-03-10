@@ -66,37 +66,49 @@
     </a>
     <!-- END SCROLL TOP BUTTON -->
     <!-- Start header section -->
+    
+        <div class="row" id="discountBanner" style="display:none">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span></button>
+                <marquee>
+                <p id="discountMessage" style="font-family: Impact; font-size: 18pt"></p>
+                </marquee>
+            </div>
+        </div>
+    
     <header class="topSection">
         @*<div class="container">
-            <div class="row">
-                <div class="col-md-12">
-        <div class="logo">
-            <img src="assets/img/logo.png"/>
-        </div>
-        <div class="banner-grads">
-            <!--<div class="ratingsGrads">
-                <div class="ratingCount">
-                    <i class="icon-favourite"></i>
-                    <span>4</span>
+                <div class="row">
+                    <div class="col-md-12">
+            <div class="logo">
+                <img src="assets/img/logo.png"/>
+            </div>
+            <div class="banner-grads">
+                <!--<div class="ratingsGrads">
+                    <div class="ratingCount">
+                        <i class="icon-favourite"></i>
+                        <span>4</span>
+                    </div>
+                    <div class="totalRating">
+                        <span>100+ Ratings</span>
+                    </div>
                 </div>
-                <div class="totalRating">
-                    <span>100+ Ratings</span>
+                <div class="deliveryTimeGards">
+                    <div class="expTime">
+                        <span class="extTime">28</span><span class="extFormat">Mins</span>
+                    </div>
+                    <span>Delivery Time</span>
+                </div>-->
+                <div class="paymentOptionGards">
+                    <span>Opens from 10AM to 11PM</span><br />
+                    <span> Upcoming Offers..</span>
+                </div>
+                </div>
                 </div>
             </div>
-            <div class="deliveryTimeGards">
-                <div class="expTime">
-                    <span class="extTime">28</span><span class="extFormat">Mins</span>
-                </div>
-                <span>Delivery Time</span>
-            </div>-->
-            <div class="paymentOptionGards">
-                <span>Opens from 10AM to 11PM</span><br />
-                <span> Upcoming Offers..</span>
-            </div>
-            </div>
-            </div>
-        </div>
-        </div>*@
+            </div>*@
         <section class="searchContent">
             <div class="container">
                 <div class="row text-center">
@@ -238,7 +250,7 @@
                                 <button type="button" class="btn btn-info" onclick="Payment()">Cash On Delivery</button>
                                 <button type="button" class="btn cancel" data-dismiss="modal">Cancel</button>
                             </div>
-                            
+
                         </div>
                     </form>
                 </div>
@@ -260,7 +272,7 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div>
-                        
+
                         <div class="pincode-input-container">
                             <input type="text" id="1st" maxlength="1" autocomplete="off" class="form-control pincode-input-text first" onkeyup="moveOnMax(this,'a')">
                             <input type="text" id="a" maxlength="1" autocomplete="off" class="form-control pincode-input-text mid" onkeyup="moveOnMax(this,'b')">
@@ -308,4 +320,24 @@
 
     // always overwrite window.name, in case users try to set it manually
     window.name = "result"
+</script>
+<script type="text/javascript">
+    var DiscountType = localStorage.getItem('DiscountType');
+    var Discount = localStorage.getItem('Discount');
+    var MinOrder = localStorage.getItem('MinOrder');
+    var StartDate = localStorage.getItem('StartDate');
+    var EndDate = localStorage.getItem('EndDate');    
+    if (Discount != undefined && Discount != "" && Discount != "NAN" && Discount != null) {
+        $('#discountBanner').show();
+        if (DiscountType == '1') {            
+            $('#discountMessage').html('Get Flat discount of ' + Discount + "% on total Shopping.");
+        }
+        else {
+            $('#discountMessage').html('Get Flat discount of ₹' + Discount + " on total Shopping.");
+        }
+    }
+    else {
+        $('#discountBanner').hide();
+    }
+
 </script>
