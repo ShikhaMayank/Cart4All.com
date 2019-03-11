@@ -22,7 +22,6 @@
     <link href="~/assets/css/iconFont.css" rel="stylesheet">
     <link href="~/assets/css/style.css?v=1.1" rel="stylesheet">
 
-
     <!-- Google Fonts -->
     <!-- Prata for body  -->
     <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
@@ -35,43 +34,7 @@
 </head>
 <body class='orderPage'>
     @Html.Partial("~/Views/Shared/Header.cshtml")
-    <div class="container content-panel">
-        <div class="row">
-            <div class="col-xs-12 col-md-12">
-                <h2 class="pageHeader">Order History</h2>
-                <div class="panel panel-default">
-                    <!-- Default panel contents -->
-                    <ul class="accordion">
-                        <li>
-                            <a class="toggleList" href="javascript:void(0);">Date Range</a>
-                            <div class='innerList'>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Order ID</th>
-                                            <th scope="col">Order date</th>
-                                            <th scope="col">Payment method</th>
-                                            <th scope="col">Gross revenue</th>
-                                            <th scope="col">Net receivable</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>109039181</td>
-                                            <td>02 Mar 2019 10:20:25</td>
-                                            <td>Online</td>
-                                            <td>₹180</td>
-                                            <td>₹131.0</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- Start Footer -->
     @*@Html.Partial("~/Views/Shared/Footer.cshtml")*@
     <!-- End Footer -->
@@ -80,8 +43,8 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="~/assets/js/bootstrap.js"></script>
     <!-- Application js -->
-    <script type="text/javascript" src="~/assets/js/app.js"></script>
-    <script src="~/assets/js/custom.js"></script>    
+    
+      
     <script>
         function startHotel(btnId) {
             $('#' + btnId).removeClass('btn-default').addClass('btn-success').text('Stop Hotel');

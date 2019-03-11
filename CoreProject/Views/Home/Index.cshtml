@@ -321,7 +321,7 @@
     // always overwrite window.name, in case users try to set it manually
     window.name = "result"
 </script>
-<script type="text/javascript">
+<script type="text/javascript">    
     var DiscountType = localStorage.getItem('DiscountType');
     var Discount = localStorage.getItem('Discount');
     var MinOrder = localStorage.getItem('MinOrder');
@@ -330,14 +330,70 @@
     if (Discount != undefined && Discount != "" && Discount != "NAN" && Discount != null) {
         $('#discountBanner').show();
         if (DiscountType == '1') {            
-            $('#discountMessage').html('Get Flat discount of ' + Discount + "% on total Shopping.");
+            $('#discountMessage').html('Get Flat discount of ' + Discount + "% on total Shopping. Offer Valid only till " + reverseDate(localStorage.getItem('EndDate'))+'!');
         }
         else {
-            $('#discountMessage').html('Get Flat discount of ₹' + Discount + " on total Shopping.");
+            $('#discountMessage').html('Get Flat discount of ₹' + Discount + " on total Shopping. </br>Offer Valid only till " + reverseDate(localStorage.getItem('EndDate'))+'!');
         }
     }
     else {
         $('#discountBanner').hide();
     }
-
+    isOpened();
+    function isOpened() {
+        setTimeout(function () {
+            var orderOpened = localStorage.getItem('OrderOpened');
+            if (orderOpened == '0') {
+                $('.addToCart').hide();
+                $('.cartList').hide();
+                $('#discountBanner').show();                
+                $('#discountMessage').html('We are not accepting orders at present.');
+            }
+            else {
+                $('.addToCart').show();
+            } }, 1000);
+    }
+    function reverseDate(d) {
+        var a = d.split('-');
+        var month = convertNumToMonth(a[1]);
+        return a[2] + '-' + month + '-' + a[0];
+    }
+    function convertNumToMonth(num) {
+        if (num == '01') {
+            return 'Jan';
+        }
+        if (num == '02') {
+            return 'Feb';
+        }
+        if (num == '03') {
+            return 'Mar';
+        }
+        if (num == '04') {
+            return 'Apr';
+        }
+        if (num == '05') {
+            return 'May';
+        }
+        if (num == '06') {
+            return 'Jun';
+        }
+        if (num == '07') {
+            return 'Jul';
+        }
+        if (num == '08') {
+            return 'Aug';
+        }
+        if (num == '09') {
+            return 'Sep';
+        }
+        if (num == '10') {
+            return 'Oct';
+        }
+        if (num == '11') {
+            return 'Nov';
+        }
+        if (num == '12') {
+            return 'Dec';
+        }
+    }
 </script>

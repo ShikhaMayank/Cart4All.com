@@ -4,203 +4,22 @@
 
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Product List</title>
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="~/assets/img/favicon.ico" type="image/x-icon">
-
-    <!-- Font awesome -->
-    <link href="~/assets/css/font-awesome.css" rel="stylesheet">
-    <!-- Bootstrap -->
-    <link href="~/assets/css/bootstrap.css" rel="stylesheet">
-    <!-- Theme color -->
-    <link id="switcher" href="~/assets/css/theme-color/default-theme.css?v=1.1" rel="stylesheet">
-    <!-- Main style sheet -->
-    <link href="~/assets/css/iconFont.css" rel="stylesheet">
-    <link href="~/assets/css/style.css?v=1.1" rel="stylesheet">
-
-
-    <!-- Google Fonts -->
-    <!-- Prata for body  -->
-    <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
-    <!-- Tangerine for small title -->
-    <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
-    <!-- Open Sans for title -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <!-- Robot for All -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-    <style>
-        .onoffswitch {
-            position: relative;
-            width: 90px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
-
-        .onoffswitch-checkbox {
-            display: none;
-        }
-
-        .onoffswitch-label {
-            display: block;
-            overflow: hidden;
-            cursor: pointer;
-            border: 2px solid #999999;
-            border-radius: 20px;
-        }
-
-        .onoffswitch-inner {
-            display: block;
-            width: 200%;
-            margin-left: -100%;
-            transition: margin 0.3s ease-in 0s;
-        }
-
-            .onoffswitch-inner:before, .onoffswitch-inner:after {
-                display: block;
-                float: left;
-                width: 50%;
-                height: 30px;
-                padding: 0;
-                line-height: 30px;
-                font-size: 14px;
-                color: white;
-                font-family: Trebuchet, Arial, sans-serif;
-                font-weight: bold;
-                box-sizing: border-box;
-            }
-
-            .onoffswitch-inner:before {
-                content: "ON";
-                padding-left: 10px;
-                background-color: #34A7C1;
-                color: #FFFFFF;
-            }
-
-            .onoffswitch-inner:after {
-                content: "OFF";
-                padding-right: 10px;
-                background-color: #EEEEEE;
-                color: #999999;
-                text-align: right;
-            }
-
-        .onoffswitch-switch {
-            display: block;
-            width: 18px;
-            margin: 6px;
-            background: #FFFFFF;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 56px;
-            border: 2px solid #999999;
-            border-radius: 20px;
-            transition: all 0.3s ease-in 0s;
-        }
-
-        .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-            margin-left: 0;
-        }
-
-        .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-            right: 0px;
-        }
-    </style>
-    
 </head>
 <body class='orderPage'>
     @Html.Partial("~/Views/Shared/Header.cshtml")
     <div class="container content-panel">
+        <br /><br /><br /><br />                                       
         <!-- Modal -->
-        <div class="modal fade" id="modalPromo" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header" style="background-color:aqua">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Create Promo</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label class="radio-inline">
-                                    <input class="toggleValues" type="radio" name="inlineRadioOptions" id="discPercentage"> Percentage of Bill
-                                </label>
-                                <label class="radio-inline">
-                                    <input  class="toggleValues" type="radio" name="inlineRadioOptions" id="minOrder"> Flat Amount
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <div>
-                                    <label id="lblDiscount" for="discountPerc">Discount Percentage (%)</label>
-                                    <input type="number" class="form-control" id="discountPerc" style="width:50%">
-                                </div>
-                                <div>
-                                    <label for="minOrder">Minimum Order Value (Optional)</label>
-                                    <input type="number" class="form-control" id="minOrder" style="width:50%">
-                                </div>
-                                <div class="form-group">
-                                    <label for="idStartDate">Start Date:</label>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input type="date" id="startDate" class="form-control clsDatePicker">
-                                        </div>
-                                    </div>
-                                    <label for="idStartDate">End Date:</label>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input type="date" id="endDate" class="form-control clsDatePicker">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                                <div class="form-group" style="align-items:center">
-                                    <div>
-                                        <button id="btnSetPromo" type="button" class="btn btn-info">Set Promo</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-
-                                </div>
-</form>
-                    </div>
-                    @*<div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>*@
-                </div>
-
-            </div>
-        </div>
+        
         <div class="row">
-            <div style="position:relative;float:left"  title="Enable/Disable Resturant order bookings" data-toggle="tooltip">
-                <strong>Open/Close Orders</strong>
-                <div class="onoffswitch">
-                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                    <label class="onoffswitch-label" for="myonoffswitch">
-                        <span class="onoffswitch-inner"></span>
-                        <span class="onoffswitch-switch"></span>
-                    </label>
-                </div>
-            </div>
-            <div style="position:relative;float:right" title="Click here to set your offers and promotions" data-toggle="tooltip">
-                <button type="button" class="btn btn-info btn-lg"  data-toggle="modal" data-target="#modalPromo">Set Promo</button>
-            </div>
             <div class="col-xs-12 col-md-12">
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
                     <div ng-app="product">
                         <div ng-controller="productController">
-
                             <!-- Trigger the modal with a button -->
-                            <h2 class="pageHeader">Product Item List</h2>
                             <div class="searchFilter pull-right form-group">
-                                <input type="text" ng-model="searchText" placeholder="Search by Item Name"></input>
+                                <input type="text" ng-model="searchText" placeholder="Search by Item Name" />
                                 @*<i class='fa fa-search'></i>*@
                             </div>
                             <table id="productList" class="table table-striped">
@@ -210,10 +29,10 @@
                                         <th scope="col">Type</th>
                                         <th scope="col">Price</th>
                                         @*<th scope="col" ng-click="sortData('name')">Item Name <i ng-class="getSortClass('name')" class="pull-right"></i></th>
-                                    <th scope="col" ng-click="sortData('type')">Type <i ng-class="getSortClass('type')" class="pull-right"></i></th>
-                                    <th scope="col" ng-click="sortData('price')">Price <i ng-class="getSortClass('price')" class="pull-right"></i></th>*@
+                                        <th scope="col" ng-click="sortData('type')">Type <i ng-class="getSortClass('type')" class="pull-right"></i></th>
+                                        <th scope="col" ng-click="sortData('price')">Price <i ng-class="getSortClass('price')" class="pull-right"></i></th>*@
                                         @*<th scope="col" ng-click="sortData('Quality')">Quality <i ng-class="getSortClass('Quality')" class="pull-right"></i></th>
-                                    <th scope="col">Image URL</th>*@
+                                        <th scope="col">Image URL</th>*@
                                         <th scope="col">ON/OFF</th>
                                     </tr>
                                 </thead>
@@ -224,12 +43,12 @@
                                         <td>{{product.type}}</td>
                                         <td>{{product.price}}</td>
                                         @*<td>{{product.quality}}</td>
-                                    <button>                            <td>{{product.imageUrl}}</td>
-                                        <td></button> class="btn btn-default">Edit</button></td>*@
+                                        <button>                            <td>{{product.imageUrl}}</td>
+                                            <td></button> class="btn btn-default">Edit</button></td>*@
                                         <td>
                                             <div class="OnOffSwitch">
-                                                <input id="c01" name="TriSea1" type="checkbox">
-                                                <label for="c01" class="label-success"></label>
+                                                <input id="{{product.id}}" name="TriSea1" type="checkbox">
+                                                <label for="{{product.id}}" class="label-success"></label>
                                             </div>
                                         </td>
                                     </tr>
@@ -241,82 +60,18 @@
             </div>
         </div>
     </div>
-    </div>
     <!-- Start Footer -->
     @*@Html.Partial("~/Views/Shared/Footer.cshtml")*@
     <!-- End Footer -->
     <!-- End Footer -->
     <!-- jQuery library -->
-    <script src="~/assets/js/jquery.min.js"></script>
+    
     <script src="~/assets/js/angularjs.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="~/assets/js/bootstrap.js"></script>
     <!-- Application js -->
 
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-            $('#discPercentage').prop('checked', true);
-            localStorage.setItem('DiscountType', 1);
-            localStorage.removeItem('Discount');
-            localStorage.removeItem('MinOrder');
-            localStorage.removeItem('StartDate');
-            localStorage.removeItem('EndDate'); 
-        });
-        $('#discPercentage').click(function () {
-            if (this.checked) {
-                $('#lblDiscount').text('Discount Percentage (%)');
-                localStorage.setItem('DiscountType', 1);
-            }
-        });
-        $('#minOrder').click(function () {
-            if (this.checked) {
-                $('#lblDiscount').text('Flat Amount');
-                localStorage.setItem('DiscountType', 2);
-            }
-        });
-        // set default  start and end date 
-        var d = new Date();
-        var date = ('0' + d.getDate()).slice(-2);
-        var month = ('0'+ (parseInt(d.getMonth()) + 1)).slice(-2);
-        var year = d.getFullYear();
-        var finalDate = year + '-' + month + '-' + date;
-        $("#startDate").val(finalDate);
-        $("#endDate").val(finalDate);
-        // button Set promo
-        $('#btnSetPromo').click(function () {
-            var bln = validatePromo();
-            if (bln) {
-                localStorage.setItem('Discount', $('#discountPerc').val());
-                localStorage.setItem('MinOrder', $('#minOrder').val());
-                localStorage.setItem('StartDate', $('#startDate').val());
-                localStorage.setItem('EndDate', $('#endDate').val());
-                alert('Promo Set Successfully!');
-            }
-        });
-        function validatePromo() {
-            var startDate = new Date($('#startDate').val());
-            var endDate = new Date($('#endDate').val());            
-            if ($('#discountPerc').val().length < 1) {
-                alert('Discount Percentage or Flat Amount cannot be empty');
-                $('#discountPerc').focus();
-                return false;
-            }
-            if ($('#discPercentage').checked == false && $('#minOrder').checked == false) {
-                alert('Select atleast one option between Discount Percentage or Flat Amount!')
-                $('#discPercentage').focus();
-                return false;
-            }
-            if (startDate > endDate) {
-                alert('start date cannot be greater than end date!');
-                $('#startDate').focus();
-                return false;
-            }
-            else {
-                return true;
-            }
-            
-        }
+    <script>        
         //set grid
         var app = angular.module("product", []).controller(
             "productController", function ($scope, $http) {

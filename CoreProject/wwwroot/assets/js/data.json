@@ -1,7 +1,6 @@
-[
-  
+[  
   {
-    "name": "Idali Vada Samber",
+    "name": "Idli Vada Samber",
     "type": "Veg",
     "price": 100,
     "id": "00",
@@ -9,7 +8,7 @@
     "imageUrl": ""
   },
   {
-    "name": "Phoha",
+    "name": "Poha",
     "type": "Veg",
     "price": 80,
     "id": "01",
@@ -17,7 +16,7 @@
     "imageUrl": ""
   },
   {
-    "name": "Masla Tea",
+    "name": "Masala Tea",
     "type": "Veg",
     "price": 80,
     "id": "02",
@@ -45,54 +44,6 @@
     "type": "NonVeg",
     "price": 80,
     "id": "15",
-    "quality": "Premium",
-    "imageUrl": ""
-  },
-  {
-    "name": "Idali Vada Samber",
-    "type": "Veg",
-    "price": 100,
-    "id": "16",
-    "quality": "Premium",
-    "imageUrl": ""
-  },
-  {
-    "name": "Phoha",
-    "type": "Veg",
-    "price": 80,
-    "id": "17",
-    "quality": "Premium",
-    "imageUrl": ""
-  },
-  {
-    "name": "Masla Tea",
-    "type": "Veg",
-    "price": 80,
-    "id": "18",
-    "quality": "Premium",
-    "imageUrl": ""
-  },
-  {
-    "name": "Misal Pav",
-    "type": "Veg",
-    "price": 80,
-    "id": "19",
-    "quality": "Premium",
-    "imageUrl": ""
-  },
-  {
-    "name": "Upama Chatani",
-    "type": "Veg",
-    "price": 80,
-    "id": "20",
-    "quality": "Premium",
-    "imageUrl": ""
-  },
-  {
-    "name": "Omlet Pav",
-    "type": "NonVeg",
-    "price": 80,
-    "id": "21",
     "quality": "Premium",
     "imageUrl": ""
   }
