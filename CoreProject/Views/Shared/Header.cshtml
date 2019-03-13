@@ -221,8 +221,10 @@
         var month = ('0' + (parseInt(d.getMonth()) + 1)).slice(-2);
         var year = d.getFullYear();
         var finalDate = year + '-' + month + '-' + date;
-        $("#startDate").val(finalDate);
-        $("#endDate").val(finalDate);
+        $("#startDate").val(finalDate);// from product view
+        $("#endDate").val(finalDate);// from product view
+        $("#orderStartDate").val(finalDate);// from order view
+        $("#orderEndDate").val(finalDate);// from order view
         if (localStorage.getItem('userSession') == null) {
             alert('UnAuthorized Login');
             window.location.replace("/login");

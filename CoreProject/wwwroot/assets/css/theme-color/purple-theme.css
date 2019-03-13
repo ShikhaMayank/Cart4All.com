@@ -12,7 +12,7 @@ Template Design By SantoshDhonde.
 .productAddCart button.addToCart, .manageCart{line-height:40px; padding:0 20px; background:none; border:1px solid #c762cb; color:#c762cb; font-weight:700;}
 .btn-block.checkOut {background:#c762cb; color:#fff; border-radius:0;}
 .btn-block.checkOut:hover{box-shadow:0 2px 8px #d4d5d9; background:#e07ce4;}
-#paymentMethod .modal-footer .btn.proceedButton, #forgotPassword .modal-footer .btn.proceedButton {background:#c762cb; color:#fff; border-radius:0 0 5px 0;}
+#paymentMethod .modal-footer .btn.proceedButton, #forgotPassword .modal-footer .btn.proceedButton {background:#c762cb; color:#fff; border-radius:5px;}
 #paymentMethod .modal-footer .btn.proceedButton:hover, #forgotPassword .modal-footer .btn.proceedButton:hover {background:#e07ce4;}
 .paymentOptions .icon-checked {color:#c762cb;}
 .icon-plus{color:#c762cb; font-size:28px; display:inline-block;margin:6px 0 0 10px;}
