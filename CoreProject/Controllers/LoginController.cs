@@ -10,7 +10,6 @@ namespace CoreProject.Controllers
     {
         public IActionResult Index()
         {
-            Models.SendMail.Execute();
             return View();
         }
     }

@@ -41,6 +41,7 @@ namespace CoreProject.Controllers
         {
             ArrayList arrUserDetails = new ArrayList();
             bool isOTPSent = SendMessage.OrderConfirmation("9967248008","123456");
+
             return Json(isOTPSent);
         }
     }

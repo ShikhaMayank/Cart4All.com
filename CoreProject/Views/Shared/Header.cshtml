@@ -2,163 +2,43 @@
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Product List</title>
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="~/assets/img/favicon.ico" type="image/x-icon">
-
-    <!-- Font awesome -->
-    <link href="~/assets/css/font-awesome.css" rel="stylesheet">
-    <!-- Bootstrap -->
-    <link href="~/assets/css/bootstrap.css" rel="stylesheet">
-    <!-- Theme color -->
-    <link id="switcher" href="~/assets/css/theme-color/default-theme.css?v=1.1" rel="stylesheet">
-    <!-- Main style sheet -->
-    <link href="~/assets/css/iconFont.css" rel="stylesheet">
-    <link href="~/assets/css/style.css?v=1.1" rel="stylesheet">
-
-
-    <!-- Google Fonts -->
-    <!-- Prata for body  -->
-    <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
-    <!-- Tangerine for small title -->
-    <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
-    <!-- Open Sans for title -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <!-- Robot for All -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-    <style>
-        .onoffswitch {
-            position: relative;
-            width: 90px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-        }
-
-        .onoffswitch-checkbox {
-            display: none;
-        }
-
-        .onoffswitch-label {
-            display: block;
-            overflow: hidden;
-            cursor: pointer;
-            border: 2px solid #999999;
-            border-radius: 20px;
-        }
-
-        .onoffswitch-inner {
-            display: block;
-            width: 200%;
-            margin-left: -100%;
-            transition: margin 0.3s ease-in 0s;
-        }
-
-            .onoffswitch-inner:before, .onoffswitch-inner:after {
-                display: block;
-                float: left;
-                width: 50%;
-                height: 30px;
-                padding: 0;
-                line-height: 30px;
-                font-size: 14px;
-                color: white;
-                font-family: Trebuchet, Arial, sans-serif;
-                font-weight: bold;
-                box-sizing: border-box;
-            }
-
-            .onoffswitch-inner:before {
-                content: "ON";
-                padding-left: 10px;
-                background-color: #34A7C1;
-                color: #FFFFFF;
-            }
-
-            .onoffswitch-inner:after {
-                content: "OFF";
-                padding-right: 10px;
-                background-color: #EEEEEE;
-                color: #999999;
-                text-align: right;
-            }
-
-        .onoffswitch-switch {
-            display: block;
-            width: 18px;
-            margin: 6px;
-            background: #FFFFFF;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 56px;
-            border: 2px solid #999999;
-            border-radius: 20px;
-            transition: all 0.3s ease-in 0s;
-        }
-
-        .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-            margin-left: 0;
-        }
-
-        .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-            right: 0px;
-        }
-    </style>
-    <script src="~/assets/js/jquery-3.1.0.slim.js"></script>
-    <script src="~/assets/js/jquery.min.js"></script>
-</head>
 <header>
     <nav class="navbar navbar-primary navbar-fixed-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="/Product">Product List</a>
-                </li>
-                <li class='active'><a href="/Order">Orders</a></li>
-                <li id="liUsername">
-                    <span id="spnUserName" style="color:lime;float:right">Welcome user</span>
-                </li>
-            </ul>
-            <div style="position:relative;float:right" title="Click here to set your offers and promotions" data-toggle="tooltip">
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalPromo">Set Promo</button>
-                <button id="btnLogOff" type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-off"></span> Log Off
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
+                @*<a class="navbar-brand" href="#">Logo</a>*@
             </div>
-            <div class="onoffswitch" title="Enable/Disable Resturant order bookings" data-toggle="tooltip" style="float:right">
-                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                <label class="onoffswitch-label" for="myonoffswitch">
-                    <span class="onoffswitch-inner"></span>
-                    <span class="onoffswitch-switch"></span>
-                </label>
-            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#">Puurn Bhoj</a></li>
+                <li><a href="/Product">Product List</a></li>
+                <li class='active'><a href="/Order">Orders</a></li>
+            </ul>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             @*<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" id='startHotel'>Start Hotel</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Name <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">User Profile</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>*@
-            <!-- /.navbar-collapse -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" id='startHotel'>Start Hotel</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Name <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">User Profile</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>*@
+        <!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
-               
     </nav>
     <div class="modal fade" id="modalPromo" role="dialog">
         <div class="modal-dialog">
