@@ -6,29 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Product List</title>
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="~/assets/img/favicon.ico" type="image/x-icon">
-
-    <!-- Font awesome -->
-    <link href="~/assets/css/font-awesome.css" rel="stylesheet">
-    <!-- Bootstrap -->
-    <link href="~/assets/css/bootstrap.css" rel="stylesheet">
-    <!-- Theme color -->
-    <link id="switcher" href="~/assets/css/theme-color/default-theme.css?v=1.1" rel="stylesheet">
-    <!-- Main style sheet -->
-    <link href="~/assets/css/iconFont.css" rel="stylesheet">
-    <link href="~/assets/css/style.css?v=1.1" rel="stylesheet">
-
-
-    <!-- Google Fonts -->
-    <!-- Prata for body  -->
-    <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
-    <!-- Tangerine for small title -->
-    <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
-    <!-- Open Sans for title -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <!-- Robot for All -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    
     <style>
         .onoffswitch {
             position: relative;
@@ -225,8 +203,8 @@
                                         <td></button> class="btn btn-default">Edit</button></td>*@
                                         <td>
                                             <div class="OnOffSwitch">
-                                                <input id="c01" name="TriSea1" type="checkbox">
-                                                <label for="c01" class="label-success"></label>
+                                                <input id="{{product.id}}" name="TriSea1" type="checkbox">
+                                                <label for="{{product.id}}" class="label-success"></label>
                                             </div>
                                         </td>
                                     </tr>
