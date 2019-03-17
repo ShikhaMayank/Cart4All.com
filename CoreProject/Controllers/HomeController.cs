@@ -70,7 +70,7 @@ namespace CoreProject.Controllers
         public ActionResult GetFoodItemList(string MenuId)
         {
             ArrayList arr = new ArrayList();
-            arr.Add(1);
+            arr.Add(MenuId);
             var menuItems = GetMenuList("GetMenuById", arr);
             return Json(menuItems);
         }

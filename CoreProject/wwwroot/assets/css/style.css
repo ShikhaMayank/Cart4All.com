@@ -268,6 +268,9 @@ LIST ACCORDION
 .icon-foodCheck {font-size:28px;}
 .icon-foodCheck.Veg {color:#578900;}
 .icon-foodCheck.NonVeg {color:#ff0000;}
+    .icon-foodCheck.Eggetarian {
+        color: #FF7F50;
+    }
 .productName h4 { line-height:28px; margin-bottom:0;}
 .icon-minus{color:#535353; font-size:28px; display:inline-block; margin:6px 10px 0 0;}
 .manageCart{padding:0 10px;}
@@ -281,7 +284,12 @@ LIST ACCORDION
 .searchContent .icon-squer{font-size:28px; display:inline-block;}
 .btn.onlyVegBtn { border:1px solid #dbdbdb; background:#fff; vertical-align:top; line-height: 28px; padding: 2px 3px 2px 10px;}
 .btn.onlyVegBtn.active {background:#578900; color:#fff; border:1px solid #fff; box-shadow: inherit;}
-.btn.containEgg { border:1px solid #dbdbdb; background:#fff; vertical-align:top; line-height: 28px; padding: 2px 3px 2px 10px;}
+.btn.NonVegBtn.active {    background: #ff0000;    color: #fff;    border: 1px solid #fff;    box-shadow: inherit;}
+.btn.NonVegBtn {    border: 1px solid #dbdbdb;    background: #fff;    vertical-align: top;    line-height: 28px;    padding: 2px 3px 2px 10px;}
+.btn.EggBtn.active {    background: #FF7F50;    color: #fff;    border: 1px solid #fff;    box-shadow: inherit;}
+.btn.EggBtn {    border: 1px solid #dbdbdb;    background: #fff;    vertical-align: top;    line-height: 28px;    padding: 2px 3px 2px 10px;}
+
+.btn.containEgg {    border: 1px solid #dbdbdb;    background: #fff;    vertical-align: top;    line-height: 28px;    padding: 2px 3px 2px 10px;}
 .btn.containEgg.active {background:#fed835; color:#ed6400; border:1px solid #fff; box-shadow: inherit;}
 .text-xs-center {text-align: center!important;}
 .jumbotron{background:inherit;}

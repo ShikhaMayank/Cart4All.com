@@ -1,155 +1,82 @@
-﻿<!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Product</title>
+﻿<html>
+<head>
+    <title>Angular JS Includes</title>
 
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="~/assets/img/favicon.ico" type="image/x-icon">
+    <style>
+        table, th, td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
 
-        <!-- Font awesome -->
-        <link href="~/assets/css/font-awesome.css" rel="stylesheet">
-        <!-- Bootstrap -->
-        <link href="~/assets/css/bootstrap.css" rel="stylesheet">
-        <!-- Theme color -->
-        <link id="switcher" href="~/assets/css/theme-color/default-theme.css?v=1.1" rel="stylesheet">
-        <!-- Main style sheet -->
-        <link href="~/assets/css/iconFont.css" rel="stylesheet">
-        <link href="~/assets/css/style.css?v=1.1" rel="stylesheet">
+            table tr:nth-child(odd) {
+                background-color: #f2f2f2;
+            }
 
+            table tr:nth-child(even) {
+                background-color: #ffffff;
+            }
+    </style>
+</head>
 
-        <!-- Google Fonts -->
-        <!-- Prata for body  -->
-        <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
-        <!-- Tangerine for small title -->
-        <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
-        <!-- Open Sans for title -->
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-        <!-- Robot for All -->
-        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-    </head>
-    <body class='menuPage'>
-        @Html.Partial("~/Views/Shared/Header.cshtml")
-        <div class="container content-panel">
-            <div class="row">
-                <div class="col-xs-12 col-md-12">
-                    <h2 class="pageHeader">Menu</h2>
-                    <div class='pull-right hidden'>
-                        <button id='startHotel' class='btn btn-default'>Start Hotel</button>
-                    </div>
-                    <div class="panel panel-default">
-
-                        <!-- Default panel contents -->
-                        <ul class="list-group">
-
-                            <li class="list-group-item">
-                                Categories Item 01
-                                <div class="OnOffSwitch pull-right">
-                                    <input id="c01" name="TriSea1" type="checkbox" />
-                                    <label for="c01" class="label-success"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                Categories Item 01
-                                <div class="OnOffSwitch pull-right">
-                                    <input id="c02" name="TriSea1" type="checkbox" />
-                                    <label for="c02" class="label-success"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                Categories Item 01
-                                <div class="OnOffSwitch pull-right">
-                                    <input id="c03" name="TriSea1" type="checkbox" />
-                                    <label for="c03" class="label-success"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                Categories Item 01
-                                <div class="OnOffSwitch pull-right">
-                                    <input id="c04" name="TriSea1" type="checkbox" />
-                                    <label for="c04" class="label-success"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                Categories Item 01
-                                <div class="OnOffSwitch pull-right">
-                                    <input id="c05" name="TriSea1" type="checkbox" />
-                                    <label for="c05" class="label-success"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                Categories Item 01
-                                <div class="OnOffSwitch pull-right">
-                                    <input id="c06" name="TriSea1" type="checkbox" />
-                                    <label for="c06" class="label-success"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                Categories Item 01
-                                <div class="OnOffSwitch pull-right">
-                                    <input id="c07" name="TriSea1" type="checkbox" />
-                                    <label for="c07" class="label-success"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                Categories Item 01
-                                <div class="OnOffSwitch pull-right">
-                                    <input id="c08" name="TriSea1" type="checkbox" />
-                                    <label for="c08" class="label-success"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                Categories Item 01
-                                <div class="OnOffSwitch pull-right">
-                                    <input id="c09" name="TriSea1" type="checkbox" />
-                                    <label for="c09" class="label-success"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                Categories Item 01
-                                <div class="OnOffSwitch pull-right">
-                                    <input id="c010" name="TriSea1" type="checkbox" />
-                                    <label for="c010" class="label-success"></label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+<body>          
+    <div  ng-app="" ng-controller="studentController">
+        <div>
+            <div class="searchFilter pull-right form-group">
+                <input type="text" ng-model="searchText" placeholder="Search by Item Name"></input>
             </div>
+            <table id="productList" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Price</th>                       
+                        <th scope="col">ON/OFF</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="product in productData | filter:search">
+                        <td>{{product.name}}</td>
+                        <td>{{product.type}}</td>
+                        <td>{{product.price}}</td>                        
+                        <td>
+                            <div class="OnOffSwitch">
+                                <input id="{{product.id}}" name="TriSea1" type="checkbox">
+                                <label for="{{product.id}}" class="label-success"></label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <!-- Start Footer -->
-       Html.Partial("~/Views/Shared/Footer.cshtml")
-        <!-- End Footer -->
-        <!-- End Footer -->
-        <!-- jQuery library -->
-        <script src="~/assets/js/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="~/assets/js/bootstrap.js"></script>
-        <!-- Application js -->
-        <script type="text/javascript" src="~/assets/js/app.js"></script>
-            <!-- Custom js -->
-            <script src="~/assets/js/custom.js"></script>
-            <!-- Mustache js for repeat anything easy way-->
-            <script src="~/assets/js/mustache.min.js"></script>
-
-        <script>
-            function startHotel(btnId) {
-                $('#' + btnId).removeClass('btn-default').addClass('btn-success').text('Stop Hotel');
+    </div>
+        
+    <script>
+        function studentController($scope, $http) {
+            // POST Data from Angular
+            var req = {
+                method: 'POST',
+                url: '/home/GetFoodItemList',
+                headers: {
+                    'Content-Type': undefined
+                },
+                data: { MenuId: '1' }
             }
-            function stopHotel(btnId) {
-                $('#' + btnId).removeClass('btn-success').addClass('btn-default').text('Start Hotel');;
-            }
-            $(document).on('click', '#startHotel.btn-default', function () {
-                var btnId = $(this).attr('id');
-                startHotel(btnId)
-            });
-            $(document).on('click', '#startHotel.btn-success', function () {
-                var btnId = $(this).attr('id');
-                stopHotel(btnId);
-            });
-        </script>
+            $http(req).then(function (data) {
+                console.log(data)
+            }, function (error) { console.log(error) });
 
-    </body>
-    </html>
+            // GET Data from Angular
+            //var cnt = "/home/LoadJson";
+            //$http.get(cnt).then(function (response) {
+            //    console.log(response)
+            //    $scope.students = response.data;
+            //});
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js">
+    </script>
+
+</body>
+</html>

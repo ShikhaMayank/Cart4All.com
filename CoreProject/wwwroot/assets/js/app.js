@@ -92,15 +92,19 @@ function AjaxDisplayString() {
         url: "/Home/GetMenu",
         method: 'GET',
         success: function (itemList) {
+            
+            
+            localStorage.setItem('me', JSON.stringify(itemList));
+            var storedData = JSON.parse(localStorage.getItem("me"));
             var listDiv = $('.productList ul');
             for (var i = 0; i < itemList.length; i++) {
-                listDiv.append('<li id="' + itemList[i].id + '"><a class="toggleList" href="home/fooditems/'+ itemList[i].id + '"">'+ itemList[i].name + '</a></li>');
-                var itemArray = itemList[i].items.split(',');
-                for (var j = 0; j < itemArray.length; j++) {
-                    $("#" + itemList[i].id).append("<ul class='innerList'></u>");
-                    var innerList = $("#" + itemList[i].id + " .innerList");
-                    innerList.append('<li><a class="innerItem" href="javascript:void(0);">' + itemArray[j] + '</a></li>');
-                }
+                listDiv.append('<li id="' + itemList[i].id + '"><a class="toggleList" onClick="getFoodItem(' + itemList[i].id+ ')">'+ itemList[i].name + '</a></li>');
+                //var itemArray = itemList[i].items.split(',');
+                //for (var j = 0; j < itemArray.length; j++) {
+                //    $("#" + itemList[i].id).append("<ul class='innerList'></u>");
+                //    var innerList = $("#" + itemList[i].id + " .innerList");
+                //    innerList.append('<li><a class="innerItem" href="javascript:void(0);">' + itemArray[j] + '</a></li>');
+                //}
             }
         }
     });
@@ -113,6 +117,10 @@ function AjaxDisplayString() {
             $('.phoneNumber span').html(data[2]);//mobile
         }
     });
+}
+function getFoodItem(menuId) {
+    console.log(menuId);
+   
 }
 $(document).ready(function () {
     AjaxDisplayString();
@@ -143,7 +151,7 @@ $(document).ready(function () {
 			price: $("#" + productId + " .productPrice span").text() , 			
 			id: productId,
 			totalItem:$("#" + productId + " .itemCount").text()
-			};
+        }; console.log(product);
 			addProducts(product);
 			$('.cartTotal').show();
 			if(subTotal == ""){
