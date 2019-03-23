@@ -27,6 +27,7 @@ namespace CoreProject.Controllers
         private string route;
         private string number;
         private string message;
+        private string SMTPPasswordAPI;
 
         public HomeController(mayankdbContext context, IConfiguration Configuration)
         {
@@ -41,10 +42,16 @@ namespace CoreProject.Controllers
             route = _configuration["Route"];
             number = _configuration["Number"];
             message = _configuration["Message"];
+            SMTPPasswordAPI = _configuration["SMTPPasswordAPI"];
+            //Subject = "This is test mail using smtp settings";
+            //Body = "SendGrid Mail";
+            //ToEmail = "mayank.gpt1@gmail.com";
+            //SMTPUser = "mybusinesscart@gmail.com";
+            //SMTPPassword = "Welcome@123456";
         }
         // GET: MenuMaster
         public async Task<IActionResult> GetMenu()
-        {            
+        {
             return Json(await _context.Menumaster.ToListAsync());
         }
 
@@ -74,19 +81,38 @@ namespace CoreProject.Controllers
             var menuItems = GetMenuList("GetMenuById", arr);
             return Json(menuItems);
         }
+
+        public string GetRestaurantDetails(string StoredProc, string domainName)
+        {            
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(
+                    StoredProc, new SqlConnection(dbConnectionString)))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@domainName", SqlDbType.VarChar);
+                    cmd.Parameters["@domainName"].Value = domainName;
+                    cmd.Connection.Open();
+                    DataTable table = new DataTable();
+                    table.Load(cmd.ExecuteReader());
+                    return JsonConvert.SerializeObject(table);
+                }
+            }
+            catch
+            {
+                return null;
+            }               
+        }
         public IActionResult Index()
         {            
             return View();
         }
         // GET: /Home/LoadJson
-        [HttpGet]
-        public JsonResult LoadJson()
+        [HttpPost]
+        public JsonResult LoadJson(string domain)
         {
-            ArrayList arrPageDetails = new ArrayList();
-            arrPageDetails.Add(" House No. 41, Meadow Greens, Lodha Heaven, Dombivali Palava City, Maharashtra 421204");
-            arrPageDetails.Add("Snacks");
-            arrPageDetails.Add("+91-81699 05387");
-            return Json(arrPageDetails);
+            var details = GetRestaurantDetails("GetRestaurantDetails", domain);
+            return Json(details);
         }
         
         [HttpGet]
@@ -101,7 +127,7 @@ namespace CoreProject.Controllers
             //bool isOTPSent = true;
             if (isOTPSent == true)
             {                
-                arrUserDetails.Add(rsa.Encrypt(OTP));               
+                arrUserDetails.Add(rsa.Encrypt(OTP));
             }
             else
             {
@@ -136,23 +162,7 @@ namespace CoreProject.Controllers
         {
             Random generator = new Random();
             return Convert.ToString(generator.Next(0, 999999).ToString("D6"));
-        }
-        //public bool SendSMS(string OTP, string Message)
-        //{
-        //    try
-        //    {
-        //        using (WebClient client = new WebClient())
-        //        {
-        //            string s = client.DownloadString(Message);
-        //        }
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ex.ToString();
-        //        return false;
-        //    }
-        //}
+        }        
         public class Enduser
         {
             public string Name

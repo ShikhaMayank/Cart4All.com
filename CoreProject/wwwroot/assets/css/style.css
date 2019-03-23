@@ -747,3 +747,121 @@ ORDER HISTORY PAGE
 .text-secondary {
     color: #ff407b !important;
 }
+/*=========================
+CART PAGE CSS
+=========================*/
+.woocommerce table.shop_table {
+    border: 1px solid rgba(0,0,0,.1);
+    margin: 0 -1px 24px 0;
+    text-align: left;
+    width: 100%;
+    border-collapse: separate;
+    border-radius: 5px;
+}
+
+.shop_table th {
+    font-weight: 700;
+    padding: 9px 12px;
+    line-height: 1.5em;
+}
+
+.shop_table td {
+    border-top: 1px solid rgba(0,0,0,.1);
+    padding: 9px 12px;
+    vertical-align: middle;
+    line-height: 1.5em;
+}
+
+.shop_table tfoot th, .shop_table tfoot td {
+    font-weight: 700;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.cart-subtotal td {
+    border-top: 1px solid #eee;
+}
+
+.shop_table tr, .shop_table th, .shop_table td {
+    max-width: 100%;
+    padding: .857em .587em;
+}
+
+.col2-set {
+    width: 100%;
+}
+
+    .col2-set .col-1 {
+        float: left;
+        width: 48%;
+    }
+
+    .col2-set .col-2 {
+        float: right;
+        width: 48%;
+    }
+
+.woocommerce form .form-row-first, .woocommerce form .form-row-last, .woocommerce-page form .form-row-first, .woocommerce-page form .form-row-last {
+    width: 47%;
+    overflow: visible;
+}
+
+.woocommerce form .form-row-first, .woocommerce-page form .form-row-first {
+    float: left;
+}
+
+.woocommerce form .form-row-last, .woocommerce-page form .form-row-last {
+    float: right;
+}
+
+.woocommerce form .form-row {
+    padding: 3px;
+    margin: 0 0 6px;
+}
+
+    .woocommerce form .form-row label, .woocommerce-page form .form-row label {
+        display: block;
+    }
+
+    .woocommerce form .form-row label {
+        line-height: 2;
+    }
+
+    .woocommerce form .form-row .required {
+        color: red;
+        font-weight: 700;
+        border: 0 !important;
+        text-decoration: none;
+        visibility: hidden;
+    }
+
+    .woocommerce form .form-row .required {
+        visibility: visible;
+    }
+
+    .woocommerce form .form-row .input-text, .woocommerce-page form .form-row .input-text {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .woocommerce form .form-row input.input-text, .woocommerce form .form-row textarea {
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0;
+        outline: 0;
+        line-height: normal;
+    }
+
+    .woocommerce form .form-row input.input-text, .woocommerce form .form-row textarea {
+        padding: 15px;
+        border-radius: 3px;
+        font-size: 14px;
+        border: 1px solid #bbb;
+    }
+
+.woocommerce-billing-fields__field-wrapper {
+    margin-bottom: 10px;
+}
+
+.woocommerce-checkout-payment {
+    margin: 20px 0;
+}

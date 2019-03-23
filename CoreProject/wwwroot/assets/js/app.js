@@ -46,6 +46,7 @@ var productDiv = $('.showProduct');
             },
             success: function (data) {
                 var products = JSON.parse(data);
+                sessionStorage.setItem("FoodItems", data);
                 $.each(products, function (i, product) {
                     loadProducts(product);
                     /*var productImage = $('#product'+ product.id +' .productImage');
@@ -108,19 +109,43 @@ function AjaxDisplayString() {
             }
         }
     });
-    $.ajax({
-        url: "/Home/LoadJson",
-        method: 'GET',
-        success: function (data) {
-            $('.addressArea span').html(data[0]);//address
-            $('.offers span').html(data[1]);//offers
-            $('.phoneNumber span').html(data[2]);//mobile
-        }
-    });
+    //$.ajax({
+    //    url: "/Home/LoadJson",
+    //    method: 'GET',
+    //    success: function (data) {
+    //        $('.addressArea span').html(data[0]);//address
+    //        $('.offers span').html(data[1]);//offers
+    //        $('.phoneNumber span').html(data[2]);//mobile
+    //    }
+    //});
+    var getHostname = window.location.hostname;
+    var domainNameList = getHostname.split('.');
+    var subDomainName = domainNameList[0];
+    if (subDomainName == 'localhost') {
+        subDomainName = 'puurnbhoj';
+    }
+    $.ajax(
+        {
+            type: "POST", //HTTP POST Method
+            url: "Home/LoadJson", // Controller/View
+            data: { //Passing data
+                domain: subDomainName
+            },
+            success: function (data) {
+                if (data == null) {                    
+                    return false;
+                }
+                else {
+                    var json = JSON.parse(data);
+                    $('.addressArea span').html(json[0].Address);//address
+                    $('.phoneNumber span').html(json[0].Landline1);//mobile
+                    $('.rLicNo').html(json[0].fssai);
+                }
+            }
+        });
 }
 function getFoodItem(menuId) {
-    console.log(menuId);
-   
+    
 }
 $(document).ready(function () {
     AjaxDisplayString();
@@ -151,7 +176,7 @@ $(document).ready(function () {
 			price: $("#" + productId + " .productPrice span").text() , 			
 			id: productId,
 			totalItem:$("#" + productId + " .itemCount").text()
-        }; console.log(product);
+        };
 			addProducts(product);
 			$('.cartTotal').show();
 			if(subTotal == ""){
@@ -378,12 +403,11 @@ $(document).ready(function () {
 		
 	});
 	/*$("body").mouseup(function (e) {
-		var subject = $('.productListMobile');		
+		var subject = $('.productListMobile');
 		if (e.target.id != subject.attr('id') && !subject.has(e.target).length) {
 			subject.fadeOut();
-		}			
+		}
 	});*/
-	
 });
 function closeOTPBox() {
     $('#OTP').hide();
@@ -520,13 +544,18 @@ function RazorPay() {
     var mobile = $('#cPhoneNumber').val();
     var bln = validateRazorDetails();
     if (bln == true) {
-    var Descr = '';
-    for (var j = 0; j < $('.productInCart h5 span').length; j++) {
-        Descr += 'Item ' + (parseFloat(j) + 1) + ' : ' + $('.productInCart h5 span')[j].innerHTML + ' <br /> ' + ' Price ' + ' : ' + $('.productInCart .productPrice span')[j].innerHTML + '<br /> Quantity: ' + $('.productAddCart .manageCart .itemCountCart')[j].innerHTML + '\n<br /><br />';
+        var Descr = [];
+        for (var j = 0; j < $('.productInCart h5 span').length; j++) {
+            Descr.push({
+                Item: $('.productInCart h5 span')[j].innerHTML,
+                Price: $('.productInCart .productPrice span')[j].innerHTML,
+                Quantity: $('.productAddCart .manageCart .itemCountCart')[j].innerHTML
+            });
         }
+        console.log(Descr);
         sessionStorage.setItem('price', $('.subTotalPrice span').html());
-        sessionStorage.setItem('address', $('#cAddress').val());
-        sessionStorage.setItem('Descr', Descr);
+        sessionStorage.setItem('address', $('#cAddress').val() + '\n' + $('#cArea').children("option:selected").val());
+        sessionStorage.setItem('Descr', JSON.stringify(Descr));
         sessionStorage.setItem('email', email);
         sessionStorage.setItem('name', name); 
         sessionStorage.setItem('mobile', mobile);

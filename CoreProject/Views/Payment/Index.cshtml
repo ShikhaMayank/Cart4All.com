@@ -1,130 +1,169 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>payment</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Product</title>
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="~/assets/img/favicon.ico" type="image/x-icon">
-
-    <!-- Font awesome -->
-    <link href="~/assets/css/font-awesome.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap -->
-    <link href="~/assets/css/bootstrap.css" rel="stylesheet">
-    <!-- Theme color -->
-    <link id="switcher" href="~/assets/css/theme-color/default-theme.css?v=1.1" rel="stylesheet">
-    <!-- Main style sheet -->
-    <link href="~/assets/css/iconFont.css" rel="stylesheet">
-    <link href="~/assets/css/style.css?v=1.1" rel="stylesheet">
-    <link href="~/assets/css/bootstrap-pincode-input.css" rel="stylesheet" />
-
-    <!-- Google Fonts -->
-    <!-- Prata for body  -->
-    <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
-    <!-- Tangerine for small title -->
-    <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
-    <!-- Open Sans for title -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <!-- Robot for All -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <script src="~/assets/js/jquery-3.1.0.slim.js"></script>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script src="~/assets/js/jquery.min.js"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    @Html.Partial("~/Views/Shared/Header.cshtml")
     <script>
+        function ClickToPay(ev) {
+            var options = {
+                "key": razorPayKey,
+                "amount": parseFloat(price) * 100, // 2000 paise = INR 20
+                "name": "Cart4All",
+                "description": "test",
+                "image": "/assets/img/Cart4All.JPG",
+                "handler": function (response) {
+                    console.log(response.razorpay_payment_id);
+                    location.href = '/payment/success';
+                },
+                "prefill": {
+                    "name": name,
+                    "email": email
+                },
+                "notes": {
+                    "address": address
+                },
+                "theme": {
+                    "color": "#F37254"
+                }
+            };
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+            ev.preventDefault();
+        }
+    </script>
+</head>
+
+<body>
+    <!--START SCROLL TOP BUTTON -->
+    <a class="scrollToTop" href="#">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- END SCROLL TOP BUTTON -->
+    <!-- Start header section -->
+    <header class="topSection">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- End header section -->
+    <section>
+        <div class="container mainSection woocommerce-page">
+
+            <div class="orderDetails woocommerce">
+                <h3>Your Order Details</h3>
+                <div id="order_review" class="woocommerce-checkout-review-order">
+                    <table class="shop_table woocommerce-checkout-review-order-table">
+                        <thead>
+                            <tr>
+                                <th class="product-name">Product</th>
+                                <th class="product-total">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    <span>Italian Macarons</span>
+                                    <strong class="product-quantity">× 1</strong>
+                                </td>
+                                <td class="product-total">
+                                    <span class="woocommerce-Price-amount amount">
+                                        <span class="woocommerce-Price-currencySymbol">₹</span>15.00
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="cart-subtotal">
+                                <th>Subtotal</th>
+                                <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span>15.00</span></td>
+                            </tr>
+                            <tr class="cart-subtotal">
+                                <th>Delivery Charges</th>
+                                <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span>0.00</span></td>
+                            </tr>
+                            <tr class="order-total">
+                                <th>Total</th>
+                                <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span>15.00</span></strong> </td>
+                            </tr>
+                            <tr class="order-total">
+                                <th><strong>
+                                        <span class="woocommerce-Price-amount amount">                                            
+                                            <button id="btnCancel" class="btn btn-default" onclick="BackToHome()">Back to Cart</button>
+                                        </span>
+                                </strong></th>
+                                <td>
+                                    <strong>
+                                        <span class="woocommerce-Price-amount amount">
+                                            <button id="rzpPayment" class="btn btn-success" onclick="ClickToPay(event)">Pay Here</button>
+                                        </span>
+                                    </strong>
+                                </td>
+                            </tr>
+
+                        </tfoot>
+                    </table>
+                    <form>
+                        <h3 class="card-title">Customer Details</h3>
+                        <div class="card" style="width: 100%">
+                            <div class="card-body">
+                                <h4 class="card-title">Name</h4>
+                                <h6 class="card-subtitle mb-2 text-muted cname"></h6>
+                                <h4 class="card-title">Contact</h4>
+                                <h6 class="card-subtitle mb-2 text-muted contact"></h6>
+                                <h4 class="card-title">Delivery Address:</h4>
+                                <p class="card-text address"></p>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Start Footer -->
+    @Html.Partial("~/Views/Shared/Footer.cshtml")
+    <!-- End Footer -->
+    <script type="text/javascript">
         var name = sessionStorage.getItem('name');
         var email = sessionStorage.getItem('email');
+        var mobile = sessionStorage.getItem('mobile');
+        
         var price = sessionStorage.getItem('price');
+        if (price == undefined || price == null || price < 1) {
+            price = 1;
+        }
         var address = sessionStorage.getItem('address');
         var razorPayKey = "@ViewBag.RazorPayKey";
-        var descr = sessionStorage.getItem('Descr');
-    </script>
-    <style>
-        /* Large rounded green border */
-        hr.new5 {
-            border: 10px solid green;
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
-    <h2>Cart4 All RazorPay Interface</h2>
-    <button id="rzp-button1" class="btn btn-success">Pay Here</button>
-    <button class="btn btn-default" onclick="BackToHome();">Back to Cart</button>
-    @*<button class="btn btn-default" onclick="printDiv();">Print Receipt</button>*@
-    <div id='DivIdToPrint'>
-        <hr class="new5">
-        <h4>Cart4All - Order Receipt</h4>
-        <div id="datetime"></div>
-        <div class="container" style="color:blue;background-color:white">
-            <div class="well name" style="background-color:white">name</div>
-            <div class="well description" style="background-color:white">descr</div>
-            <div class="well address" style="background-color:white">address</div>
-            <div class="well spnTotalAmount" style="background-color:white">price</div>
-        </div>
-        <hr class="new5">
-    </div>
-    <script>
-        var options = {
-            "key": razorPayKey,
-            "amount": parseFloat(price) * 100, // 2000 paise = INR 20
-            "name": "Cart4All",
-            "description": "test",
-            "image": "/assets/img/Cart4All.JPG",
-            "handler": function (response) {
-                //alert(response.razorpay_payment_id);
-                location.href = '/payment/success';
-
-            },
-            "prefill": {
-                "name": name,
-                "email": email
-            },
-            "notes": {
-                "address": address
-            },
-            "theme": {
-                "color": "#F37254"
+        var _descr = sessionStorage.getItem('Descr');
+        var descr = JSON.parse(_descr);
+        
+        
+            var td = $("td.product-name");
+            for (var i = 0; i < descr.length; i++) {            
+                td.append("<span>" + descr[i].Item + "</span>");
+                td.append("<strong class='product-quantity'>× " + descr[i].Quantity + "</strong>");
+                td.append("<span>" + descr[i].Price + "</span>");
             }
-        };
-        var rzp1 = new Razorpay(options);
-        price
-        document.getElementById('rzp-button1').onclick = function (e) {
-            rzp1.open();
-            e.preventDefault();
-        }
-    </script>
-    <script type="text/javascript">
-        $('.name').html("<strong>Customer Name:</strong> " + name);
-        $('.spnTotalAmount').html("<strong>Total Cart Price: </strong>₹" + price);
-        $('.description').html("<strong>Item Details:</strong><br />" + descr);
-        $('.address').html("<strong>Delivery Address:</strong> " + address);
-        $('#rzp-button1').text('Pay ₹' + price);
+        $("td.product-name").html(td);
+        console.log($("td.product-name"));
+
+        $('h6.cname').html(name);
+        $('h6.contact').html(mobile);
+        $('p.address').html(address);
+        $('#rzpPayment').text('Pay ₹' + price);
         function BackToHome() {
             if (confirm("Are you sure you want to cancel transaction and move back to Cart?"))
                 window.location.href = "/";
             else
                 return false;
         }
-        //function printDiv() {
-        //    var time = new Date().toLocaleString("en-GB");
-        //    $('#datetime').html(time);
-        //    var divToPrint = document.getElementById('DivIdToPrint');
-        //    var newWin = window.open('', 'Print-Window');
-        //    newWin.document.open();
-        //    newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
-        //    newWin.document.close();
-        //    setTimeout(function () { newWin.close(); }, 10);
-        //}
     </script>
 </body>
 </html>
