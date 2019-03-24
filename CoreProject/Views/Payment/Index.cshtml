@@ -4,17 +4,26 @@
     <script src="~/assets/js/jquery-3.1.0.slim.js"></script>
     <script src="~/assets/js/jquery.min.js"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    @Html.Partial("~/Views/Shared/Header.cshtml")
+    @Html.Partial("~/Views/Shared/MainHeader.cshtml")
     <script>
+        function createGuid() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
         function ClickToPay(ev) {
+            var totalPrice = $('#spnTotal').html();
             var options = {
                 "key": razorPayKey,
-                "amount": parseFloat(price) * 100, // 2000 paise = INR 20
+                "amount": parseFloat(totalPrice) * 100, // 2000 paise = INR 20
                 "name": "Cart4All",
                 "description": "test",
                 "image": "/assets/img/Cart4All.JPG",
                 "handler": function (response) {
-                    console.log(response.razorpay_payment_id);
+                    var orderId = createGuid(); 
+                    sessionStorage.setItem('razorpay_payment_id', response.razorpay_payment_id);
+                    sessionStorage.setItem('orderId', orderId);
                     location.href = '/payment/success';
                 },
                 "prefill": {
@@ -55,58 +64,66 @@
     <!-- End header section -->
     <section>
         <div class="container mainSection woocommerce-page">
-
             <div class="orderDetails woocommerce">
                 <h3>Your Order Details</h3>
                 <div id="order_review" class="woocommerce-checkout-review-order">
-                    <table class="shop_table woocommerce-checkout-review-order-table">
+                    <table ng-app="Items" id="productList" class="shop_table woocommerce-checkout-review-order-table" ng-controller="itemController">
                         <thead>
                             <tr>
-                                <th class="product-name">Product</th>
-                                <th class="product-total">Total</th>
+                                <th>Sr.</th>
+                                <th class="product-name">Item(s)</th>
+                                <th class="product-total">Price</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="cart_item">
+                            <tr class="cart_item" ng-repeat="product in productData">
+                                <td>{{$index +1}}</td>
                                 <td class="product-name">
-                                    <span>Italian Macarons</span>
-                                    <strong class="product-quantity">× 1</strong>
+                                    <span>{{product.Item}}</span>
+                                    <strong class="product-quantity">× {{product.Quantity}}</strong>
                                 </td>
                                 <td class="product-total">
                                     <span class="woocommerce-Price-amount amount">
-                                        <span class="woocommerce-Price-currencySymbol">₹</span>15.00
+                                        <span class="woocommerce-Price-currencySymbol">₹</span> {{product.Price * product.Quantity }}
                                     </span>
                                 </td>
                             </tr>
                         </tbody>
                         <tfoot>
-                            <tr class="cart-subtotal">
+                            <tr class="cart-subtotal" style="background-color:silver;">
                                 <th>Subtotal</th>
-                                <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span>15.00</span></td>
+                                <td>
+                                    <span class="woocommerce-Price-amount amount">
+                                        <span class="woocommerce-Price-currencySymbol">₹</span><span id="spnSubTotal">
+                                            {{ getSubTotal() }}
+                                        </span>
+                                    </span>
+                                </td>
                             </tr>
                             <tr class="cart-subtotal">
                                 <th>Delivery Charges</th>
-                                <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span>0.00</span></td>
+                                <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span><span id="spnDelivery">{{ getdeliverycharge() }}</span></span></td>
                             </tr>
-                            <tr class="order-total">
+                            <tr class="order-total" style="background-color:silver;">
                                 <th>Total</th>
-                                <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span>15.00</span></strong> </td>
+                                <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span><span id="spnTotal">{{ getSubTotal()  + getdeliverycharge() }}</span></span></strong> </td>
                             </tr>
                             <tr class="order-total">
-                                <th><strong>
-                                        <span class="woocommerce-Price-amount amount">                                            
+                                <th>
+                                    <strong>
+                                        <span class="woocommerce-Price-amount amount">
                                             <button id="btnCancel" class="btn btn-default" onclick="BackToHome()">Back to Cart</button>
                                         </span>
-                                </strong></th>
+                                    </strong>
+                                </th>
                                 <td>
                                     <strong>
                                         <span class="woocommerce-Price-amount amount">
-                                            <button id="rzpPayment" class="btn btn-success" onclick="ClickToPay(event)">Pay Here</button>
+                                            <button id="rzpPayment" class="btn btn-success" onclick="ClickToPay(event)">Pay ₹ {{ getSubTotal()  + getdeliverycharge() }}</button>
                                         </span>
                                     </strong>
                                 </td>
                             </tr>
-
                         </tfoot>
                     </table>
                     <form>
@@ -122,11 +139,11 @@
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Start Footer -->
     @Html.Partial("~/Views/Shared/Footer.cshtml")
     <!-- End Footer -->
@@ -134,36 +151,52 @@
         var name = sessionStorage.getItem('name');
         var email = sessionStorage.getItem('email');
         var mobile = sessionStorage.getItem('mobile');
-        
         var price = sessionStorage.getItem('price');
         if (price == undefined || price == null || price < 1) {
             price = 1;
         }
         var address = sessionStorage.getItem('address');
         var razorPayKey = "@ViewBag.RazorPayKey";
-        var _descr = sessionStorage.getItem('Descr');
-        var descr = JSON.parse(_descr);
-        
-        
-            var td = $("td.product-name");
-            for (var i = 0; i < descr.length; i++) {            
-                td.append("<span>" + descr[i].Item + "</span>");
-                td.append("<strong class='product-quantity'>× " + descr[i].Quantity + "</strong>");
-                td.append("<span>" + descr[i].Price + "</span>");
-            }
-        $("td.product-name").html(td);
-        console.log($("td.product-name"));
-
         $('h6.cname').html(name);
         $('h6.contact').html(mobile);
         $('p.address').html(address);
-        $('#rzpPayment').text('Pay ₹' + price);
         function BackToHome() {
             if (confirm("Are you sure you want to cancel transaction and move back to Cart?"))
                 window.location.href = "/";
             else
                 return false;
         }
+    </script>
+    <script>
+        var app = angular.module("Items", []).controller(
+            "itemController", function ($scope, $http) {
+                var request = {
+                    method: 'get',
+                    url: '',
+                };
+                var _descr = sessionStorage.getItem('Descr');
+                var descr = JSON.parse(_descr);
+                if (descr != null && descr != undefined) {
+                    $http(request).then(function () {
+                        $scope.productData = descr;
+                        // calculate sub total for items
+                        $scope.getSubTotal = function () {
+                            var subTotal = 0;
+                            for (var i = 0; i < $scope.productData.length; i++) {
+                                var product = $scope.productData[i];
+                                subTotal += (product.Price * product.Quantity);
+                            }
+                            return subTotal;
+                        }
+                        $scope.getdeliverycharge = function () {
+                            var delivery = 50;                            
+                            return delivery;
+                        }
+                    });
+                    
+                }
+            }
+        )
     </script>
 </body>
 </html>

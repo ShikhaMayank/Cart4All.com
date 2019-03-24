@@ -1,20 +1,206 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Success</title>
-    @*<script src="~/assets/js/jquery-3.1.0.slim.js"></script>*@
+    @Html.Partial("~/Views/Shared/MainHeader.cshtml")
     <script src="~/assets/js/jquery.min.js"></script>
+    <script>        
+        function printReceipt() {
+            $("#Receipt").show();
+            window.print();
+        }
+    </script>
 </head>
-<body onload="SuccessSMS()">
-    Payment Successfully processed. Your Order Id is 998569.
+<body>
+    <div style="float: right;">
+        <a href="javascript:SuccessSMS();" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-envelope"></span> Mail Receipt
+        </a>
+        <a href="javascript:printReceipt();" class="btn btn-success btn-lg">
+            <span class="glyphicon glyphicon-print"></span> Print Receipt
+        </a>
+    </div>
+    <!--START SCROLL TOP BUTTON -->
+    <a class="scrollToTop" href="#">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- END SCROLL TOP BUTTON -->
+
+    <div id="Receipt">
+        <section>
+            <div class="container mainSection woocommerce-page">
+                <div class="orderDetails woocommerce">
+                    <h5 id="orderId">Order Placed successfully with order id </h5>
+                    <h7 id="txnId">Transaction Id: </h7>
+                    <div id="order_review" class="woocommerce-checkout-review-order">
+                        <table ng-app="Items" id="productList" class="shop_table woocommerce-checkout-review-order-table" ng-controller="itemController">
+                            <thead>
+                                <tr>
+                                    <th>Sr.</th>
+                                    <th class="product-name">Item(s)</th>
+                                    <th class="product-total">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="cart_item" ng-repeat="product in productData">
+                                    <td>{{$index +1}}</td>
+                                    <td class="product-name">
+                                        <span>{{product.Item}}</span>
+                                        <strong class="product-quantity">× {{product.Quantity}}</strong>
+                                    </td>
+                                    <td class="product-total">
+                                        <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-currencySymbol">₹</span> {{product.Price * product.Quantity }}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="cart-subtotal" style="background-color:silver;">
+                                    <th>Subtotal</th>
+                                    <td>
+                                        <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-currencySymbol">₹</span><span id="spnSubTotal">
+                                                {{ getSubTotal() }}
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr class="cart-subtotal">
+                                    <th>Delivery Charges</th>
+                                    <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span><span id="spnDelivery">{{ getdeliverycharge() }}</span></span></td>
+                                </tr>
+                                <tr class="order-total" style="background-color:silver;">
+                                    <th>Total</th>
+                                    <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span><span id="spnTotal">{{ getSubTotal()  + getdeliverycharge() }}</span></span></strong> </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <form>
+                            <h3 class="card-title">Customer Details</h3>
+                            <div class="card" style="width: 100%">
+                                <div class="card-body">
+                                    <h4 class="card-title">Name</h4>
+                                    <h6 class="card-subtitle mb-2 text-muted cname"></h6>
+                                    <h4 class="card-title">Contact</h4>
+                                    <h6 class="card-subtitle mb-2 text-muted contact"></h6>
+                                    <h4 class="card-title">Delivery Address:</h4>
+                                    <p class="card-text address"></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script type="text/javascript">
+        var name = sessionStorage.getItem('name');
+        var email = sessionStorage.getItem('email');
+        var mobile = sessionStorage.getItem('mobile');
+        var price = sessionStorage.getItem('price');
+        if (price == undefined || price == null || price < 1) {
+            price = 1;
+        }
+        var address = sessionStorage.getItem('address');
+        $('h6.cname').html(name);
+        $('h6.contact').html(mobile);
+        $('p.address').html(address);
+    </script>
+    <script>
+        var app = angular.module("Items", []).controller(
+            "itemController", function ($scope, $http) {
+                var request = {
+                    method: 'get',
+                    url: '',
+                };
+                var _descr = sessionStorage.getItem('Descr');
+                var descr = JSON.parse(_descr);
+                if (descr != null && descr != undefined) {
+                    $http(request).then(function () {
+                        $scope.productData = descr;
+                        // calculate sub total for items
+                        $scope.getSubTotal = function () {
+                            var subTotal = 0;
+                            for (var i = 0; i < $scope.productData.length; i++) {
+                                var product = $scope.productData[i];
+                                subTotal += (product.Price * product.Quantity);
+                            }
+                            return subTotal;
+                        }
+                        $scope.getdeliverycharge = function () {
+                            var delivery = 50;
+                            return delivery;
+                        }
+                    });
+
+                }
+            }
+        )
+    </script>
+
+
+    
+    <script type="text/javascript">
+        var name = sessionStorage.getItem('name');
+        var email = sessionStorage.getItem('email');
+        var mobile = sessionStorage.getItem('mobile');
+
+        var price = sessionStorage.getItem('price');
+        if (price == undefined || price == null || price < 1) {
+            price = 1;
+        }
+        var address = sessionStorage.getItem('address');
+        var razorPayKey = "@ViewBag.RazorPayKey";
+        $('h6.cname').html(name);
+        $('h6.contact').html(mobile);
+        $('p.address').html(address);
+        function BackToHome() {
+            if (confirm("Are you sure you want to cancel transaction and move back to Cart?"))
+                window.location.href = "/";
+            else
+                return false;
+        }
+    </script>
+    <script>
+        var app = angular.module("Items", []).controller(
+            "itemController", function ($scope, $http) {
+                var request = {
+                    method: 'get',
+                    url: '',
+                };
+                var _descr = sessionStorage.getItem('Descr');
+                var descr = JSON.parse(_descr);
+                if (descr != null && descr != undefined) {
+                    $http(request).then(function () {
+                        $scope.productData = descr;
+                        // calculate sub total for items
+                        $scope.getSubTotal = function () {
+                            var subTotal = 0;
+                            for (var i = 0; i < $scope.productData.length; i++) {
+                                var product = $scope.productData[i];
+                                subTotal += (product.Price * product.Quantity);
+                            }
+                            return subTotal;
+                        }
+                        $scope.getdeliverycharge = function () {
+                            var delivery = 50;
+                            return delivery;
+                        }
+                    });
+
+                }
+            }
+        )
+    </script>
     <script type="text/javascript">
         function SuccessSMS() {
             $.ajax(
                 {
                     type: "GET", //HTTP GET Method
-                    url: "SendSuccessSMS", // Controller/View                   
+                    url: "SendSuccessSMS", // Controller/View
                     success: function (data) {
                         if (data == "true") {
                             alert('Confirmation SMS has been sent on your registered Mobile number.')
@@ -24,6 +210,22 @@
                         alert("No Data");
                     }
                 });
+        }
+        var razorpay_payment_id = sessionStorage.getItem("razorpay_payment_id");
+        var orderId = sessionStorage.getItem("orderId");
+        if (razorpay_payment_id != undefined && razorpay_payment_id != null) {
+            $('#txnId').append(razorpay_payment_id);
+            $('#txnId').show();
+        }
+        else {
+            $('#txnId').hide();
+        }
+        if (orderId != undefined && orderId != null) {
+            $('#orderId').append(orderId).css('color', 'blue');;
+        }
+        else {
+            $('#orderId').text("There is some issues in generating order Id. Please contact our customer support.");
+            $('#orderId').css('color', 'red');
         }
     </script>
 </body>

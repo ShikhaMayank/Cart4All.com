@@ -1,0 +1,171 @@
+﻿<!-- Favicon -->
+<link rel="shortcut icon" href="~/assets/img/favicon.ico" type="image/x-icon">
+<!-- Font awesome -->
+<link href="~/assets/css/font-awesome.css" rel="stylesheet">
+<!-- Bootstrap -->
+<link href="~/assets/css/bootstrap.css" rel="stylesheet">
+<!-- Theme color -->
+<link id="switcher" href="~/assets/css/theme-color/default-theme.css?v=1.1" rel="stylesheet">
+<!-- Main style sheet -->
+<link href="~/assets/css/iconFont.css" rel="stylesheet">
+<link href="~/assets/css/style.css?v=1.1" rel="stylesheet">
+<script src="~/assets/js/jquery.min.js"></script>
+<script src="~/assets/js/angularjs.js"></script>
+
+<!-- Google Fonts -->
+<!-- Prata for body  -->
+<link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
+<!-- Tangerine for small title -->
+<link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
+<!-- Open Sans for title -->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<!-- Robot for All -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+<header>
+    <div class="modal fade" id="modalPromo" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:aqua">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create Promo</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="radio-inline">
+                                <input class="toggleValues" type="radio" name="inlineRadioOptions" id="discPercentage"> Percentage of Bill
+                            </label>
+                            <label class="radio-inline">
+                                <input class="toggleValues" type="radio" name="inlineRadioOptions" id="minOrder"> Flat Amount
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label id="lblDiscount" for="discountPerc">Discount Percentage (%)</label>
+                                <input type="number" class="form-control" id="discountPerc" style="width:50%">
+                            </div>
+                            <div>
+                                <label for="minOrder">Minimum Order Value (Optional)</label>
+                                <input type="number" class="form-control" id="minOrder" style="width:50%">
+                            </div>
+                            <div class="form-group">
+                                <label for="idStartDate">Start Date:</label>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="date" id="startDate" class="form-control clsDatePicker">
+                                    </div>
+                                </div>
+                                <label for="idStartDate">End Date:</label>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="date" id="endDate" class="form-control clsDatePicker">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button id="btnSetPromo" type="button" class="btn btn-info">Set Promo</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // set default  start and end date
+        var d = new Date();
+        var date = ('0' + d.getDate()).slice(-2);
+        var month = ('0' + (parseInt(d.getMonth()) + 1)).slice(-2);
+        var year = d.getFullYear();
+        var finalDate = year + '-' + month + '-' + date;
+        $("#startDate").val(finalDate);// from product view
+        $("#endDate").val(finalDate);// from product view
+        $("#orderStartDate").val(finalDate);// from order view
+        $("#orderEndDate").val(finalDate);// from order view
+        if (localStorage.getItem('userSession') == null) {
+            alert('UnAuthorized Login');
+            window.location.replace("/login");
+        }
+        else {
+            $('#spnUserName').text('Welcome Mr. ' + titleCase(localStorage.getItem('userSession')));
+        }
+        $('[data-toggle="tooltip"]').tooltip();
+        $('#discPercentage').prop('checked', true);
+        localStorage.setItem('DiscountType', 1);
+        localStorage.removeItem('Discount');
+        localStorage.removeItem('MinOrder');
+        localStorage.removeItem('StartDate');
+        localStorage.removeItem('EndDate');
+    });
+    $('#discPercentage').click(function () {
+        if (this.checked) {
+            $('#lblDiscount').text('Discount Percentage (%)');
+            localStorage.setItem('DiscountType', 1);
+        }
+    });
+    $('#minOrder').click(function () {
+        if (this.checked) {
+            $('#lblDiscount').text('Flat Amount');
+            localStorage.setItem('DiscountType', 2);
+        }
+    });
+    $('#myonoffswitch').click(function () {
+        if ($('#myonoffswitch')[0].checked == true) {
+            localStorage.setItem('OrderOpened', 1);
+        }
+        else {
+            localStorage.setItem('OrderOpened', 0);
+        }
+    });
+    $('#btnLogOff').click(function () {
+        localStorage.setItem('userSession', null);
+        window.location.replace("/login");
+    });
+
+    // button Set promo
+    $('#btnSetPromo').click(function () {
+        var bln = validatePromo();
+        if (bln) {
+            localStorage.setItem('Discount', $('#discountPerc').val());
+            localStorage.setItem('MinOrder', $('#minOrder').val());
+            localStorage.setItem('StartDate', $('#startDate').val());
+            localStorage.setItem('EndDate', $('#endDate').val());
+            alert('Promo Set Successfully!');
+        }
+    });
+    function validatePromo() {
+        var startDate = new Date($('#startDate').val());
+        var endDate = new Date($('#endDate').val());
+        if ($('#discountPerc').val().length < 1) {
+            alert('Discount Percentage or Flat Amount cannot be empty');
+            $('#discountPerc').focus();
+            return false;
+        }
+        if ($('#discPercentage').checked == false && $('#minOrder').checked == false) {
+            alert('Select atleast one option between Discount Percentage or Flat Amount!')
+            $('#discPercentage').focus();
+            return false;
+        }
+        if (startDate > endDate) {
+            alert('start date cannot be greater than end date!');
+            $('#startDate').focus();
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+    function titleCase(str) {
+        str = str.toLowerCase().split(' ');
+        for (var i = 0; i < str.length; i++) {
+            str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+        }
+        return str.join(' ');
+    }
+</script>
