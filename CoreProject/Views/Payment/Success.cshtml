@@ -13,10 +13,13 @@
     </script>
 </head>
 <body>
+    <div id="successMessage" class="alert alert-success" style="display:none;">
+        <strong>Congrats!</strong> your order is placed successfully with order id:
+    </div>
+    <div id="errorMessage"  class="alert alert-danger"  style="display:none;">
+        <strong>OOPS!</strong> There is some issue with placing the order. Please contact owner given at this address: 
+    </div>
     <div style="float: right;">
-        <a href="javascript:SuccessSMS();" class="btn btn-info btn-lg">
-            <span class="glyphicon glyphicon-envelope"></span> Mail Receipt
-        </a>
         <a href="javascript:printReceipt();" class="btn btn-success btn-lg">
             <span class="glyphicon glyphicon-print"></span> Print Receipt
         </a>
@@ -29,13 +32,12 @@
 
     <div id="Receipt">
         <section>
-            <div class="container mainSection woocommerce-page">
+            <div id="mailContent" class="container mainSection woocommerce-page">
                 <div class="orderDetails woocommerce">
-                    <h5 id="orderId">Order Placed successfully with order id </h5>
                     <h7 id="txnId">Transaction Id: </h7>
                     <div id="order_review" class="woocommerce-checkout-review-order">
-                        <table ng-app="Items" id="productList" class="shop_table woocommerce-checkout-review-order-table" ng-controller="itemController">
-                            <thead>
+                        <table ng-app="Items" id="productList" class="shop_table woocommerce-checkout-review-order-table" ng-controller="itemController" style="border:solid">
+                            <thead style="background-color:silver;">
                                 <tr>
                                     <th>Sr.</th>
                                     <th class="product-name">Item(s)</th>
@@ -79,7 +81,7 @@
                         </table>
                         <form>
                             <h3 class="card-title">Customer Details</h3>
-                            <div class="card" style="width: 100%">
+                            <div class="card" style="width: 70%;border:solid;">
                                 <div class="card-body">
                                     <h4 class="card-title">Name</h4>
                                     <h6 class="card-subtitle mb-2 text-muted cname"></h6>
@@ -142,7 +144,7 @@
     </script>
 
 
-    
+
     <script type="text/javascript">
         var name = sessionStorage.getItem('name');
         var email = sessionStorage.getItem('email');
@@ -196,21 +198,47 @@
         )
     </script>
     <script type="text/javascript">
-        function SuccessSMS() {
+        function SendMailToOwner() {
             $.ajax(
                 {
-                    type: "GET", //HTTP GET Method
-                    url: "SendSuccessSMS", // Controller/View
-                    success: function (data) {
-                        if (data == "true") {
-                            alert('Confirmation SMS has been sent on your registered Mobile number.')
-                        }
+                    type: "POST", //HTTP POST Method
+                    url: "SendMailToOwner", // Controller/View
+                    data: { //Passing data
+                        userDetails: $('#mailContent').html().trim(),
+                        toEmail: sessionStorage.getItem('OwnerEmail'),
+                        orderId: sessionStorage.getItem('orderId'),
                     },
-                    error: function () {
-                        alert("No Data");
+                    success: function (data) {
+                        if (data == null) {
+                            return false;
+                        }
+                        else {
+                            //alert('SMS sent on your number ' + $('.contact').text());
+                        }
                     }
                 });
         }
+        function SuccessSMS() {
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "SendSuccessSMS", // Controller/View
+                    data: { //Passing data
+                        phone: $('.contact').text(),
+                        orderId: sessionStorage.getItem('orderId'),
+                        paymentId: sessionStorage.getItem("razorpay_payment_id")
+                    },
+                    success: function (data) {
+                        if (data == null) {
+                            return false;
+                        }
+                        else {
+                           //$('#successMessage').append(". \nSMS sent on your number " + $('.contact').text());
+                        }
+                    }
+                });
+        }
+
         var razorpay_payment_id = sessionStorage.getItem("razorpay_payment_id");
         var orderId = sessionStorage.getItem("orderId");
         if (razorpay_payment_id != undefined && razorpay_payment_id != null) {
@@ -221,11 +249,22 @@
             $('#txnId').hide();
         }
         if (orderId != undefined && orderId != null) {
-            $('#orderId').append(orderId).css('color', 'blue');;
+            $('#successMessage').append(orderId);
+            $('#successMessage').show();
+            $('#errorMessage').hide();
         }
         else {
-            $('#orderId').text("There is some issues in generating order Id. Please contact our customer support.");
-            $('#orderId').css('color', 'red');
+            $('#errorMessage').append(sessionStorage.getItem('OwnerEmail'));
+            $('#successMessage').hide();
+            $('#errorMessage').show();
+            
+        }
+        if (orderId != null && razorpay_payment_id != null) {
+            //SuccessSMS();
+            setTimeout(
+                function () {
+                    SendMailToOwner();
+                }, 2000);
         }
     </script>
 </body>

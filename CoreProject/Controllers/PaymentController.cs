@@ -20,9 +20,40 @@ namespace CoreProject.Controllers
 {
     public class PaymentController : Controller
     {
+        private IConfiguration _configuration;
+        private string dbConnectionString;
+        private string publicKey;
+        private string privateKey;
+        private string smsUrl;
+        private string smsKey;
+        private string senderId;
+        private string route;
+        private string number;
+        private string message;
+        private string SMTPPasswordAPI;
+        private string RazorPayKey;
+        public PaymentController(IConfiguration Configuration)
+        {
+            _configuration = Configuration;
+            publicKey = _configuration["PublicKey"];
+            privateKey = _configuration["PrivateKey"];
+            smsUrl = _configuration["SmsUrl"];
+            smsKey = _configuration["SmsKey"];
+            senderId = _configuration["SenderId"];
+            route = _configuration["Route"];
+            number = _configuration["Number"];
+            message = _configuration["Message"];
+            SMTPPasswordAPI = _configuration["SMTPPasswordAPI"];
+            RazorPayKey = _configuration["RazorPayKey"];
+            //Subject = "This is test mail using smtp settings";
+            //Body = "SendGrid Mail";
+            //ToEmail = "mayank.gpt1@gmail.com";
+            //SMTPUser = "mybusinesscart@gmail.com";
+            //SMTPPassword = "Welcome@123456";
+        }
         public IActionResult Index()
         {
-            ViewBag.RazorPayKey = "rzp_test_1gE6SLnkHHnitJ";//Live Key: rzp_live_ETkFO4ZYpbcxRr//testKey: rzp_test_1gE6SLnkHHnitJ
+            ViewBag.RazorPayKey = RazorPayKey;//Live Key: rzp_live_ETkFO4ZYpbcxRr//testKey: rzp_test_1gE6SLnkHHnitJ
             return View();
         }
 
@@ -36,12 +67,28 @@ namespace CoreProject.Controllers
             return View();
         }
         
-        [HttpGet]
-        public JsonResult SendSuccessSMS()
+        [HttpPost]
+        public JsonResult SendSuccessSMS(string phone, string orderId, string paymentId)
         {
             ArrayList arrUserDetails = new ArrayList();
-            bool isOTPSent = SendMessage.OrderConfirmation("9967248008","123456");
-
+            bool isOTPSent = SendMessage.OrderConfirmationSMS(phone, orderId, paymentId);
+            return Json(isOTPSent);
+        }
+        [HttpPost]
+        public JsonResult SendMailToOwner(string userDetails, string toEmail, string orderId)
+        {
+            SendMail obj = new SendMail();
+            Credentials objCred = new Credentials();
+            objCred.SMTPUser = "mybusinesscart@gmail.com";
+            objCred.SMTPPassword = "Welcome@123456";
+            objCred.Host = "smtp.gmail.com";
+            objCred.Port = 25;
+            objCred.Subject = "New order received with Order Id: " + orderId;
+            objCred.IsBodyHtml = true;
+            objCred.EnableSsl = true;
+            objCred.Body = "<html><body><div>" + userDetails.Trim() + "</div></body></html>";
+            objCred.ToEmail = toEmail;
+            bool isOTPSent = obj.Gmail(objCred);
             return Json(isOTPSent);
         }
     }

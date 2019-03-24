@@ -87,13 +87,13 @@
         $("#endDate").val(finalDate);// from product view
         $("#orderStartDate").val(finalDate);// from order view
         $("#orderEndDate").val(finalDate);// from order view
-        if (localStorage.getItem('userSession') == null) {
-            alert('UnAuthorized Login');
-            window.location.replace("/login");
-        }
-        else {
-            $('#spnUserName').text('Welcome Mr. ' + titleCase(localStorage.getItem('userSession')));
-        }
+        //if (localStorage.getItem('userSession') == null) {
+        //    alert('UnAuthorized Login');
+        //    window.location.replace("/login");
+        //}
+        //else {
+        //    $('#spnUserName').text('Welcome Mr. ' + titleCase(localStorage.getItem('userSession')));
+        //}
         $('[data-toggle="tooltip"]').tooltip();
         $('#discPercentage').prop('checked', true);
         localStorage.setItem('DiscountType', 1);

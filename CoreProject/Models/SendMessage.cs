@@ -27,12 +27,11 @@ namespace CoreProject.Models
                 return false;
             }
         }
-        public static bool OrderConfirmation(string number, string orderID)
+        public static bool OrderConfirmationSMS(string phone, string orderId, string paymentId)
         {
-
-            smsKey = "36306361727434616c6c2e636f6d3734351549362176";
-            string msg = "Dear user, your Order is confirmed with order ID " + orderID;
-            string Message = "http://text.bluemedia.in/http-tokenkeyapi.php?authentic-key=" + smsKey + "&senderid=" + "MYCART" + "&route=" + "2" + "&number=" + number + "&message=" + msg;
+            smsKey = "36306361727434616c6c2e636f6d3734351549362176";// SMS API Key
+            string msg = "Dear user, your Order is confirmed with order ID " + orderId + " and transaction id" + paymentId + " Please use them for your future reference";
+            string Message = "http://text.bluemedia.in/http-tokenkeyapi.php?authentic-key=" + smsKey + "&senderid=" + "MYCART" + "&route=" + "2" + "&number=" + phone + "&message=" + msg;
             try
             {
                 using (WebClient client = new WebClient())

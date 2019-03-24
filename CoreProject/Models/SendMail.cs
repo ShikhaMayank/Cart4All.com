@@ -22,7 +22,7 @@ namespace CoreProject.Models
         // On the bottom of the page, in the Less secure app access panel, click Turn on access.
         // If you don't see this setting, your administrator might have turned off less secure app account access.
         
-        private bool Gmail(Credentials objMail)
+        public bool Gmail(Credentials objMail)
         {
             bool flag = false;            
             try
