@@ -406,9 +406,9 @@ LIST ACCORDION
 @media (max-width: 768px) {
 	.scrollToTop{bottom:150px;}
 	#paymentMethod {
-    -webkit-transform: translate(0, -50%);
-    -ms-transform: translate(0, -50%);
-    -o-transform: translate(0, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
 transform: translate(center, -50%);
 }
 }
