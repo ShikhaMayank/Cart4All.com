@@ -16,14 +16,18 @@
     <div id="successMessage" class="alert alert-success" style="display:none;">
         <strong>Congrats!</strong> your order is placed successfully with order id:
     </div>
-    <div id="errorMessage"  class="alert alert-danger"  style="display:none;">
-        <strong>OOPS!</strong> There is some issue with placing the order. Please contact owner given at this address: 
+    <div id="errorMessage" class="alert alert-danger" style="display:none;">
+        <strong>OOPS!</strong> There is some issue with placing the order. Please contact owner given at this address:
     </div>
     <div style="float: right;">
         <a href="javascript:printReceipt();" class="btn btn-success btn-lg">
             <span class="glyphicon glyphicon-print"></span> Print Receipt
         </a>
-    </div>
+        <a href="javascript:BackToHome();" class="btn btn-default btn-lg">
+            <span class="glyphicon"></span> Order Again
+        </a>
+    </div>  
+    <br/>
     <!--START SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#">
         <i class="fa fa-angle-up"></i>
@@ -34,7 +38,7 @@
         <section>
             <div id="mailContent" class="container mainSection woocommerce-page">
                 <div class="orderDetails woocommerce">
-                    <h7 id="txnId">Transaction Id: </h7>
+                    <h7 style="color:blue" id="txnId"><strong>Transaction Id: </strong></h7>
                     <div id="order_review" class="woocommerce-checkout-review-order">
                         <table ng-app="Items" id="productList" class="shop_table woocommerce-checkout-review-order-table" ng-controller="itemController" style="border:solid">
                             <thead style="background-color:silver;">
@@ -73,9 +77,13 @@
                                     <th>Delivery Charges</th>
                                     <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span><span id="spnDelivery">{{ getdeliverycharge() }}</span></span></td>
                                 </tr>
+                                <tr class="cart-subtotal">
+                                    <th>Total Discount in (%)</th>
+                                    <td><span class="woocommerce-Price-amount amount"><span id="spnDelivery">{{ restaurantDiscount() }}</span>%</span></td>
+                                </tr>
                                 <tr class="order-total" style="background-color:silver;">
                                     <th>Total</th>
-                                    <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span><span id="spnTotal">{{ getSubTotal()  + getdeliverycharge() }}</span></span></strong> </td>
+                                    <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span><span id="spnTotal">{{ toBePaid() }}</span></span></strong> </td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -106,7 +114,7 @@
         if (price == undefined || price == null || price < 1) {
             price = 1;
         }
-        var address = sessionStorage.getItem('address');
+        var address = sessionStorage.getItem('FullAddress');
         $('h6.cname').html(name);
         $('h6.contact').html(mobile);
         $('p.address').html(address);
@@ -132,19 +140,51 @@
                             }
                             return subTotal;
                         }
-                        $scope.getdeliverycharge = function () {
-                            var delivery = 50;
-                            return delivery;
-                        }
                     });
 
                 }
             }
         )
+        function calculateDelivery() {
+            var delivery = 0;
+            var discount = sessionStorage.getItem('RestaurantDiscount');
+            var subTotal = $('#spnSubTotal').html().trim();
+            if (subTotal == null || subTotal == undefined || subTotal == "") {
+                delivery = 0;
+            }
+            if (discount == null || discount == undefined || discount == "") {
+                delivery = 0;
+            }
+            else {
+                var _subtotal = ((100 - parseFloat(discount)) * parseFloat(subTotal)) / 100;
+                if (_subtotal < 100) {
+                    delivery = 10;
+                }
+                else {
+                    delivery = 0;
+                }
+            }
+            return delivery;
+        }
+        function calculateRestaurantAmount() {
+            var discount = sessionStorage.getItem('RestaurantDiscount');
+            var delivery = calculateDelivery();
+            var subTotal = $('#spnSubTotal').html().trim();
+            var total = 0;
+            var _discount = 0;
+            if (discount == null || discount == undefined || discount == "") {
+                return false;
+            }
+            if (subTotal == null || subTotal == undefined || subTotal == "") {
+                return false;
+            }
+            else {
+                total = ((100 - parseFloat(discount)) * parseFloat(subTotal)) / 100;
+                return total + delivery;
+            }
+
+        }
     </script>
-
-
-
     <script type="text/javascript">
         var name = sessionStorage.getItem('name');
         var email = sessionStorage.getItem('email');
@@ -154,7 +194,7 @@
         if (price == undefined || price == null || price < 1) {
             price = 1;
         }
-        var address = sessionStorage.getItem('address');
+        var address = sessionStorage.getItem('FullAddress');
         var razorPayKey = "@ViewBag.RazorPayKey";
         $('h6.cname').html(name);
         $('h6.contact').html(mobile);
@@ -188,8 +228,16 @@
                             return subTotal;
                         }
                         $scope.getdeliverycharge = function () {
-                            var delivery = 50;
+                            var delivery = calculateDelivery();
                             return delivery;
+                        }
+                        $scope.restaurantDiscount = function () {
+                            var discount = sessionStorage.getItem('RestaurantDiscount');
+                            return discount;
+                        }
+                        $scope.toBePaid = function () {
+                            var total = calculateRestaurantAmount();
+                            return total;
                         }
                     });
 
@@ -202,11 +250,12 @@
             $.ajax(
                 {
                     type: "POST", //HTTP POST Method
-                    url: "SendMailToOwner", // Controller/View
+                    url: "/Payment/SendMailToOwner", // Controller/View
                     data: { //Passing data
-                        userDetails: $('#mailContent').html().trim(),
+                        userDetails: $('div.orderDetails.woocommerce').html().trim(),
                         toEmail: sessionStorage.getItem('OwnerEmail'),
                         orderId: sessionStorage.getItem('orderId'),
+                        paymentId: sessionStorage.getItem("razorpay_payment_id")
                     },
                     success: function (data) {
                         if (data == null) {
@@ -233,7 +282,7 @@
                             return false;
                         }
                         else {
-                           //$('#successMessage').append(". \nSMS sent on your number " + $('.contact').text());
+                            //$('#successMessage').append(". \nSMS sent on your number " + $('.contact').text());
                         }
                     }
                 });
@@ -257,7 +306,7 @@
             $('#errorMessage').append(sessionStorage.getItem('OwnerEmail'));
             $('#successMessage').hide();
             $('#errorMessage').show();
-            
+
         }
         if (orderId != null && razorpay_payment_id != null) {
             //SuccessSMS();

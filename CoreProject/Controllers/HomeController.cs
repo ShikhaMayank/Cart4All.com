@@ -132,23 +132,52 @@ namespace CoreProject.Controllers
         public JsonResult GetOTP(string number)
         {
             ArrayList arrUserDetails = new ArrayList();
-            Random generator = new Random();
-            string OTP = generator.Next(0, 999999).ToString("D6");
-            var rsa = new RSAHelper(RSAType.RSA2, Encoding.UTF8, privateKey, publicKey);
-            string Message = smsUrl + smsKey + "&senderid=" + senderId + "&route=" + route + "&number=" + number + "&message=" + message + OTP;
-            //bool isOTPSent = SendMessage.SendSMS(OTP, Message);
-            bool isOTPSent = true;
-            if (isOTPSent == true)
+            try
             {
-                arrUserDetails.Add(rsa.Encrypt(OTP));
+                Random generator = new Random();
+                string OTP = generator.Next(0, 999999).ToString("D6");
+                var rsa = new RSAHelper(RSAType.RSA2, Encoding.UTF8, privateKey, publicKey);
+                string Message = smsUrl + smsKey + "&senderid=" + senderId + "&route=" + route + "&number=" + number + "&message=" + message + OTP;
+                bool isOTPSent = SendMessage.SendSMS(OTP, Message);
+                //bool isOTPSent = true;
+                if (isOTPSent == true)
+                {
+                    arrUserDetails.Add(rsa.Encrypt(OTP));
+                }
+                else
+                {
+                    arrUserDetails.Add("SMS Not Sent");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                arrUserDetails.Add("SMS Not Sent");
+                arrUserDetails.Add("ERROR");
             }
+
             return Json(arrUserDetails);
         }
-        
+
+        [HttpGet]
+        public JsonResult SendOrderId(string number, string myOrderId, string userName, string paymentId)
+        {
+            bool isOTPSent = true;
+            try
+            {
+                if (paymentId == null || paymentId.Trim() == "" || paymentId == string.Empty)
+                {
+                    paymentId = "";
+                }
+                //string Message = smsUrl + smsKey + "&senderid=" + senderId + "&route=" + route + "&number=" + number + "&message=Dear "+ userName + ", your Order confimed with order Id " + myOrderId + ". We will be contacting you as soon possible regarding your placed order.";
+                isOTPSent = SendMessage.OrderConfirmationSMS(number, myOrderId, paymentId);
+                isOTPSent = true;
+            }
+            catch (Exception ex)
+            {
+                isOTPSent = false;
+            }
+            return Json(isOTPSent);
+        }
+
         [HttpPost]
         public ActionResult VerifyOTP(string OTP, string HashCode)
         {

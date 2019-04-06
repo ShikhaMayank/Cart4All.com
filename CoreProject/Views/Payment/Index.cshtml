@@ -101,12 +101,16 @@
                                 </td>
                             </tr>
                             <tr class="cart-subtotal">
+                                <th>Total Discount in (%)</th>
+                                <td><span class="woocommerce-Price-amount amount"><span id="spnDelivery">{{ restaurantDiscount() }}</span>%</span></td>
+                            </tr>
+                            <tr class="cart-subtotal">
                                 <th>Delivery Charges</th>
                                 <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span><span id="spnDelivery">{{ getdeliverycharge() }}</span></span></td>
                             </tr>
                             <tr class="order-total" style="background-color:silver;">
                                 <th>Total</th>
-                                <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span><span id="spnTotal">{{ getSubTotal()  + getdeliverycharge() }}</span></span></strong> </td>
+                                <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₹</span><span id="spnTotal">{{ toBePaid() }}</span></span></strong> </td>
                             </tr>
                             <tr class="order-total">
                                 <th>
@@ -119,7 +123,7 @@
                                 <td>
                                     <strong>
                                         <span class="woocommerce-Price-amount amount">
-                                            <button id="rzpPayment" class="btn btn-success" onclick="ClickToPay(event)">Pay ₹ {{ getSubTotal()  + getdeliverycharge() }}</button>
+                                            <button id="rzpPayment" class="btn btn-success" onclick="ClickToPay(event)">Pay ₹ {{ toBePaid() }}</button>
                                         </span>
                                     </strong>
                                 </td>
@@ -155,7 +159,7 @@
         if (price == undefined || price == null || price < 1) {
             price = 1;
         }
-        var address = sessionStorage.getItem('address');
+        var address = sessionStorage.getItem('FullAddress');
         var razorPayKey = "@ViewBag.RazorPayKey";
         $('h6.cname').html(name);
         $('h6.contact').html(mobile);
@@ -176,6 +180,7 @@
                 };
                 var _descr = sessionStorage.getItem('Descr');
                 var descr = JSON.parse(_descr);
+                var restaurantDiscount = sessionStorage.getItem('RestaurantDiscount');
                 if (descr != null && descr != undefined) {
                     $http(request).then(function () {
                         $scope.productData = descr;
@@ -189,14 +194,61 @@
                             return subTotal;
                         }
                         $scope.getdeliverycharge = function () {
-                            var delivery = 50;
+                            var delivery = calculateDelivery();
                             return delivery;
+                        }
+                        $scope.restaurantDiscount = function () {
+                            var discount = sessionStorage.getItem('RestaurantDiscount');                            
+                            return discount;
+                        }
+                        $scope.toBePaid = function () {
+                            var total = calculateRestaurantAmount();
+                            return total;
                         }
                     });
 
                 }
             }
         )
+        function calculateDelivery() {
+            var delivery = 0;
+            var discount = sessionStorage.getItem('RestaurantDiscount');
+            var subTotal = $('#spnSubTotal').html().trim();
+            if (subTotal == null || subTotal == undefined || subTotal == "") {
+                delivery = 0;
+            }
+            if (discount == null || discount == undefined || discount == "") {
+                delivery = 0;
+            }            
+            else {
+                var _subtotal = ((100 - parseFloat(discount)) * parseFloat(subTotal)) / 100;
+                if (_subtotal < 100) {
+                    delivery = 10;
+                }
+                else {
+                    delivery = 0;
+                }
+            }
+            return delivery;
+        }
+        function calculateRestaurantAmount() {
+            var discount = sessionStorage.getItem('RestaurantDiscount');
+            var delivery = calculateDelivery();
+            var subTotal = $('#spnSubTotal').html().trim();
+            var total = 0;
+            var _discount = 0;
+            if (discount == null || discount == undefined || discount == "") {
+                return false;
+            }
+            if (subTotal == null || subTotal == undefined || subTotal == "") {
+                return false;
+            }
+            else {
+                total = ((100 - parseFloat(discount)) * parseFloat(subTotal)) / 100;
+                return total + delivery;
+            }
+            
+        }
     </script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </body>

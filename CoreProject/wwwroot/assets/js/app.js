@@ -330,6 +330,12 @@
 
     $(document).ready(function () {
         $("#aVerifyOTP").click(function () {
+            sessionStorage.setItem('price', $('.subTotalPrice span').html());
+            var _address = $('#cAddress').val()
+            var userlocation = ', ' + $('#cArea').children("option:selected").val();
+            sessionStorage.setItem("FullAddress", (_address + userlocation));
+            sessionStorage.setItem('userPhone', $('#cPhoneNumber').val());
+            sessionStorage.setItem('userName', $('#cName').val());
             var userInput = $('#1st').val() + $('#a').val() + $('#b').val() + $('#c').val() + $('#d').val() + $('#e').val();
             if (userInput.length < 1) {
                 $('#codeError').val('Value cannot be blank and shud be equal to 6 digits.');
@@ -357,11 +363,13 @@
                                 return false;
                             }
                             else {
-                                sessionStorage.setItem('myOrderId', data); console.log(data);
-                                sessionStorage.setItem('price', $('.subTotalPrice span').html());
-                                sessionStorage.setItem('address', $('#cAddress').val());
+                                sessionStorage.setItem('myOrderId', data);
                                 location.href = '/home/thanks';
                             }
+                        },
+                        error: function (error) {
+                            alert('Some issue occured while verifying OTP. Please try after sometime.');
+                            console.log(error);
                         }
                     });
             }
@@ -438,6 +446,7 @@ function AjaxDisplayString() {
                     $('.email a').attr("href", "mailto: " + json[0].email);
                     $('.email a').text(json[0].email);
                     sessionStorage.setItem('OwnerEmail', json[0].email);
+                    sessionStorage.setItem('RestaurantDiscount', json[0].discount);
                 }
             }
         });
@@ -497,6 +506,12 @@ function IsEmail(email) {
     }
 }
 function Payment() {
+    var _address = $('#cAddress').val()
+    var userlocation = ', '+$('#cArea').children("option:selected").val();
+    sessionStorage.setItem("FullAddress", (_address + userlocation));
+    sessionStorage.setItem('email', $('#cEmail').val());
+    sessionStorage.setItem('name', $('#cName').val());
+    sessionStorage.setItem('mobile', $('#cPhoneNumber').val());
     var i = validateDetails();
     if (i == false) { }
     else {
@@ -541,11 +556,13 @@ function RazorPay() {
             });
         }
         sessionStorage.setItem('price', $('.subTotalPrice span').html());
-        sessionStorage.setItem('address', $('#cAddress').val() + '\n' + $('#cArea').children("option:selected").val());
+        var _address = $('#cAddress').val()
+        var userlocation = ', ' + $('#cArea').children("option:selected").val();
+        sessionStorage.setItem("FullAddress", (_address + userlocation));
         sessionStorage.setItem('Descr', JSON.stringify(Descr));
-        sessionStorage.setItem('email', email);
-        sessionStorage.setItem('name', name);
-        sessionStorage.setItem('mobile', mobile);
+        sessionStorage.setItem('email', $('#cEmail').val());
+        sessionStorage.setItem('name', $('#cName').val());
+        sessionStorage.setItem('mobile', $('#cPhoneNumber').val());
         location.href = '/payment/index';
     }
 }

@@ -30,17 +30,20 @@
     <script src="~/assets/js/jquery-3.1.0.slim.js"></script>
     <script src="~/assets/js/jquery.min.js"></script>
     <script type="text/javascript">
+        var userName = sessionStorage.getItem('userName');
+        var address = sessionStorage.getItem('FullAddress');
+        var price = sessionStorage.getItem('price');        
         var orderId = sessionStorage.getItem('myOrderId');
-        debugger;
-        console.log(orderId);
-        var price = sessionStorage.getItem('price');
-        var address = sessionStorage.getItem('address');
+        var email = sessionStorage.getItem('email');
+        var userPhone = sessionStorage.getItem('userPhone');
+        var paymentId = sessionStorage.getItem('razor_pay_id');
+        
         try {
             if (orderId != null && orderId != undefined && orderId != "") {
             @{
                 ViewData["ThankYou"] = "Congratulations!";
                 ViewData["Title"] = "Your Order Id is sent to you on mail and via sms.";
-                ViewData["Message"] = "Our Delivery Team will reach you soon.";
+                ViewData["Message"] = "Our Delivery Team will reach you soon.";                
             }
             }
             else {
@@ -51,23 +54,72 @@
             location.href = '/home/ErrorPage?msg='+ e.message;
         }
         $(document).ready(function () {
-            $("#ViewOrder").click(function () {
-                if ($('#OrderId')[0].innerHTML.length == 0) {
-                    $("#details").show();
-                    $('#OrderId').html("<strong>Order Id:</strong> " + sessionStorage.getItem('myOrderId'));
-                    $('#Price').html("\n<strong>Total Price:</strong> ₹" + sessionStorage.getItem('price'));
-                    $('#Address').html("\n<strong>Delivery Address:</strong> " + sessionStorage.getItem('address'));
-                    $('#ViewOrder')[0].innerHTML = "Click back to Hide Your Order Details";
-                }
-                else {
-                    $("#details").hide();
-                    $('#ViewOrder')[0].innerHTML = "Click here to view your Order Details";
-                    $('#OrderId').html("");
-                    $('#Price').html("");
-                    $('#Address').html("");
-                }
-            })
+            sendNotification();
+            SendMailToOwner();
         });
+        function sendNotification() {
+            $.ajax({
+                url: "/Home/SendOrderId",
+                method: 'GET',
+                data: { //Passing data
+                    number: userPhone,
+                    myOrderId: orderId,
+                    userName: userName,
+                    paymentId: paymentId
+                },
+                success: function (data) {
+                    if (data != false) {
+                        //alert('Your Order Id is sent to you on mail and via sms.');
+                        $("#ViewOrder").click(function () {
+                            if ($('#OrderId')[0].innerHTML.length == 0) {
+                                $("#details").show();
+                                $('#OrderId').html("<strong>Order Id:</strong> " + sessionStorage.getItem('myOrderId'));
+                                $('#Price').html("\n<strong>Total Price:</strong> ₹" + sessionStorage.getItem('price'));
+                                $('#Address').html("\n<strong>Delivery Address:</strong> " + sessionStorage.getItem('FullAddress'));
+                                $('#ViewOrder')[0].innerHTML = "Click back to Hide Your Order Details";
+                            }  
+                            else {
+                                $("#details").hide();
+                                $('#ViewOrder')[0].innerHTML = "Click here to view your Order Details";
+                                $('#OrderId').html("");
+                                $('#Price').html("");
+                                $('#Address').html("");
+                            }
+                        })
+                    }
+                    else {
+                        $("#details").hide();
+                        $('#ViewOrder')[0].innerHTML = "Click here to view your Order Details";
+                        $('#OrderId').html("");
+                        $('#Price').html("");
+                        $('#Address').html("");
+                    }
+                }
+            });
+        }
+        function SendMailToOwner() {
+            var body = '<!DOCTYPE html><html><head><style>table { font-family: arial, sans-serif; border-collapse: collapse; width: 100%;}td, th { border: 1px solid #dddddd; text-align: left; padding: 8px;}tr:nth-child(even) { background-color: #dddddd;}</style></head><body><table> <tr> <th>Order Id</th> <th>Name</th> <th>Address</th> </tr> <tr> <td>';
+            body += sessionStorage.getItem('myOrderId') + '</td> <td>' + sessionStorage.getItem('userName') + '</td> <td>' + sessionStorage.getItem('FullAddress')+'</td> </tr> </table></body></html>';
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "/Payment/SendMailToOwner", // Controller/View
+                    data: { //Passing data
+                        userDetails: body,
+                        toEmail: sessionStorage.getItem('OwnerEmail'),
+                        orderId: sessionStorage.getItem('myOrderId'),
+                        paymentId: sessionStorage.getItem("razor_pay_id")
+                    },
+                    success: function (data) {
+                        if (data == null) {
+                            return false;
+                        }
+                        else {
+                            //alert('SMS sent on your number ' + $('.contact').text());
+                        }
+                    }
+                });
+        }
     </script>
 </head>
 <body>
@@ -84,6 +136,9 @@
                         <span id="Price"></span><br />
                         <span id="Address"></span>
                     </div>
+                </p>
+                <p class="btn-default">
+                    <a href="/home/index">Order Again..</a>
                 </p>
             </div>
         </div>

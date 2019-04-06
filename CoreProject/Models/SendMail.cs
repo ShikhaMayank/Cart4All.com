@@ -5,6 +5,7 @@ namespace CoreProject.Models
         public  string Subject { get; set; }
         public string Body { get; set; }
         public string ToEmail { get; set; }
+        public string ToBCC { get; set; }
         public string SMTPUser { get; set; }
         public string SMTPPassword { get; set; }
         public string DisplayName { get; set; }
@@ -29,9 +30,10 @@ namespace CoreProject.Models
             {                               
                 MailMessage mail = new MailMessage();                
                 mail.From = new MailAddress(objMail.SMTPUser, objMail.DisplayName);                
-                mail.To.Add(objMail.ToEmail);                
-                mail.Subject = objMail.Subject;                
-                mail.Body = objMail.Body;                
+                mail.To.Add(objMail.ToEmail);
+                mail.Bcc.Add("admin@articoletech.com,sauhitya@fanatisch.co");
+                mail.Subject = objMail.Subject;
+                mail.Body = objMail.Body;
                 mail.IsBodyHtml = objMail.IsBodyHtml;                
                 mail.Priority = MailPriority.Normal;                
                 SmtpClient smtp = new SmtpClient();                

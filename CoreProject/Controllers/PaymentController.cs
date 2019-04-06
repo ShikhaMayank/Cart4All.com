@@ -75,20 +75,47 @@ namespace CoreProject.Controllers
             return Json(isOTPSent);
         }
         [HttpPost]
-        public JsonResult SendMailToOwner(string userDetails, string toEmail, string orderId)
+        public JsonResult SendMailToOwner(string userDetails, string toEmail, string orderId, string paymentId)
         {
-            SendMail obj = new SendMail();
-            Credentials objCred = new Credentials();
-            objCred.SMTPUser = "mybusinesscart@gmail.com";
-            objCred.SMTPPassword = "Welcome@123456";
-            objCred.Host = "smtp.gmail.com";
-            objCred.Port = 25;
-            objCred.Subject = "New order received with Order Id: " + orderId;
-            objCred.IsBodyHtml = true;
-            objCred.EnableSsl = true;
-            objCred.Body = "<html><body><div>" + userDetails.Trim() + "</div></body></html>";
-            objCred.ToEmail = toEmail;
-            bool isOTPSent = obj.Gmail(objCred);
+            bool isOTPSent = false;
+            try
+            {
+                SendMail obj = new SendMail();
+                Credentials objCred = new Credentials();
+                objCred.SMTPUser = "mybusinesscart@gmail.com";
+                objCred.SMTPPassword = "Welcome@123456";
+                objCred.Host = "smtp.gmail.com";
+                objCred.Port = 25;
+                if (paymentId != "" || paymentId != null)
+                {
+                    objCred.Subject = "New order received with Order Id: " + orderId + " and payment Id: " + paymentId;
+                }
+                else
+                {
+                    objCred.Subject = "New COD order received with Order Id: " + orderId;
+                }
+
+                objCred.IsBodyHtml = true;
+                objCred.EnableSsl = true;
+                objCred.Body = "<html><body><div>" + userDetails.Trim() + "</div></body></html>";
+                
+                
+                if (toEmail == "" || toEmail == null)
+                {
+                    isOTPSent = false;
+                }
+                else
+                {
+                    objCred.ToEmail = toEmail;
+                    isOTPSent = obj.Gmail(objCred);
+                    isOTPSent = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                isOTPSent = false;
+            }
+            
             return Json(isOTPSent);
         }
     }
