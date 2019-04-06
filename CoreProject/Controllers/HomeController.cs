@@ -10,13 +10,15 @@ using System.Text;
 using Newtonsoft.Json;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace CoreProject.Controllers
 {
     public class HomeController : Controller
-    {        
+    {
         private readonly mayankdbContext _context;
-        
+
         private IConfiguration _configuration;
         private string dbConnectionString;
         private string publicKey;
@@ -52,27 +54,29 @@ namespace CoreProject.Controllers
         // GET: MenuMaster
         public async Task<IActionResult> GetMenu()
         {
+            //dynamic arr = JsonConvert.SerializeObject(await _context.Menumaster.ToListAsync()); // to get menu list into json object
             return Json(await _context.Menumaster.ToListAsync());
         }
 
+        // method to get menu list from database.// Currently we r bringing same from json file instead of hitting this below method to increase performance of site.
         public string GetMenuList(string StoredProc, ArrayList arr)
         {
             string JSONresult;
             using (SqlCommand cmd = new SqlCommand(
                 StoredProc, new SqlConnection(dbConnectionString)))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@RestaurantId", SqlDbType.Int);
-                    cmd.Parameters["@RestaurantId"].Value = arr[0];
-                    cmd.Connection.Open();
-                    DataTable table = new DataTable();
-                    table.Load(cmd.ExecuteReader());
-                    JSONresult = JsonConvert.SerializeObject(table);
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@RestaurantId", SqlDbType.Int);
+                cmd.Parameters["@RestaurantId"].Value = arr[0];
+                cmd.Connection.Open();
+                DataTable table = new DataTable();
+                table.Load(cmd.ExecuteReader());
+                JSONresult = JsonConvert.SerializeObject(table);
             }
             return JSONresult;
         }
 
-
+        // method to get menu list from database.// Currently we r bringing same from json file to increase its performance.
         [HttpPost]
         public ActionResult GetFoodItemList(string MenuId)
         {
@@ -83,16 +87,16 @@ namespace CoreProject.Controllers
                 var menuItems = GetMenuList("GetMenuById", arr);
                 return Json(menuItems);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return null;
             }
-            
-            
+
+
         }
 
         public string GetRestaurantDetails(string StoredProc, string domainName)
-        {            
+        {
             try
             {
                 using (SqlCommand cmd = new SqlCommand(
@@ -110,10 +114,10 @@ namespace CoreProject.Controllers
             catch
             {
                 return null;
-            }               
+            }
         }
         public IActionResult Index()
-        {            
+        {
             return View();
         }
         // GET: /Home/LoadJson
@@ -123,19 +127,19 @@ namespace CoreProject.Controllers
             var details = GetRestaurantDetails("GetRestaurantDetails", domain);
             return Json(details);
         }
-        
+
         [HttpGet]
         public JsonResult GetOTP()
-        {            
+        {
             ArrayList arrUserDetails = new ArrayList();
             Random generator = new Random();
             string OTP = generator.Next(0, 999999).ToString("D6");
             var rsa = new RSAHelper(RSAType.RSA2, Encoding.UTF8, privateKey, publicKey);
             string Message = smsUrl + smsKey + "&senderid=" + senderId + "&route=" + route + "&number=" + number + "&message=" + message + OTP;
-            bool isOTPSent = SendMessage.SendSMS(OTP,Message);
+            bool isOTPSent = SendMessage.SendSMS(OTP, Message);
             //bool isOTPSent = true;
             if (isOTPSent == true)
-            {                
+            {
                 arrUserDetails.Add(rsa.Encrypt(OTP));
             }
             else
@@ -150,9 +154,9 @@ namespace CoreProject.Controllers
         {
             ArrayList arrStatus = new ArrayList();
             var rsa = new RSAHelper(RSAType.RSA2, Encoding.UTF8, privateKey, publicKey);
-            
+
             Enduser VerifyOTP = new Enduser
-            {                
+            {
                 OTP = rsa.Decrypt(HashCode)
             };
             if (VerifyOTP.OTP == OTP)
@@ -165,13 +169,13 @@ namespace CoreProject.Controllers
             {
                 return Json("Error");
             }
-            
+
         }
         public string GetOrderId()
         {
             Random generator = new Random();
             return Convert.ToString(generator.Next(0, 999999).ToString("D6"));
-        }        
+        }
         public class Enduser
         {
             public string Name
@@ -199,7 +203,7 @@ namespace CoreProject.Controllers
                 get;
                 set;
             }
-        }        
+        }
         public ActionResult FoodItems()
         {
             return PartialView();
@@ -211,7 +215,7 @@ namespace CoreProject.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        
+
         public IActionResult Thanks()
         {
             return View();

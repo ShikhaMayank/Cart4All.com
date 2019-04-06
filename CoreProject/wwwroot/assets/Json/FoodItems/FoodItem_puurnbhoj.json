@@ -1,0 +1,2522 @@
+[
+  {
+    "Id": 14,
+    "CatId": 5,
+    "name": "Poha",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 15,
+    "CatId": 5,
+    "name": "Alu Paratha",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 16,
+    "CatId": 5,
+    "name": "Gobi Paratha",
+    "type": "Veg",
+    "price": 60.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 17,
+    "CatId": 5,
+    "name": "Paneer Paratha",
+    "type": "Veg",
+    "price": 80.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 18,
+    "CatId": 5,
+    "name": "Methi Paratha",
+    "type": "Veg",
+    "price": 60.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 19,
+    "CatId": 5,
+    "name": "Poori Sabji (5pc)",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 20,
+    "CatId": 5,
+    "name": "Poori Chole (5pc)",
+    "type": "Veg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 21,
+    "CatId": 5,
+    "name": "Chole Bhature (3pc)",
+    "type": "Veg",
+    "price": 180.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 22,
+    "CatId": 5,
+    "name": "Dahi Bara Aludum Half",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 23,
+    "CatId": 5,
+    "name": "Dahi Bara Aludum Full",
+    "type": "Veg",
+    "price": 70.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 24,
+    "CatId": 5,
+    "name": "Bara Guguni (4pc)",
+    "type": "Veg",
+    "price": 60.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 25,
+    "CatId": 5,
+    "name": "Bara Alu Dum",
+    "type": "Veg",
+    "price": 70.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 26,
+    "CatId": 5,
+    "name": "Parata Alu Dum (3pc)",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 27,
+    "CatId": 5,
+    "name": "Puri Alu Kasa (5pc)",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 28,
+    "CatId": 5,
+    "name": "Biri Kachori Alu Tarkari",
+    "type": "Veg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 29,
+    "CatId": 5,
+    "name": "Misal Pav",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 30,
+    "CatId": 5,
+    "name": "Extra Pav (2pc)",
+    "type": "Veg",
+    "price": 20.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 31,
+    "CatId": 5,
+    "name": "Egg Omlette",
+    "type": "Eggetarian",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 32,
+    "CatId": 5,
+    "name": "Egg Masala Omlette",
+    "type": "Eggetarian",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 33,
+    "CatId": 5,
+    "name": "Egg Bhurji",
+    "type": "Eggetarian",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 34,
+    "CatId": 5,
+    "name": "Egg Masala Bhurji",
+    "type": "Eggetarian",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 35,
+    "CatId": 5,
+    "name": "Egg Half Fry",
+    "type": "Eggetarian",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 36,
+    "CatId": 5,
+    "name": "Sada Uttapam",
+    "type": "Veg",
+    "price": 30.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 37,
+    "CatId": 5,
+    "name": "Cheese Sada Uttapam",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 38,
+    "CatId": 5,
+    "name": "Masala Uttapam",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 39,
+    "CatId": 5,
+    "name": "Cheese Masala Uttapam",
+    "type": "Veg",
+    "price": 70.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 40,
+    "CatId": 5,
+    "name": "Onion Uttapam",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 41,
+    "CatId": 5,
+    "name": "Cheese Onion Uttapam",
+    "type": "Veg",
+    "price": 60.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 42,
+    "CatId": 5,
+    "name": "Tomato Uttapam",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 43,
+    "CatId": 5,
+    "name": "Cheese Tomato Uttapam",
+    "type": "Veg",
+    "price": 60.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 44,
+    "CatId": 5,
+    "name": "Onion Tomato Uttapam",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 45,
+    "CatId": 5,
+    "name": "Cheese Onion Tomato Uttapam",
+    "type": "Veg",
+    "price": 70.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 46,
+    "CatId": 5,
+    "name": "Sada Dosa",
+    "type": "Veg",
+    "price": 30.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 47,
+    "CatId": 5,
+    "name": "Cheese Sada Dosa",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 48,
+    "CatId": 5,
+    "name": "Masala Dosa",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 49,
+    "CatId": 5,
+    "name": "Cheese Masala Dosa",
+    "type": "Veg",
+    "price": 70.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 50,
+    "CatId": 5,
+    "name": "Onion Dosa",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 51,
+    "CatId": 5,
+    "name": "Cheese Onion Dosa",
+    "type": "Veg",
+    "price": 60.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 52,
+    "CatId": 5,
+    "name": "Egg Dosa",
+    "type": "Eggetarian",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 53,
+    "CatId": 5,
+    "name": "Egg Onion Dosa",
+    "type": "Eggetarian",
+    "price": 60.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 54,
+    "CatId": 5,
+    "name": "Cheese Egg Dosa",
+    "type": "Eggetarian",
+    "price": 70.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 55,
+    "CatId": 5,
+    "name": "Cheese Egg Onion Dosa",
+    "type": "Eggetarian",
+    "price": 80.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 56,
+    "CatId": 5,
+    "name": "Chicken Keema Dosa",
+    "type": "NonVeg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 57,
+    "CatId": 5,
+    "name": "Mutton Keema Dosa",
+    "type": "NonVeg",
+    "price": 180.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 58,
+    "CatId": 5,
+    "name": "Upma",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 59,
+    "CatId": 5,
+    "name": "Idli(4pc)",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 60,
+    "CatId": 5,
+    "name": "Medu Wada(3pc)",
+    "type": "Veg",
+    "price": 60.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 61,
+    "CatId": 5,
+    "name": "Idli Wada (2+1pc)",
+    "type": "Veg",
+    "price": 60.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 62,
+    "CatId": 6,
+    "name": "Veg Clear Soup Soup",
+    "type": "Veg",
+    "price": 80.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 63,
+    "CatId": 6,
+    "name": "Veg Sweet Corn Soup",
+    "type": "Veg",
+    "price": 90.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 64,
+    "CatId": 6,
+    "name": "Veg Manchow Soup",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 65,
+    "CatId": 6,
+    "name": "Veg Lemon Coriander Soup",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 66,
+    "CatId": 6,
+    "name": "Veg Hot and Sour Soup",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 67,
+    "CatId": 6,
+    "name": "Veg Pepper Spinach Soup",
+    "type": "Veg",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 68,
+    "CatId": 6,
+    "name": "Veg Mushroom Soup",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 69,
+    "CatId": 6,
+    "name": "Chicken Clear Soup",
+    "type": "NonVeg",
+    "price": 90.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 70,
+    "CatId": 6,
+    "name": "Chicken Sweet Corn Soup",
+    "type": "NonVeg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 71,
+    "CatId": 6,
+    "name": "Chicken Manchow Soup",
+    "type": "NonVeg",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 72,
+    "CatId": 6,
+    "name": "Chicken Lemon Coriander Soup",
+    "type": "NonVeg",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 73,
+    "CatId": 6,
+    "name": "Chicken Hot and Sour Soup",
+    "type": "NonVeg",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 74,
+    "CatId": 6,
+    "name": "Chicken Pepper Spinach Soup",
+    "type": "NonVeg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 75,
+    "CatId": 6,
+    "name": "Chicken Mushroom Soup",
+    "type": "NonVeg",
+    "price": 130.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 76,
+    "CatId": 6,
+    "name": "Prawns Clear Soup",
+    "type": "NonVeg",
+    "price": 130.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 77,
+    "CatId": 6,
+    "name": "Prawns Sweet Corn Soup",
+    "type": "NonVeg",
+    "price": 140.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 78,
+    "CatId": 6,
+    "name": "Prawns Manchow Soup",
+    "type": "NonVeg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 79,
+    "CatId": 6,
+    "name": "Prawns Lemon Coriander Soup",
+    "type": "NonVeg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 80,
+    "CatId": 6,
+    "name": "Prawns Hot and Sour Soup",
+    "type": "NonVeg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 81,
+    "CatId": 6,
+    "name": "Prawns Pepper Spinach Soup",
+    "type": "NonVeg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 82,
+    "CatId": 6,
+    "name": "Prawns Mushroom Soup",
+    "type": "NonVeg",
+    "price": 170.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 83,
+    "CatId": 7,
+    "name": "Paneer Tikka",
+    "type": "Veg",
+    "price": 130.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 84,
+    "CatId": 7,
+    "name": "Tandoori Mushroom",
+    "type": "Veg",
+    "price": 130.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 85,
+    "CatId": 7,
+    "name": "Tandoori Aloo",
+    "type": "Veg",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 86,
+    "CatId": 7,
+    "name": "Tandoori Gobi",
+    "type": "Veg",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 87,
+    "CatId": 7,
+    "name": "Veg Pakoda",
+    "type": "Veg",
+    "price": 80.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 88,
+    "CatId": 7,
+    "name": "Paneer Pakoda (6 pc)",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 89,
+    "CatId": 8,
+    "name": "Veg Manchurian",
+    "type": "Veg",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 90,
+    "CatId": 8,
+    "name": "Gobi Manchurian",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 91,
+    "CatId": 8,
+    "name": "Veg Chilly",
+    "type": "Veg",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 92,
+    "CatId": 8,
+    "name": "Paneer Chilly",
+    "type": "Veg",
+    "price": 130.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 93,
+    "CatId": 8,
+    "name": "Mushroom Babycorn Chilly",
+    "type": "Veg",
+    "price": 140.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 94,
+    "CatId": 8,
+    "name": "Mushroom Manchurian",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 95,
+    "CatId": 8,
+    "name": "Mushroom Chilly",
+    "type": "Veg",
+    "price": 140.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 96,
+    "CatId": 7,
+    "name": "Tandoori Chicken Half",
+    "type": "NonVeg",
+    "price": 140.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 97,
+    "CatId": 7,
+    "name": "Tandoori Chicken Full",
+    "type": "NonVeg",
+    "price": 250.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 98,
+    "CatId": 7,
+    "name": "Chicken Seekh Kebab",
+    "type": "NonVeg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 99,
+    "CatId": 7,
+    "name": "Pahadi Kebab (6 Pc)",
+    "type": "NonVeg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 100,
+    "CatId": 7,
+    "name": "Reshmi Kebab (6 Pc)",
+    "type": "NonVeg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 101,
+    "CatId": 7,
+    "name": "Chicken Tikka (6 Pc)",
+    "type": "NonVeg",
+    "price": 170.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 102,
+    "CatId": 7,
+    "name": "Chicken Leg Tandoori (3pc)",
+    "type": "NonVeg",
+    "price": 200.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 103,
+    "CatId": 7,
+    "name": "Mutton Seekh Kebab",
+    "type": "NonVeg",
+    "price": 250.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 104,
+    "CatId": 7,
+    "name": "Tandoori Pomfret (Pc As per Size)",
+    "type": "NonVeg",
+    "price": 450.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 105,
+    "CatId": 7,
+    "name": "Tandoori Prawns (Pc As per Size)",
+    "type": "NonVeg",
+    "price": 350.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 106,
+    "CatId": 7,
+    "name": "Surmai Fry (2 Pc)",
+    "type": "NonVeg",
+    "price": 400.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 107,
+    "CatId": 7,
+    "name": "Rohu/Katla Fry (2 Pc)",
+    "type": "NonVeg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 108,
+    "CatId": 7,
+    "name": "Pomfret Fry (Pc As per Size)",
+    "type": "NonVeg",
+    "price": 400.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 109,
+    "CatId": 8,
+    "name": "Egg Chilly Dry",
+    "type": "Eggetarian",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 110,
+    "CatId": 7,
+    "name": "Chicken Pakoda (6pc)",
+    "type": "NonVeg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 111,
+    "CatId": 8,
+    "name": "Chicken Chilly Dry",
+    "type": "NonVeg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 112,
+    "CatId": 8,
+    "name": "Prawns Chilly Dry",
+    "type": "NonVeg",
+    "price": 250.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 113,
+    "CatId": 8,
+    "name": "Chicken Lollypop (6 Pc) Dry",
+    "type": "NonVeg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 114,
+    "CatId": 8,
+    "name": "Garlic Chicken Dry",
+    "type": "NonVeg",
+    "price": 140.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 115,
+    "CatId": 8,
+    "name": "Chicken Manchurian Dry",
+    "type": "NonVeg",
+    "price": 140.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 116,
+    "CatId": 9,
+    "name": "Dalma",
+    "type": "Veg",
+    "price": 80.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 117,
+    "CatId": 9,
+    "name": "Bhaja",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 118,
+    "CatId": 9,
+    "name": "Aloo Kalara Chips",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 119,
+    "CatId": 9,
+    "name": "Dahi Baigana",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 120,
+    "CatId": 9,
+    "name": "Tomato Khata",
+    "type": "Veg",
+    "price": 30.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 121,
+    "CatId": 9,
+    "name": "Aloo bhaja",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 122,
+    "CatId": 9,
+    "name": "Potala Bhaja",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 123,
+    "CatId": 9,
+    "name": "Alu Potala Bhaja",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 124,
+    "CatId": 9,
+    "name": "Bhendi Bhaja",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 125,
+    "CatId": 9,
+    "name": "Alu Bhendi Bhaja",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 126,
+    "CatId": 9,
+    "name": "Gol Alu Bhaja",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 127,
+    "CatId": 9,
+    "name": "Alu Chuin Bhaja",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 128,
+    "CatId": 9,
+    "name": "Kalara Bhaja",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 129,
+    "CatId": 9,
+    "name": "Alu Kalara Bhaja",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 130,
+    "CatId": 9,
+    "name": "Gobi Bhaja",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 131,
+    "CatId": 9,
+    "name": "Alu Gobi Bhaja",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 132,
+    "CatId": 9,
+    "name": "Bhaigana Bhaja",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 133,
+    "CatId": 9,
+    "name": "Masala Khichdi with Tomato Khata",
+    "type": "Veg",
+    "price": 90.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 134,
+    "CatId": 9,
+    "name": "Ghanto Tarkari",
+    "type": "Veg",
+    "price": 80.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 135,
+    "CatId": 9,
+    "name": "Chicken Jholo",
+    "type": "NonVeg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 136,
+    "CatId": 9,
+    "name": "Macha Jholo",
+    "type": "NonVeg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 137,
+    "CatId": 9,
+    "name": "Mutton Jholo",
+    "type": "NonVeg",
+    "price": 200.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 138,
+    "CatId": 9,
+    "name": "Chicken Kasa",
+    "type": "NonVeg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 139,
+    "CatId": 9,
+    "name": "Mutton Kasa",
+    "type": "NonVeg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 140,
+    "CatId": 9,
+    "name": "Prawns Kasa",
+    "type": "NonVeg",
+    "price": 220.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 141,
+    "CatId": 9,
+    "name": "Macha Besara",
+    "type": "NonVeg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 142,
+    "CatId": 10,
+    "name": "Mix Veg",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 143,
+    "CatId": 10,
+    "name": "Veg Kolhapuri",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 144,
+    "CatId": 10,
+    "name": "Veg Kadhai",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 145,
+    "CatId": 10,
+    "name": "Veg Handi",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 146,
+    "CatId": 10,
+    "name": "Veg Kofta",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 147,
+    "CatId": 10,
+    "name": "Veg Lajawab",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 148,
+    "CatId": 10,
+    "name": "Alu Gobi",
+    "type": "Veg",
+    "price": 90.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 149,
+    "CatId": 10,
+    "name": "Alu Mutter",
+    "type": "Veg",
+    "price": 90.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 150,
+    "CatId": 10,
+    "name": "Alu Gobi Mutter",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 151,
+    "CatId": 10,
+    "name": "Alu Palak",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 152,
+    "CatId": 10,
+    "name": "Makai Masala",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 153,
+    "CatId": 10,
+    "name": "Mushroom Masala",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 154,
+    "CatId": 10,
+    "name": "Soya Green Masala",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 155,
+    "CatId": 10,
+    "name": "Dumm Alu",
+    "type": "Veg",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 156,
+    "CatId": 10,
+    "name": "Soya Chilli Milli",
+    "type": "Veg",
+    "price": 130.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 157,
+    "CatId": 10,
+    "name": "Chole Masala",
+    "type": "Veg",
+    "price": 130.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 158,
+    "CatId": 10,
+    "name": "Aloo Jeera",
+    "type": "Veg",
+    "price": 90.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 159,
+    "CatId": 10,
+    "name": "Aloo Methi",
+    "type": "Veg",
+    "price": 90.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 160,
+    "CatId": 10,
+    "name": "Bhendi Masala",
+    "type": "Veg",
+    "price": 90.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 161,
+    "CatId": 10,
+    "name": "Bhendi Fry",
+    "type": "Veg",
+    "price": 90.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 162,
+    "CatId": 10,
+    "name": "Bhendi Do Piaza",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 163,
+    "CatId": 10,
+    "name": "Paneer Masala",
+    "type": "Veg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 164,
+    "CatId": 10,
+    "name": "Paneer Bhurji",
+    "type": "Veg",
+    "price": 180.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 165,
+    "CatId": 10,
+    "name": "Paneer Butter Masala",
+    "type": "Veg",
+    "price": 180.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 166,
+    "CatId": 10,
+    "name": "Paneer Kolhapuri",
+    "type": "Veg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 167,
+    "CatId": 10,
+    "name": "Paneer Do Piaza",
+    "type": "Veg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 168,
+    "CatId": 10,
+    "name": "Paneer Mushroom Handi",
+    "type": "Veg",
+    "price": 190.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 169,
+    "CatId": 10,
+    "name": "Paneer Kadhai",
+    "type": "Veg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 170,
+    "CatId": 10,
+    "name": "Paneer Handi",
+    "type": "Veg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 171,
+    "CatId": 10,
+    "name": "Palak Paneer",
+    "type": "Veg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 172,
+    "CatId": 10,
+    "name": "Mutter Paneer",
+    "type": "Veg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 173,
+    "CatId": 10,
+    "name": "Paneer Kofta",
+    "type": "Veg",
+    "price": 180.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 174,
+    "CatId": 10,
+    "name": "Paneer Tawa",
+    "type": "Veg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 175,
+    "CatId": 10,
+    "name": "Dal Fry",
+    "type": "Veg",
+    "price": 80.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 176,
+    "CatId": 10,
+    "name": "Dal Tadka",
+    "type": "Veg",
+    "price": 90.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 177,
+    "CatId": 10,
+    "name": "Dal Makhni",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 178,
+    "CatId": 10,
+    "name": "Dal Mughlai",
+    "type": "Eggetarian",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 179,
+    "CatId": 10,
+    "name": "Dal Methi",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 180,
+    "CatId": 10,
+    "name": "Dal Palak",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 181,
+    "CatId": 10,
+    "name": "Egg Masala",
+    "type": "Eggetarian",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 182,
+    "CatId": 10,
+    "name": "Egg Curry",
+    "type": "Eggetarian",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 183,
+    "CatId": 10,
+    "name": "Rohu/Katla Curry",
+    "type": "NonVeg",
+    "price": 130.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 184,
+    "CatId": 10,
+    "name": "Rohu/Katla Masala",
+    "type": "NonVeg",
+    "price": 140.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 185,
+    "CatId": 10,
+    "name": "Surmai Masala",
+    "type": "NonVeg",
+    "price": 350.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 186,
+    "CatId": 10,
+    "name": "Surmai Sukha",
+    "type": "NonVeg",
+    "price": 350.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 187,
+    "CatId": 10,
+    "name": "Surmai Curry",
+    "type": "NonVeg",
+    "price": 350.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 188,
+    "CatId": 10,
+    "name": "Pomfret Masala",
+    "type": "NonVeg",
+    "price": 450.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 189,
+    "CatId": 10,
+    "name": "Pomfret Sukha",
+    "type": "NonVeg",
+    "price": 450.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 190,
+    "CatId": 10,
+    "name": "Pomfret Curry",
+    "type": "NonVeg",
+    "price": 450.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 191,
+    "CatId": 10,
+    "name": "Prawns Masala",
+    "type": "NonVeg",
+    "price": 300.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 192,
+    "CatId": 10,
+    "name": "Prawns Sukha",
+    "type": "NonVeg",
+    "price": 300.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 193,
+    "CatId": 10,
+    "name": "Prawns Curry",
+    "type": "NonVeg",
+    "price": 300.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 194,
+    "CatId": 10,
+    "name": "Chicken Masala",
+    "type": "NonVeg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 195,
+    "CatId": 10,
+    "name": "Butter Chicken",
+    "type": "NonVeg",
+    "price": 200.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 196,
+    "CatId": 10,
+    "name": "Chicken Kadhai",
+    "type": "NonVeg",
+    "price": 190.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 197,
+    "CatId": 10,
+    "name": "Chicken Handi",
+    "type": "NonVeg",
+    "price": 190.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 198,
+    "CatId": 10,
+    "name": "Chicken Do Piaza",
+    "type": "NonVeg",
+    "price": 190.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 199,
+    "CatId": 10,
+    "name": "Chicken Kolhapuri",
+    "type": "NonVeg",
+    "price": 190.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 200,
+    "CatId": 10,
+    "name": "Chicken Curry",
+    "type": "NonVeg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 201,
+    "CatId": 10,
+    "name": "Chicken Tikka Masala",
+    "type": "NonVeg",
+    "price": 200.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 202,
+    "CatId": 10,
+    "name": "Mutton Masala",
+    "type": "NonVeg",
+    "price": 250.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 203,
+    "CatId": 10,
+    "name": "Mutton Kadhai",
+    "type": "NonVeg",
+    "price": 270.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 204,
+    "CatId": 10,
+    "name": "Mutton Handi",
+    "type": "NonVeg",
+    "price": 270.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 205,
+    "CatId": 10,
+    "name": "Mutton Do Piaza",
+    "type": "NonVeg",
+    "price": 270.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 206,
+    "CatId": 10,
+    "name": "Mutton Kolhapuri",
+    "type": "NonVeg",
+    "price": 270.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 207,
+    "CatId": 10,
+    "name": "Mutton Curry",
+    "type": "NonVeg",
+    "price": 250.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 208,
+    "CatId": 11,
+    "name": "Veg Manchurian Gravy",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 209,
+    "CatId": 11,
+    "name": "Veg Chilly Gravy",
+    "type": "Veg",
+    "price": 130.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 210,
+    "CatId": 11,
+    "name": "Veg Schezwan Gravy",
+    "type": "Veg",
+    "price": 130.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 211,
+    "CatId": 11,
+    "name": "Veg Hot Garlic Gravy",
+    "type": "Veg",
+    "price": 130.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 212,
+    "CatId": 11,
+    "name": "Paneer Manchurian Gravy",
+    "type": "Veg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 213,
+    "CatId": 11,
+    "name": "Paneer Chilly Gravy",
+    "type": "Veg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 214,
+    "CatId": 11,
+    "name": "Paneer Schezwan Gravy",
+    "type": "Veg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 215,
+    "CatId": 11,
+    "name": "Paneer Hot Garlic Gravy",
+    "type": "Veg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 216,
+    "CatId": 11,
+    "name": "Egg Manchurian Gravy",
+    "type": "Eggetarian",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 217,
+    "CatId": 11,
+    "name": "Egg Chilly Gravy",
+    "type": "Eggetarian",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 218,
+    "CatId": 11,
+    "name": "Egg Schezwan Gravy",
+    "type": "Eggetarian",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 219,
+    "CatId": 11,
+    "name": "Egg Hot Garlic Gravy",
+    "type": "Eggetarian",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 220,
+    "CatId": 11,
+    "name": "Chicken Manchurian Gravy",
+    "type": "NonVeg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 221,
+    "CatId": 11,
+    "name": "Chicken Chilly Gravy",
+    "type": "NonVeg",
+    "price": 170.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 222,
+    "CatId": 11,
+    "name": "Chicken Schezwan Gravy",
+    "type": "NonVeg",
+    "price": 170.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 223,
+    "CatId": 11,
+    "name": "Chicken Hot Garlic Gravy",
+    "type": "NonVeg",
+    "price": 170.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 224,
+    "CatId": 12,
+    "name": "Steam Rice",
+    "type": "Veg",
+    "price": 70.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 225,
+    "CatId": 12,
+    "name": "Sabudana Khichdi",
+    "type": "Veg",
+    "price": 80.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 226,
+    "CatId": 12,
+    "name": "Jeera Rice",
+    "type": "Veg",
+    "price": 90.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 227,
+    "CatId": 12,
+    "name": "Dal Khichdi with Curd",
+    "type": "Veg",
+    "price": 90.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 228,
+    "CatId": 12,
+    "name": "Peas Pulav",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 229,
+    "CatId": 12,
+    "name": "Dal Khichdi Tadka with Raita",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 230,
+    "CatId": 12,
+    "name": "Masala Khichdi with Tomato Khata",
+    "type": "Veg",
+    "price": 100.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 231,
+    "CatId": 12,
+    "name": "Veg Pulav",
+    "type": "Veg",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 232,
+    "CatId": 12,
+    "name": "Veg Biriyani",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 233,
+    "CatId": 12,
+    "name": "Hyderabadi Veg Biriyani",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 234,
+    "CatId": 12,
+    "name": "Kashmiri Pulav",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 235,
+    "CatId": 12,
+    "name": "Chicken Biriyani",
+    "type": "NonVeg",
+    "price": 140.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 236,
+    "CatId": 12,
+    "name": "Paneer pulav",
+    "type": "Veg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 237,
+    "CatId": 12,
+    "name": "Paneer Biriyani",
+    "type": "Veg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 238,
+    "CatId": 12,
+    "name": "Mutton Biriyani",
+    "type": "NonVeg",
+    "price": 190.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 239,
+    "CatId": 13,
+    "name": "Veg Fried Rice",
+    "type": "Veg",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 240,
+    "CatId": 13,
+    "name": "Veg Triple Fried Rice",
+    "type": "Veg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 241,
+    "CatId": 13,
+    "name": "Veg Schezwan Rice",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 242,
+    "CatId": 13,
+    "name": "Veg Schezwan Triple Rice",
+    "type": "Veg",
+    "price": 180.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 243,
+    "CatId": 13,
+    "name": "Egg Fried Rice",
+    "type": "Eggetarian",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 244,
+    "CatId": 13,
+    "name": "Egg Triple Fried Rice",
+    "type": "Eggetarian",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 245,
+    "CatId": 13,
+    "name": "Egg Schezwan Rice",
+    "type": "Eggetarian",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 246,
+    "CatId": 13,
+    "name": "Egg Schezwan Triple Rice",
+    "type": "Eggetarian",
+    "price": 180.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 247,
+    "CatId": 13,
+    "name": "Chicken Fried Rice",
+    "type": "NonVeg",
+    "price": 140.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 248,
+    "CatId": 13,
+    "name": "Chicken Triple Fried Rice",
+    "type": "NonVeg",
+    "price": 200.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 249,
+    "CatId": 13,
+    "name": "Chicken Schezwan Rice",
+    "type": "NonVeg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 250,
+    "CatId": 13,
+    "name": "Chicken Schezwan Triple Rice",
+    "type": "NonVeg",
+    "price": 210.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 251,
+    "CatId": 14,
+    "name": "Veg Fried Noodles",
+    "type": "Veg",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 252,
+    "CatId": 14,
+    "name": "Veg Triple Fried Noodles",
+    "type": "Veg",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 253,
+    "CatId": 14,
+    "name": "Veg Schezwan Noodles",
+    "type": "Veg",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 254,
+    "CatId": 14,
+    "name": "Veg Schezwan Triple Noodles",
+    "type": "Veg",
+    "price": 180.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 255,
+    "CatId": 14,
+    "name": "Egg Fried Noodles",
+    "type": "Eggetarian",
+    "price": 110.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 256,
+    "CatId": 14,
+    "name": "Egg Triple Fried Noodles",
+    "type": "Eggetarian",
+    "price": 160.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 257,
+    "CatId": 14,
+    "name": "Egg Schezwan Noodles",
+    "type": "Eggetarian",
+    "price": 120.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 258,
+    "CatId": 14,
+    "name": "Egg Schezwan Triple Noodles",
+    "type": "Eggetarian",
+    "price": 180.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 259,
+    "CatId": 14,
+    "name": "Chicken Fried Noodles",
+    "type": "NonVeg",
+    "price": 140.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 260,
+    "CatId": 14,
+    "name": "Chicken Triple Fried Noodles",
+    "type": "NonVeg",
+    "price": 200.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 261,
+    "CatId": 14,
+    "name": "Chicken Schezwan Noodles",
+    "type": "NonVeg",
+    "price": 150.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 262,
+    "CatId": 14,
+    "name": "Chicken Schezwan Triple Noodles",
+    "type": "NonVeg",
+    "price": 210.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 263,
+    "CatId": 15,
+    "name": "Tawa Roti",
+    "type": "Veg",
+    "price": 10.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 264,
+    "CatId": 15,
+    "name": "Butter Tawa Roti",
+    "type": "Veg",
+    "price": 15.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 265,
+    "CatId": 15,
+    "name": "Tawa Paratha",
+    "type": "Veg",
+    "price": 20.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 266,
+    "CatId": 15,
+    "name": "Tandoori Roti",
+    "type": "Veg",
+    "price": 15.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 267,
+    "CatId": 15,
+    "name": "Tandoori Butter Roti",
+    "type": "Veg",
+    "price": 20.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 268,
+    "CatId": 15,
+    "name": "Naan",
+    "type": "Veg",
+    "price": 25.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 269,
+    "CatId": 15,
+    "name": "Butter Naan",
+    "type": "Veg",
+    "price": 35.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 270,
+    "CatId": 15,
+    "name": "Garlic Naan",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 271,
+    "CatId": 15,
+    "name": "Butter Garlic Naan",
+    "type": "Veg",
+    "price": 60.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 272,
+    "CatId": 15,
+    "name": "Kulcha",
+    "type": "Veg",
+    "price": 30.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 273,
+    "CatId": 15,
+    "name": "Butter Kulcha",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 274,
+    "CatId": 17,
+    "name": "Suji Halwa",
+    "type": "Veg",
+    "price": 30.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 275,
+    "CatId": 17,
+    "name": "Gulab Jamoon (2pc)",
+    "type": "Veg",
+    "price": 35.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 276,
+    "CatId": 18,
+    "name": "Thumbs Up (600ml)",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 277,
+    "CatId": 18,
+    "name": "Sprite (600ml)",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 278,
+    "CatId": 18,
+    "name": "Mazza (600ml)",
+    "type": "Veg",
+    "price": 55.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 279,
+    "CatId": 18,
+    "name": "Coke (600ml)",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 280,
+    "CatId": 18,
+    "name": "Mineral Water (1Ltr)",
+    "type": "Veg",
+    "price": 25.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 281,
+    "CatId": 18,
+    "name": "Masala Soda Salted",
+    "type": "Veg",
+    "price": 45.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 282,
+    "CatId": 18,
+    "name": "Masala Soda Sweet",
+    "type": "Veg",
+    "price": 45.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 283,
+    "CatId": 18,
+    "name": "Fresh Lime Soda Salted",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 284,
+    "CatId": 18,
+    "name": "Fresh Lime Soda Sweet",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 285,
+    "CatId": 18,
+    "name": "Fresh Lime Soda Salt and Sweet",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 286,
+    "CatId": 18,
+    "name": "Buttermilk",
+    "type": "Veg",
+    "price": 30.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 287,
+    "CatId": 18,
+    "name": "Sweet Lassi",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 288,
+    "CatId": 16,
+    "name": "Fried Papad",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 289,
+    "CatId": 16,
+    "name": "Roasted Papad",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 290,
+    "CatId": 16,
+    "name": "Masala Papad",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 291,
+    "CatId": 16,
+    "name": "Green Salad",
+    "type": "Veg",
+    "price": 50.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 292,
+    "CatId": 16,
+    "name": "Veg Raita",
+    "type": "Veg",
+    "price": 60.0,
+    "Quality": 1,
+    "discount": 0.0
+  },
+  {
+    "Id": 293,
+    "CatId": 16,
+    "name": "Tomato Khata",
+    "type": "Veg",
+    "price": 40.0,
+    "Quality": 1,
+    "discount": 0.0
+  }
+]
