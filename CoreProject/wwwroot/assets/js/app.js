@@ -20,25 +20,9 @@
     function loadProducts(product) {
         productDiv.append(Mustache.render(productTemplate, product));
     }
-
-    //$.ajax({
-    //    url:"/assets/js/data.json",
-    //    success: function (products) {
-    //		$.each(products,function(i,product){
-    //			loadProducts(product);
-    //			/*var productImage = $('#product'+ product.id +' .productImage');
-    //			if(product.imageUrl != ""){
-    //				productImage.show();
-    //			}*/
-    //		});
-    //	},
-    //	error: function() {
-    //		alert("No Data")
-    //   }
-    //});
-
+    var subDomainName = getSubDomain();
     $.ajax({
-        url: "/assets/json/fooditems/FoodItem_puurnbhoj.json",
+        url: "/assets/json/fooditems/FoodItem_" + subDomainName + ".json",
         success: function (data) {
             //var products = JSON.parse(data);
             var products = data;
@@ -56,7 +40,6 @@
             console.log(e);
         }
     });
-
     //    $.ajax(
     //        {
     //            type: "POST", //HTTP POST Method
@@ -81,69 +64,6 @@
     //        });    
     //});
 
-    function AjaxDisplayString() {
-        $.ajax({
-            url: "/assets/json/Menu/Menu_puurnbhoj.json",
-            method: 'GET',
-            success: function (itemList) {
-                localStorage.setItem('me', JSON.stringify(itemList));
-                var storedData = JSON.parse(localStorage.getItem("me"));
-                var listDiv = $('.productList ul');
-                for (var i = 0; i < itemList.length; i++) {
-                    listDiv.append('<li id="' + storedData[i].Id + '"><a class="toggleList" onClick="getFoodItem(' + storedData[i].Id + ')">' + storedData[i].Name + '</a></li>');
-                }
-            }
-        });
-        //$.ajax({
-        //    url: "/Home/GetMenu",
-        //    method: 'GET',
-        //    success: function (itemList) {
-        //        localStorage.setItem('me', JSON.stringify(itemList));
-        //        var storedData = JSON.parse(localStorage.getItem("me"));
-        //        var listDiv = $('.productList ul');
-        //        for (var i = 0; i < itemList.length; i++) {
-        //            listDiv.append('<li id="' + itemList[i].id + '"><a class="toggleList" onClick="getFoodItem(' + itemList[i].id + ')">' + itemList[i].name + '</a></li>');
-        //        }
-        //    }
-        //});
-        //$.ajax({
-        //    url: "/Home/LoadJson",
-        //    method: 'GET',
-        //    success: function (data) {
-        //        $('.addressArea span').html(data[0]);//address
-        //        $('.offers span').html(data[1]);//offers
-        //        $('.phoneNumber span').html(data[2]);//mobile
-        //    }
-        //});
-        var getHostname = window.location.hostname;
-        var domainNameList = getHostname.split('.');
-        var subDomainName = domainNameList[0];
-        if (subDomainName == 'localhost') {
-            subDomainName = 'puurnbhoj';
-        }
-        $.ajax(
-            {
-                type: "POST", //HTTP POST Method
-                url: "Home/LoadJson", // Controller/View
-                data: { //Passing data
-                    domain: subDomainName
-                },
-                success: function (data) {
-                    if (data == null) {
-                        return false;
-                    }
-                    else {
-                        var json = JSON.parse(data);
-                        $('.addressArea span').html(json[0].Address);//address
-                        $('.phoneNumber span').html(json[0].Landline1);//mobile
-                        $('.rLicNo').html(json[0].fssai);
-                        $('.email a').attr("href", "mailto: " + json[0].email);
-                        $('.email a').text(json[0].email);
-                        sessionStorage.setItem('OwnerEmail', json[0].email);
-                    }
-                }
-            });
-    }
     $(document).ready(function () {
         AjaxDisplayString();
         //Add to cart button click
@@ -407,94 +327,7 @@
             }
         });*/
     });
-    function closeOTPBox() {
-        $('#OTP').hide();
-    }
-    function validateDetails() {
-        var name = $('#cName').val();
-        var email = $('#cEmail').val();
-        var mobile = $('#cPhoneNumber').val();
 
-        if (name.length < 1) {
-            alert('Name cannot be empty');
-            $('#cName').focus();
-            return false;
-        }
-        if (email.length < 1 && mobile.length != 10) {
-            alert('Fill atleast one between email and mobile.');
-            $('#cEmail').focus();
-            return false;
-        }
-        if (mobile.length != 10) {
-            alert('Mobile Number should be of 10 digits');
-            $('#cPhoneNumber').focus();
-            return false;
-        }
-        if ($('#cAddress').val().length < 1) {
-            alert('Address cannot be empty');
-            $('#cAddress').focus();
-            return false;
-        }
-        //if ($('.cod.active').length < 1 && $('.paytm.active').length < 1) {
-        //    alert('please select atleast one payment option!');
-        //    return false;
-        //}
-        else {
-            return true;
-        }
-    }
-    function Payment() {
-        var i = validateDetails();
-        if (i == false) { }
-        else {
-            $.ajax({
-                url: "/Home/GetOTP",
-                method: 'GET',
-                success: function (data) {
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState == 4 && this.status == 200) {
-                            alert(this.responseText);
-                        }
-                    };
-                    var encrypted = data[0];
-                    $('#EncryptedOTP').val(encrypted);
-                    $('#OTP').show();
-                }
-            });
-            //if ($('.w-100.cod.active') != undefined) {
-            //    if ($('.w-100.cod.active').length > 0) {
-            //        $.ajax({
-            //            url: "/Home/GetOTP",
-            //            method: 'GET',
-            //            success: function (data) {
-            //                var xhttp = new XMLHttpRequest();
-            //                xhttp.onreadystatechange = function () {
-            //                    if (this.readyState == 4 && this.status == 200) {
-            //                        alert(this.responseText);
-            //                    }
-            //                };
-            //                var encrypted = data[0];
-            //                $('#EncryptedOTP').val(encrypted);
-            //                $('#OTP').show();
-            //            }
-            //        });
-            //    }
-            //    else {
-            //        console.log('code for PAYTM');
-            //    }
-            //}
-            //else {
-            //    console.log('code for PAYTM');
-            //}
-        }
-    }
-    // Code For 6 digit OTP
-    moveOnMax = function (field, nextFieldID) {
-        if (field.value.length == 1) {
-            document.getElementById(nextFieldID).focus();
-        }
-    }
     $(document).ready(function () {
         $("#aVerifyOTP").click(function () {
             var userInput = $('#1st').val() + $('#a').val() + $('#b').val() + $('#c').val() + $('#d').val() + $('#e').val();
@@ -528,72 +361,206 @@
                                 sessionStorage.setItem('price', $('.subTotalPrice span').html());
                                 sessionStorage.setItem('address', $('#cAddress').val());
                                 location.href = '/home/thanks';
-                                //window.location
-                                //$('#codeError').val('Wrong OTP Entered!')
                             }
                         }
                     });
             }
         });
     });
-    function RazorPay() {
-        var name = $('#cName').val();
-        var email = $('#cEmail').val();
-        var mobile = $('#cPhoneNumber').val();
-        var bln = validateRazorDetails();
-        if (bln == true) {
-            var Descr = [];
-            for (var j = 0; j < $('.productInCart h5 span').length; j++) {
-                Descr.push({
-                    Item: $('.productInCart h5 span')[j].innerHTML,
-                    Price: $('.productInCart .productPrice span')[j].innerHTML,
-                    Quantity: $('.productAddCart .manageCart .itemCountCart')[j].innerHTML
-                });
-            }
-            sessionStorage.setItem('price', $('.subTotalPrice span').html());
-            sessionStorage.setItem('address', $('#cAddress').val() + '\n' + $('#cArea').children("option:selected").val());
-            sessionStorage.setItem('Descr', JSON.stringify(Descr));
-            sessionStorage.setItem('email', email);
-            sessionStorage.setItem('name', name);
-            sessionStorage.setItem('mobile', mobile);
-            location.href = '/payment/index';
-        }
+
+});
+function getSubDomain() {
+    var getHostname = window.location.hostname;
+    var domainNameList = getHostname.split('.');
+    var subDomainName = domainNameList[0];
+    if (subDomainName == 'localhost') {
+        subDomainName = 'puurnbhoj';
     }
+    return subDomainName;
+}
+function AjaxDisplayString() {
+    var subDomainName = getSubDomain();
+    $.ajax({
+        url: "/assets/json/Menu/Menu_" + subDomainName + ".json",
+        method: 'GET',
+        success: function (itemList) {
+            localStorage.setItem('me', JSON.stringify(itemList));
+            var storedData = JSON.parse(localStorage.getItem("me"));
+            var listDiv = $('.productList ul');
+            for (var i = 0; i < itemList.length; i++) {
+                listDiv.append('<li id="' + storedData[i].Id + '"><a class="toggleList" onClick="getFoodItem(' + storedData[i].Id + ')">' + storedData[i].Name + '</a></li>');
+            }
+        }
+    });
+    //$.ajax({
+    //    url: "/Home/GetMenu",
+    //    method: 'GET',
+    //    success: function (itemList) {
+    //        localStorage.setItem('me', JSON.stringify(itemList));
+    //        var storedData = JSON.parse(localStorage.getItem("me"));
+    //        var listDiv = $('.productList ul');
+    //        for (var i = 0; i < itemList.length; i++) {
+    //            listDiv.append('<li id="' + itemList[i].id + '"><a class="toggleList" onClick="getFoodItem(' + itemList[i].id + ')">' + itemList[i].name + '</a></li>');
+    //        }
+    //    }
+    //});
+    //$.ajax({
+    //    url: "/Home/LoadJson",
+    //    method: 'GET',
+    //    success: function (data) {
+    //        $('.addressArea span').html(data[0]);//address
+    //        $('.offers span').html(data[1]);//offers
+    //        $('.phoneNumber span').html(data[2]);//mobile
+    //    }
+    //});
+    var getHostname = window.location.hostname;
+    var domainNameList = getHostname.split('.');
+    var subDomainName = domainNameList[0];
+    if (subDomainName == 'localhost') {
+        subDomainName = 'puurnbhoj';
+    }
+    $.ajax(
+        {
+            type: "POST", //HTTP POST Method
+            url: "Home/LoadJson", // Controller/View
+            data: { //Passing data
+                domain: subDomainName
+            },
+            success: function (data) {
+                if (data == null) {
+                    return false;
+                }
+                else {
+                    var json = JSON.parse(data);
+                    $('.addressArea span').html(json[0].Address);//address
+                    $('.phoneNumber span').html(json[0].Landline1);//mobile
+                    $('.rLicNo').html(json[0].fssai);
+                    $('.email a').attr("href", "mailto: " + json[0].email);
+                    $('.email a').text(json[0].email);
+                    sessionStorage.setItem('OwnerEmail', json[0].email);
+                }
+            }
+        });
+}
+function closeOTPBox() {
+    $('#OTP').hide();
+}
+function validateDetails() {
+    var name = $('#cName').val();
+    var email = $('#cEmail').val();
+    var mobile = $('#cPhoneNumber').val();
 
-    function validateRazorDetails() {
-        var name = $('#cName').val();
-        var email = $('#cEmail').val();
-        var mobile = $('#cPhoneNumber').val();
+    if (name.length < 1) {
+        alert('Name cannot be empty');
+        $('#cName').focus();
+        return false;
+    }
+    if (email.length < 1 && mobile.length != 10) {
+        alert('Fill atleast one between email and mobile.');
+        $('#cEmail').focus();
+        return false;
+    }
+    if (mobile.length != 10) {
+        alert('Mobile Number should be of 10 digits');
+        $('#cPhoneNumber').focus();
+        return false;
+    }
+    if ($('#cAddress').val().length < 1) {
+        alert('Address cannot be empty');
+        $('#cAddress').focus();
+        return false;
+    }
+    //if ($('.cod.active').length < 1 && $('.paytm.active').length < 1) {
+    //    alert('please select atleast one payment option!');
+    //    return false;
+    //}
+    else {
+        return true;
+    }
+}
+function Payment() {
+    var i = validateDetails();
+    if (i == false) { }
+    else {
+        $.ajax({
+            url: "/Home/GetOTP",
+            method: 'GET',
+            success: function (data) {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        alert(this.responseText);
+                    }
+                };
+                var encrypted = data[0];
+                $('#EncryptedOTP').val(encrypted);
+                $('#OTP').show();
+            }
+        });
+    }
+}
+// Code For 6 digit OTP
+moveOnMax = function (field, nextFieldID) {
+    if (field.value.length == 1) {
+        document.getElementById(nextFieldID).focus();
+    }
+}
+function RazorPay() {
+    var name = $('#cName').val();
+    var email = $('#cEmail').val();
+    var mobile = $('#cPhoneNumber').val();
+    var bln = validateRazorDetails();
+    if (bln == true) {
+        var Descr = [];
+        for (var j = 0; j < $('.productInCart h5 span').length; j++) {
+            Descr.push({
+                Item: $('.productInCart h5 span')[j].innerHTML,
+                Price: $('.productInCart .productPrice span')[j].innerHTML,
+                Quantity: $('.productAddCart .manageCart .itemCountCart')[j].innerHTML
+            });
+        }
+        sessionStorage.setItem('price', $('.subTotalPrice span').html());
+        sessionStorage.setItem('address', $('#cAddress').val() + '\n' + $('#cArea').children("option:selected").val());
+        sessionStorage.setItem('Descr', JSON.stringify(Descr));
+        sessionStorage.setItem('email', email);
+        sessionStorage.setItem('name', name);
+        sessionStorage.setItem('mobile', mobile);
+        location.href = '/payment/index';
+    }
+}
 
-        if (name.length < 1) {
-            alert('Name cannot be empty');
-            $('#cName').focus();
-            return false;
-        }
-        if (email.length < 1 && mobile.length != 10) {
-            alert('Fill atleast one between email and mobile.');
-            $('#cEmail').focus();
-            return false;
-        }
-        if (mobile.length != 10) {
-            alert('Mobile Number should be of 10 digits');
-            $('#cPhoneNumber').focus();
-            return false;
-        }
-        if ($('#cAddress').val().length < 1) {
-            alert('Address cannot be empty');
-            $('#cAddress').focus();
-            return false;
-        }
-        else {
-            return true;
-        }
-    }        
-})
+function validateRazorDetails() {
+    var name = $('#cName').val();
+    var email = $('#cEmail').val();
+    var mobile = $('#cPhoneNumber').val();
+
+    if (name.length < 1) {
+        alert('Name cannot be empty');
+        $('#cName').focus();
+        return false;
+    }
+    if (email.length < 1 && mobile.length != 10) {
+        alert('Fill atleast one between email and mobile.');
+        $('#cEmail').focus();
+        return false;
+    }
+    if (mobile.length != 10) {
+        alert('Mobile Number should be of 10 digits');
+        $('#cPhoneNumber').focus();
+        return false;
+    }
+    if ($('#cAddress').val().length < 1) {
+        alert('Address cannot be empty');
+        $('#cAddress').focus();
+        return false;
+    }
+    else {
+        return true;
+    }
+}
 function getFoodItem(catID) {
     //We do that to ensure to get a correct JSON
     var FoodItemList = sessionStorage.getItem("FoodItems");
-    //We can use {'name': 'Lenovo Thinkpad 41A429ff8'} as criteria too
     var filtered_json = find_in_object(JSON.parse(FoodItemList), { CatId: parseInt(catID) - 1 });
     var productTemplate = $('#product-template').html();
     var productDiv = $('.showProduct').html('<div class="showProduct"></div>');
