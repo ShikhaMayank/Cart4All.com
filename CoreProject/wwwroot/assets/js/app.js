@@ -598,7 +598,7 @@ function getFoodItem(catID) {
     //We do that to ensure to get a correct JSON
     var FoodItemList = sessionStorage.getItem("FoodItems");
     //We can use {'name': 'Lenovo Thinkpad 41A429ff8'} as criteria too
-    var filtered_json = find_in_object(JSON.parse(FoodItemList), { CatId: catID });
+    var filtered_json = find_in_object(JSON.parse(FoodItemList), { CatId: parseInt(catID) - 1 });
     var productTemplate = $('#product-template').html();    
     var productDiv = $('.showProduct').html('<div class="showProduct"></div>');
     var products = []; products = filtered_json;
