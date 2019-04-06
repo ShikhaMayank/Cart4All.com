@@ -92,34 +92,5 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="~/assets/js/bootstrap.js"></script>
     <script src="~/assets/js/custom.js"></script>
-    <script>
-        var options = {
-            "key": "rzp_test_1gE6SLnkHHnitJ",
-            "amount": "2000", // 2000 paise = INR 20
-            "name": "Cart4All",
-            "description": "test",
-            "image": "/assets/img/Cart4All.JPG",
-            "handler": function (response) {
-                alert(response.razorpay_payment_id);
-                console.log(response);
-            },
-            "prefill": {
-                "name": "Mayank",
-                "email": "mayank.gpt1@gmail.com"
-            },
-            "notes": {
-                "address": "Dombivli"
-            },
-            "theme": {
-                "color": "#F37254"
-            }
-        };
-        var rzp1 = new Razorpay(options);
-
-        document.getElementById('rzp-button1').onclick = function (e) {
-            rzp1.open();
-            e.preventDefault();
-        }
-    </script>
 </body>
 </html>
