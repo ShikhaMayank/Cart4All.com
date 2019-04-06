@@ -29,28 +29,34 @@
     <!-- jQuery library -->
     <script src="~/assets/js/jquery-3.1.0.slim.js"></script>
     <script src="~/assets/js/jquery.min.js"></script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script type="text/javascript">
-        var orderId = sessionStorage.getItem('orderid');
+        var orderId = sessionStorage.getItem('myOrderId');
+        debugger;
+        console.log(orderId);
         var price = sessionStorage.getItem('price');
         var address = sessionStorage.getItem('address');
-        if (orderId > 0) {
+        try {
+            if (orderId != null && orderId != undefined && orderId != "") {
             @{
                 ViewData["ThankYou"] = "Congratulations!";
                 ViewData["Title"] = "Your Order Id is sent to you on mail and via sms.";
                 ViewData["Message"] = "Our Delivery Team will reach you soon.";
             }
+            }
+            else {
+                location.href = '/home/ErrorPage';
+            }
         }
-        else {
-            location.replace("error");
+        catch (e) {
+            location.href = '/home/ErrorPage?msg='+ e.message;
         }
         $(document).ready(function () {
             $("#ViewOrder").click(function () {
                 if ($('#OrderId')[0].innerHTML.length == 0) {
                     $("#details").show();
-                    $('#OrderId').html("Order Id: "+sessionStorage.getItem('orderid'));
-                    $('#Price').html("\nTotal Price: ₹" + sessionStorage.getItem('price'));
-                    $('#Address').html("\nDelivery Address: " + sessionStorage.getItem('address'));
+                    $('#OrderId').html("<strong>Order Id:</strong> " + sessionStorage.getItem('myOrderId'));
+                    $('#Price').html("\n<strong>Total Price:</strong> ₹" + sessionStorage.getItem('price'));
+                    $('#Address').html("\n<strong>Delivery Address:</strong> " + sessionStorage.getItem('address'));
                     $('#ViewOrder')[0].innerHTML = "Click back to Hide Your Order Details";
                 }
                 else {

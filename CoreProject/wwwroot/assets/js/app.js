@@ -357,7 +357,7 @@
                                 return false;
                             }
                             else {
-                                sessionStorage.setItem('orderid', data);
+                                sessionStorage.setItem('myOrderId', data); console.log(data);
                                 sessionStorage.setItem('price', $('.subTotalPrice span').html());
                                 sessionStorage.setItem('address', $('#cAddress').val());
                                 location.href = '/home/thanks';
@@ -460,6 +460,16 @@ function validateDetails() {
         $('#cEmail').focus();
         return false;
     }
+    if (!IsEmail(email) && email.length > 0) {
+        alert('Please enter valid email Id');
+        $('#cEmail').focus();
+        return false;
+    }
+    if (mobile.length != 10) {
+        alert('Please enter valid mobile number.');
+        $('#cPhoneNumber').focus();
+        return false;
+    }
     if (mobile.length != 10) {
         alert('Mobile Number should be of 10 digits');
         $('#cPhoneNumber').focus();
@@ -478,13 +488,24 @@ function validateDetails() {
         return true;
     }
 }
+function IsEmail(email) {
+    var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (!regex.test(email)) {
+        return false;
+    } else {
+        return true;
+    }
+}
 function Payment() {
     var i = validateDetails();
     if (i == false) { }
     else {
         $.ajax({
             url: "/Home/GetOTP",
-            method: 'GET',
+            method: 'POST',
+            data: { //Passing data
+                number: $('#cPhoneNumber').val()
+            },
             success: function (data) {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {

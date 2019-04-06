@@ -128,16 +128,16 @@ namespace CoreProject.Controllers
             return Json(details);
         }
 
-        [HttpGet]
-        public JsonResult GetOTP()
+        [HttpPost]
+        public JsonResult GetOTP(string number)
         {
             ArrayList arrUserDetails = new ArrayList();
             Random generator = new Random();
             string OTP = generator.Next(0, 999999).ToString("D6");
             var rsa = new RSAHelper(RSAType.RSA2, Encoding.UTF8, privateKey, publicKey);
             string Message = smsUrl + smsKey + "&senderid=" + senderId + "&route=" + route + "&number=" + number + "&message=" + message + OTP;
-            bool isOTPSent = SendMessage.SendSMS(OTP, Message);
-            //bool isOTPSent = true;
+            //bool isOTPSent = SendMessage.SendSMS(OTP, Message);
+            bool isOTPSent = true;
             if (isOTPSent == true)
             {
                 arrUserDetails.Add(rsa.Encrypt(OTP));
@@ -148,7 +148,7 @@ namespace CoreProject.Controllers
             }
             return Json(arrUserDetails);
         }
-        string OrderId = "";
+        
         [HttpPost]
         public ActionResult VerifyOTP(string OTP, string HashCode)
         {
@@ -162,7 +162,7 @@ namespace CoreProject.Controllers
             if (VerifyOTP.OTP == OTP)
             {
                 // Insertion to tables and generation of order id code will go here..
-                OrderId = GetOrderId();
+                string OrderId = GetOrderId();
                 return Json(OrderId);
             }
             else
@@ -171,10 +171,10 @@ namespace CoreProject.Controllers
             }
 
         }
-        public string GetOrderId()
+        public static string GetOrderId()
         {
-            Random generator = new Random();
-            return Convert.ToString(generator.Next(0, 999999).ToString("D6"));
+            var objOrderId = Guid.NewGuid();
+            return Convert.ToString(objOrderId);
         }
         public class Enduser
         {
@@ -220,7 +220,7 @@ namespace CoreProject.Controllers
         {
             return View();
         }
-        public IActionResult error()
+        public IActionResult ErrorPage()
         {
             return View();
         }
