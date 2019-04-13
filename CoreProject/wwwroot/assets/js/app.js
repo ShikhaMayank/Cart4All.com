@@ -445,13 +445,16 @@ function AjaxDisplayString() {
                 }
                 else {
                     var json = JSON.parse(data);
-                    $('.addressArea span').html(json[0].Address);//address
-                    $('.phoneNumber span').html(json[0].Landline1);//mobile
-                    $('.rLicNo').html(json[0].fssai);
-                    $('.email a').attr("href", "mailto: " + json[0].email);
-                    $('.email a').text(json[0].email);
-                    sessionStorage.setItem('OwnerEmail', json[0].email);
-                    sessionStorage.setItem('RestaurantDiscount', json[0].discount);
+                    if (json.length > 0) {
+                        $('.addressArea span').html(json[0].Address);//address
+                        $('.phoneNumber span').html(json[0].Landline1);//mobile
+                        $('.rLicNo').html(json[0].fssai);
+                        $('.email a').attr("href", "mailto: " + json[0].email);
+                        $('.email a').text(json[0].email);
+                        sessionStorage.setItem('OwnerEmail', json[0].email);
+                        sessionStorage.setItem('RestaurantDiscount', json[0].discount);
+                    }
+                    
                 }
             }
         });
