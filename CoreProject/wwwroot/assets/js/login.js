@@ -2,17 +2,17 @@
     $.ajax(
         {
             type: "POST", //HTTP POST Method
-            url: "Login/login", // Controller/View
+            url: "Login/Login", // Controller/View
             data: { //Passing data
                 username: $('#username').val(),
                 password: $('#password').val()
             },
             success: function (data) {
-                var isValid = []; isValid = JSON.parse(data);
-                console.log(isValid[0].UserExists);
-                if (isValid[0].UserExists) {
-                    localStorage.setItem('userSession', $('#username').val());
+                if (data) {
                     location.href = '/Product/Index';
+                }
+                else {
+                    console.log(data); 
                 }
             },
             error: function (error) {

@@ -49,14 +49,21 @@ $(function () {
                 },
                 success: function (data) {
                     var products = JSON.parse(data);
-                    sessionStorage.setItem("FoodItems", data);
-                    $.each(products, function (i, product) {
-                        loadProducts(product);
-                        /*var productImage = $('#product'+ product.id +' .productImage');
-                        if(product.imageUrl != ""){
-                            productImage.show();
-                        }*/
-                    });
+                    if (products.length == 0) {
+                        $('#resOFF').show();
+                    }
+                    else {
+                        $('#resOFF').hide();
+                        sessionStorage.setItem("FoodItems", data);
+                        $.each(products, function (i, product) {
+                            loadProducts(product);
+                            /*var productImage = $('#product'+ product.id +' .productImage');
+                            if(product.imageUrl != ""){
+                                productImage.show();
+                            }*/
+                        });
+                    }
+                    
                 },
                 error: function () {
                     alert("No Data");

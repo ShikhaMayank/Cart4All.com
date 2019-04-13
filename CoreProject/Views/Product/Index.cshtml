@@ -41,16 +41,25 @@
         <div class="margin-top-10">
             <div class="float-left">
                 <form class="display-inline">
-                    <input id="txtSearch" type="text" onkeyup="filterItemName()" placeholder="Search for Item Names.." class="gj-textbox-md display-inline-block width-200" />
-                    <div>
+                    <div id="backdrop" class="modal-backdrop in"></div>
+                    <div id="divOnOff" class="well">
                         <br />
                         <span><strong>Total Items in Restaurant:</strong></span>
-                        <span id="totalItems">0</span>
+                        <span id="totalItems">0</span><br />
+                        <strong>Change Restaurant Status by clicking the checkbox below..</strong><br />
+                        <input id="chkOnOff" type="checkbox" value="On/Off" class="form-group-lg" onchange="OnOFFStatus(this);">  ON/OFF</input>
                     </div>
-                    <div id="backdrop" class="modal-backdrop in"></div>
+                    <div id="resON" class="alert alert-success" style="display:none;">
+                        <strong> Restaurant is ON and accepting Orders at present</strong>
+                    </div>
+
+                    <div id="resOFF" class="alert alert-danger" style="display:none;">
+                        <strong> Restaurant is OFF and cannot accept Orders at present</strong>
+                    </div>
                     <div id="loading">
                         Loading...
                     </div>
+                    <input id="txtSearch" type="text" onkeyup="filterItemName()" placeholder="Search for Item Names.." class="gj-textbox-md display-inline-block width-200" />
                 </form>
             </div>
         </div>
@@ -122,21 +131,33 @@
     </div>
     <script type="text/javascript">
         function LoadGrid() {
+            var _subdomain = getSubDomain();
             $.ajax(
                 {
                     type: "POST", //HTTP POST Method
                     url: "/Product/GetFoodItemList", // Controller/View
-                    //data: { //Passing data
-                    //    MenuId: 1, //Reading text box values using Jquery
-                    //},
+                    data: { //Passing data
+                        subdomain: _subdomain, //Reading text box values using Jquery
+                    },
                     success: function (data) {
                         var products = JSON.parse(data);
                         table = document.getElementById("mytable");
                         tr = table.getElementsByTagName("tr");
                         var count = products.length;
-                        $('span#totalItems')[0].innerHTML = count;
+                        $('span#totalItems')[0].innerHTML = count;                        
+                        console.log(products[0].OnOff);
+                        if (products[0].OnOff == true) {
+                            $('#chkOnOff').prop("checked", true);
+                            $('#resON').show();
+                            $('#resOFF').hide();
+                        }
+                        else {
+                            $('#chkOnOff').prop("checked", false);
+                            $('#resON').hide();
+                            $('#resOFF').show();
+                        }                        
                         for (i = 1; i < products.length; i++) {
-                            var status = '';
+                            var status = '';                            
                             if (products[i].isActive == true) {
                                 status = '<td> <input id="' + products[i].Id + '" type="checkbox" checked onclick=updateStatus(' + products[i].Id + ')>' + '</td>';
                             }
@@ -305,6 +326,42 @@
             else {
                 return true;
             }
+        }
+        function getSubDomain() {
+            var getHostname = window.location.hostname;
+            var domainNameList = getHostname.split('.');
+            var subDomainName = domainNameList[0];
+            if (subDomainName == 'localhost') {
+                subDomainName = 'puurnbhoj';
+            }
+            return subDomainName;
+        }
+        function OnOFFStatus(obj) {
+            $('#backdrop').show();
+            var restaurantName = getSubDomain();
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "/Product/OnOFFRestaurant", // Controller/View
+                    data: { //Passing data
+                        restaurant: restaurantName,
+                        status: obj.checked
+                    },
+                    success: function (data) {
+                        if (data == true) {
+                            alert("Status Updated Successfully!");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("Some problem occured while updating. Please logout and try after some time.");
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data);
+                        alert("Some problem occured while updating. Please logout and try after some time.");
+                    }
+                });
+            $('#backdrop').hide();
         }
     </script>
 </body>

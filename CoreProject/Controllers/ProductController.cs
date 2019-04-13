@@ -21,15 +21,16 @@ namespace CoreProject.Controllers
         }
         public IActionResult Index()
         {
-            if (Request.Cookies["username"] != null)
-            {
-                //Remove("username");
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Index", "Login");
-            }
+            //if (Request.Cookies["username"] != null)
+            //{
+            //    //Remove("username");
+            //    return View();
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Index", "Login");
+            //}
+            return View();
         }
         public string Get(string key)
         {
@@ -41,15 +42,14 @@ namespace CoreProject.Controllers
         }
         // method to get menu list from database.// Currently we r bringing same from json file to increase its performance.
         [HttpPost]
-        public JsonResult GetFoodItemList()
+        public JsonResult GetFoodItemList(string subdomain)
         {
             ArrayList arr = new ArrayList();
             try
             {
-                string restaurantName = Get("username");
-                if (restaurantName != "")
+                if (subdomain != "")
                 {
-                    arr.Add(restaurantName);
+                    arr.Add(subdomain);
                     var FoodItems = GetFoodItemList_Admin("GetFoodItemList_Admin", arr);
                     return Json(FoodItems);
                 }
@@ -151,7 +151,55 @@ namespace CoreProject.Controllers
                 return false;
             }
         }
+        [HttpPost]
+        public bool OnOFFRestaurant(string restaurant, string status)
+        {
+            ArrayList arr = new ArrayList();
+            try
+            {
+                if (restaurant != "" && restaurant != null && restaurant != "0")
+                {
+                    arr.Add(Convert.ToString(restaurant));
+                    if (status == "true")
+                    {
+                        arr.Add(1);
+                    }
+                    else
+                    {
+                        arr.Add(0);
+                    }
+                    try
+                    {
+                        using (SqlCommand cmd = new SqlCommand(
+                        "ONOFFRESTAURANT", new SqlConnection(dbConnectionString)))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.Add("@restaurant", SqlDbType.NVarChar);
+                            cmd.Parameters["@restaurant"].Value = arr[0];
+                            cmd.Parameters.Add("@status", SqlDbType.Bit);
+                            cmd.Parameters["@status"].Value = arr[1];
 
+                            cmd.Connection.Open();
+                            DataTable table = new DataTable();
+                            table.Load(cmd.ExecuteReader());
+                        }
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public static string Between(string Text, string FirstString, string LastString)
         {
             string[] parts = Text.Split(FirstString);

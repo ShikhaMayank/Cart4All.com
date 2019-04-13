@@ -11,7 +11,6 @@ namespace CoreProject.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private IConfiguration _configuration;
         private string dbConnectionString;
         private string publicKey;
@@ -51,7 +50,7 @@ namespace CoreProject.Controllers
             return View();
         }
         [HttpPost]
-        public JsonResult Login(string username, string password)
+        public bool Login(string username, string password)
         {
             dynamic JSONresult;
             try
@@ -68,18 +67,16 @@ namespace CoreProject.Controllers
                     dynamic table = new DataTable();
                     table.Load(cmd.ExecuteReader());
                     JSONresult = JsonConvert.SerializeObject(table);
-
-                    TempData["username"] = username;
                     //set the key value in Cookie  
                     Set("username", username, 10);
                     ////Delete the cookie object  
                     //Remove("username");
-                    return Json(JSONresult);
+                    return true;
                 }
             }
             catch (Exception ex)
             {
-                return null;
+                return false;
             }
 
         }

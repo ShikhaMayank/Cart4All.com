@@ -66,18 +66,21 @@
     </a>
     <!-- END SCROLL TOP BUTTON -->
     <!-- Start header section -->
-    
-        <div class="row" id="discountBanner" style="display:none">
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert">
+    <div id="resOFF" class="alert alert-danger" style="display:none;">
+        <strong> Restaurant is OFF and cannot accept Orders at present</strong>
+    </div>
+    <div class="row" id="discountBanner" style="display:none">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert">
                 <span aria-hidden="true">×</span>
-                <span class="sr-only">Close</span></button>
-                <marquee>
+                <span class="sr-only">Close</span>
+            </button>
+            <marquee>
                 <p id="discountMessage" style="font-family: Impact; font-size: 18pt"></p>
-                </marquee>
-            </div>
+            </marquee>
         </div>
-    
+    </div>
+
     <header class="topSection">
         @*<div class="container">
                 <div class="row">
@@ -109,7 +112,7 @@
                 </div>
             </div>
             </div>*@
-        <section class="searchContent">           
+        <section class="searchContent">
             <div class="container">
                 <div class="row text-center">
                     <div class="onlyVeg">
@@ -133,8 +136,8 @@
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <div class="productList">                        
-                            <ul class="accordion text-right"></ul>
+                    <div class="productList">
+                        <ul class="accordion text-right"></ul>
                     </div>
                 </div>
                 <div class="col-md-7 pList">
@@ -241,7 +244,7 @@
                             <label for="cAddress">Address</label>
                             <textarea class="form-control" autocomplete="off" id="cAddress" rows="3"></textarea>
                         </div>
-                        
+
                     </form>
                 </div>
                 <!-- Modal footer -->
