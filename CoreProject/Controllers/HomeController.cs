@@ -84,15 +84,13 @@ namespace CoreProject.Controllers
             arr.Add(MenuId);
             try
             {
-                var menuItems = GetMenuList("GetMenuById", arr);
-                return Json(menuItems);
+                var FoodItems = GetMenuList("GetFoodItemList", arr);
+                return Json(FoodItems);
             }
             catch (Exception ex)
             {
                 return null;
             }
-
-
         }
 
         public string GetRestaurantDetails(string StoredProc, string domainName)

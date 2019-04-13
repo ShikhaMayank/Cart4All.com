@@ -1,6 +1,4 @@
-﻿@model IEnumerable<CoreProject.Models.Login>
-
-@{
+﻿@{
     Layout = null;
 }
 
@@ -12,10 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
-
-    <!-- Favicon -->
-    @*<link rel="shortcut icon" href="~/assets/img/favicon.ico" type="image/x-icon">*@
-
     <!-- Font awesome -->
     <link href="~/assets/css/font-awesome.css" rel="stylesheet">
     <!-- Bootstrap -->
@@ -25,8 +19,6 @@
     <!-- Main style sheet -->
     <link href="~/assets/css/iconFont.css" rel="stylesheet">
     <link href="~/assets/css/style.css?v=1.1" rel="stylesheet">
-
-
     <!-- Google Fonts -->
     <!-- Prata for body  -->
     <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
@@ -47,14 +39,14 @@
             <form>
                 <h2>Sign in</h2>
                 <div class="form-group">
-                    <input type="text" class="form-control input-lg" name="username" placeholder="Username">
+                    <input type="text" class="form-control input-lg" id="username" placeholder="Username">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control input-lg" name="password" placeholder="Password">
+                    <input type="password" class="form-control input-lg" id="password" placeholder="Password">
                 </div>
-                @*<div class="form-group">
-            <button type="submit" class="btn btn-success btn-lg btn-block signup-btn">Sign in</button>
-        </div>*@
+                <div class="form-group">
+                    <button id="signIn" type="button" class="btn btn-success btn-lg btn-block signup-btn" onclick="authenticate();">Login</button>
+                </div>
                 <div class="text-center small"><a href="#" data-toggle="modal" data-target="#forgotPassword">Forgot Your password?</a></div>
 
                 <div class="or-seperator"><b>or</b></div>
@@ -63,14 +55,14 @@
                     <input type="number" class="form-control input-lg" name="mobile" placeholder="Enter your ten digit mobile number" maxlength="10">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-lg btn-block signup-btn">Sign in</button>
+                    <button id="getOTP" type="button" class="btn btn-success btn-lg btn-block signup-btn" onclick="javascript:alert('hi')">Get OTP</button>
                 </div>
-                <div class="text-center small"><a href="#" >Resend OTP</a></div>
+                <div class="text-center small"><a href="#">Resend OTP</a></div>
                 @*@<div class="social-btn text-center">
-            <a href="#" class="btn btn-primary btn-lg" title="Facebook"><i class="fa fa-facebook"></i></a>
-            <!--<a href="#" class="btn btn-info btn-lg" title="Twitter"><i class="fa fa-twitter"></i></a>-->
-            <a href="#" class="btn btn-danger btn-lg" title="Google"><i class="fa fa-google"></i></a>
-        </div>*@
+                        <a href="#" class="btn btn-primary btn-lg" title="Facebook"><i class="fa fa-facebook"></i></a>
+                        <!--<a href="#" class="btn btn-info btn-lg" title="Twitter"><i class="fa fa-twitter"></i></a>-->
+                        <a href="#" class="btn btn-danger btn-lg" title="Google"><i class="fa fa-google"></i></a>
+                    </div>*@
             </form>
             @*<div class="text-center small">Don't have an account? <a href="#">Sign up</a></div>*@
         </div>
@@ -105,9 +97,9 @@
     </div>
 
 
-    <!-- jQuery library -->
-    <script src="~/assets/js/jquery.min.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="~/assets/js/bootstrap.js"></script>
+    <script src="~/assets/js/login.js"></script>
 </body>
 </html>

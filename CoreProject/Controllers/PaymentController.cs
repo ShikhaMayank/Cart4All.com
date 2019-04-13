@@ -86,7 +86,7 @@ namespace CoreProject.Controllers
                 objCred.SMTPPassword = "Welcome@123456";
                 objCred.Host = "smtp.gmail.com";
                 objCred.Port = 25;
-                if (paymentId != "" || paymentId != null)
+                if (paymentId != "" && paymentId != null)
                 {
                     objCred.Subject = "New order received with Order Id: " + orderId + " and payment Id: " + paymentId;
                 }

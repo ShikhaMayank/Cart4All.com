@@ -32,11 +32,11 @@ namespace CoreProject.Models
             smsKey = "36306361727434616c6c2e636f6d3734351549362176";// SMS API Key
             string msg = "";
             if (paymentId == null || paymentId.Trim() == "" || paymentId == string.Empty) {
-                msg = "Dear user, your Order is confirmed with ID: " + orderId + " Please use it for your future reference";
+                msg = "Dear user, your Order is confirmed with ID: " + orderId + ". Please use it for your future reference.";
             }
             else
             {
-                msg = "Dear user, your Order is confirmed with ID: " + orderId + " and transaction id: " + paymentId + " Please use them for your future reference";
+                msg = "Dear user, your Order is confirmed with ID: " + orderId + " and transaction id: " + paymentId + ". Please use them for your future reference";
             }
             
             string Message = "http://text.bluemedia.in/http-tokenkeyapi.php?authentic-key=" + smsKey + "&senderid=" + "MYCART" + "&route=" + "2" + "&number=" + phone + "&message=" + msg;

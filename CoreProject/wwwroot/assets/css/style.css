@@ -277,10 +277,10 @@ LIST ACCORDION
 .emptyCart{font-size:24px; margin-top:30px; color:rgba(200,200,200,1);}
 .cartListItems .productInCart h5{line-height:28px; margin-bottom:0;}
 /*MOBILE MENUS CSS*/
-.mobileMenu {display:none; position:fixed; z-index:99; left:10px; top:33%;background:#fff;  font-size:14px; font-weight:500; cursor:pointer; border:1px solid #578900; border-radius:5px; padding:5px; color:#578900;}
+.mobileMenu {display:none; position:absolute; z-index:99; left:10px; top:33%;background:#fff;  font-size:14px; font-weight:500; cursor:pointer; border:1px solid #578900; border-radius:5px; padding:5px; color:#578900;}
 .mobileMenu:hover{box-shadow:0 2px 8px #d4d5d9}
 .mobileMenu i {margin:3px 5px 0 0;}
-.productListMobile {display:block !important; position: fixed; left: 0px; background: #fff; border: 1px solid #dbdbdb; z-index: 100; padding: 10px 0 10px 10px; top:31%; box-shadow:0 2px 8px #d4d5d9; transition:all linear 300ms}
+.productListMobile {display:block !important; position: absolute; left: 0px; background: #fff; border: 1px solid #dbdbdb; z-index: 100; padding: 10px 0 10px 10px; top:31%; box-shadow:0 2px 8px #d4d5d9; transition:all linear 300ms}
 .searchContent .icon-squer{font-size:28px; display:inline-block;}
 .btn.onlyVegBtn { border:1px solid #dbdbdb; background:#fff; vertical-align:top; line-height: 28px; padding: 2px 3px 2px 10px;}
 .btn.onlyVegBtn.active {background:#578900; color:#fff; border:1px solid #fff; box-shadow: inherit;}

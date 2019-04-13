@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using CoreProject.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace CoreProject
 {
@@ -27,6 +28,12 @@ namespace CoreProject
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                   .AddCookie(options =>
+                   {
+                       options.LoginPath = "/Login/Index";
+
+                   });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //var connection = @"Server=az1-wsq1.a2hosting.com;Initial Catalog=mayankdb;Integrated Security=False;Persist Security Info=False;User ID=mayank;Password=Welcome@123456;ConnectRetryCount=0";
             //services.AddDbContext<mayankdbContext>(options => options.UseSqlServer(connection));
