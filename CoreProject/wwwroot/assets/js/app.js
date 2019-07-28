@@ -334,6 +334,7 @@ $(function () {
     });
 
     $(document).ready(function () {
+        var _subdomain = getSubDomain();
         $("#aVerifyOTP").click(function () {
             sessionStorage.setItem('price', $('.subTotalPrice span').html());
             var _address = $('#cAddress').val()
@@ -358,7 +359,13 @@ $(function () {
                         url: "Home/VerifyOTP", // Controller/View
                         data: { //Passing data
                             OTP: userInput, //Reading text box values using Jquery
-                            HashCode: $('#EncryptedOTP').val()
+                            HashCode: $('#EncryptedOTP').val(),
+                            OrderedItems: $('.cartListItems')[0].innerText,
+                            username: $('#cName').val(),
+                            userPhone: $('#cPhoneNumber').val(),
+                            userEmail: $('#cEmail').val(),
+                            address: $('#cAddress').val() + ' - ' + $('#cArea').val(),
+                            restaurant: _subdomain
                         },
                         success: function (data) {
                             if (data == "Error") {
@@ -367,8 +374,13 @@ $(function () {
                                 $('#1st').focus();
                                 return false;
                             }
+                            else if (data == '00000000-0000-0000-0000-000000000000') {
+                                alert('Some problem occured while creating your order. Please try after some time.');
+                                return false;
+                            }
                             else {
                                 sessionStorage.setItem('myOrderId', data);
+                                sessionStorage.setItem('COD_Items', $('.cartListItems')[0].innerText);
                                 location.href = '/home/thanks';
                             }
                         },

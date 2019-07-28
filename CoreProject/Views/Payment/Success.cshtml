@@ -199,6 +199,8 @@
         $('h6.cname').html(name);
         $('h6.contact').html(mobile);
         $('p.address').html(address);
+
+
         function BackToHome() {
             if (confirm("This will take you back to Home page. Are you sure?"))
                 window.location.href = "/";
@@ -313,7 +315,51 @@
             setTimeout(
                 function () {
                     SendMailToOwner();
+                    createOrderId(orderId, razorpay_payment_id, name, email, mobile, address)
                 }, 2000);
+        }
+        function createOrderId(_orderId, _razorpay_payment_id, _name, _email, _mobile, _address) {
+            var totalpaid = sessionStorage.getItem('totalpaid');
+            var _subdomain = getSubDomain();
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "CreateOrder", // Controller/View
+                    data: { //Passing data
+                        orderId: _orderId, //Reading text box values using Jquery
+                        OrderedItems: $('#productList')[0].innerText,
+                        razorpay_payment_id: _razorpay_payment_id,
+                        name: _name,
+                        email: _email,
+                        mobile: _mobile,
+                        price: totalpaid,
+                        address: _address,
+                        restaurant: _subdomain
+                    },
+                    success: function (data) {
+                        if (data == "false") {
+                            alert('Some problem occured while creating your order. Please try after some time.');
+                            return false;
+                        }
+                        else if (data == '00000000-0000-0000-0000-000000000000') {
+                            alert('Some problem occured while creating your order. Please try after some time.');
+                            return false;
+                        }
+                    },
+                    error: function (error) {
+                        alert('Some problem occured while creating your order. Please try after some time.');
+                        console.log(error);
+                    }
+                });
+        }
+        function getSubDomain() {
+            var getHostname = window.location.hostname;
+            var domainNameList = getHostname.split('.');
+            var subDomainName = domainNameList[0];
+            if (subDomainName == 'localhost') {
+                subDomainName = 'puurnbhoj';
+            }
+            return subDomainName;
         }
     </script>
 </body>

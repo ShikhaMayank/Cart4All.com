@@ -45,6 +45,7 @@ namespace CoreProject.Controllers
             message = _configuration["Message"];
             SMTPPasswordAPI = _configuration["SMTPPasswordAPI"];
             RazorPayKey = _configuration["RazorPayKey"];
+            dbConnectionString = _configuration["DBStrings"];
             //Subject = "This is test mail using smtp settings";
             //Body = "SendGrid Mail";
             //ToEmail = "mayank.gpt1@gmail.com";
@@ -68,10 +69,10 @@ namespace CoreProject.Controllers
         }
         
         [HttpPost]
-        public JsonResult SendSuccessSMS(string phone, string orderId, string paymentId)
+        public JsonResult SendSuccessSMS(string phone, string orderId, string orderedItems, string paymentId)
         {
             ArrayList arrUserDetails = new ArrayList();
-            bool isOTPSent = SendMessage.OrderConfirmationSMS(phone, orderId, paymentId);
+            bool isOTPSent = SendMessage.OrderConfirmationSMS(phone, orderId, orderedItems, paymentId);
             return Json(isOTPSent);
         }
         [HttpPost]
@@ -117,6 +118,77 @@ namespace CoreProject.Controllers
             }
             
             return Json(isOTPSent);
+        }
+
+        [HttpPost]
+        public bool CreateOrder(string orderId,string OrderedItems, string razorpay_payment_id, string name, string email, string mobile, string price, string address, string restaurant)
+        {
+            try
+            {
+                // Insertion to tables and generation of order id code will go here..
+                var OrderId = CreateNewOrderPayment(orderId, OrderedItems, razorpay_payment_id, name, email, mobile, price, address, restaurant);// delivery mode is 1(COD) and paymentID is blank
+                if (OrderId != Guid.Empty)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public Guid CreateNewOrderPayment(string _orderId, string _orderedItems, string razorpay_payment_id, string name, string email, string mobile, string price, string address, string restaurant)
+        {
+            try
+            {
+                var orderId = new Guid(_orderId);
+                using (SqlCommand cmd = new SqlCommand(
+                "CreateNewOrderPayment", new SqlConnection(dbConnectionString)))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@OrderId", SqlDbType.UniqueIdentifier);
+                    cmd.Parameters["@OrderId"].Value = orderId;
+
+                    cmd.Parameters.Add("@OrderedItems", SqlDbType.NVarChar);
+                    cmd.Parameters["@OrderedItems"].Value = _orderedItems;
+
+                    cmd.Parameters.Add("@username", SqlDbType.VarChar);
+                    cmd.Parameters["@username"].Value = name;
+
+                    cmd.Parameters.Add("@userPhone", SqlDbType.VarChar);
+                    cmd.Parameters["@userPhone"].Value = mobile;
+
+                    cmd.Parameters.Add("@userEmail", SqlDbType.VarChar);
+                    cmd.Parameters["@userEmail"].Value = email;
+
+                    cmd.Parameters.Add("@address", SqlDbType.NVarChar);
+                    cmd.Parameters["@address"].Value = address;
+
+                    cmd.Parameters.Add("@price", SqlDbType.Float);
+                    cmd.Parameters["@price"].Value = price;
+
+                    cmd.Parameters.Add("@deliveryMode", SqlDbType.Int);
+                    cmd.Parameters["@deliveryMode"].Value = 2;
+
+                    cmd.Parameters.Add("@paymentId", SqlDbType.NVarChar);
+                    cmd.Parameters["@paymentId"].Value = razorpay_payment_id;
+
+                    cmd.Parameters.Add("@restaurant", SqlDbType.NVarChar);
+                    cmd.Parameters["@restaurant"].Value = restaurant;
+
+                    cmd.Connection.Open();
+                    cmd.ExecuteReader();
+                }
+                return orderId;
+            }
+            catch (Exception ex)
+            {
+                return Guid.Empty;
+            }
         }
     }
 }

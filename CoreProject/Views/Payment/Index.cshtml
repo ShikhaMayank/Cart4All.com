@@ -245,6 +245,7 @@
             }
             else {
                 total = ((100 - parseFloat(discount)) * parseFloat(subTotal)) / 100;
+                sessionStorage.setItem('totalpaid', parseFloat(total) + parseFloat(delivery));
                 return total + delivery;
             }
             

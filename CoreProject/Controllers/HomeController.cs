@@ -156,7 +156,7 @@ namespace CoreProject.Controllers
         }
 
         [HttpGet]
-        public JsonResult SendOrderId(string number, string myOrderId, string userName, string paymentId)
+        public JsonResult SendOrderId(string number, string myOrderId,string orderedItems, string userName, string paymentId)
         {
             bool isOTPSent = true;
             try
@@ -166,7 +166,7 @@ namespace CoreProject.Controllers
                     paymentId = "";
                 }
                 //string Message = smsUrl + smsKey + "&senderid=" + senderId + "&route=" + route + "&number=" + number + "&message=Dear "+ userName + ", your Order confimed with order Id " + myOrderId + ". We will be contacting you as soon possible regarding your placed order.";
-                isOTPSent = SendMessage.OrderConfirmationSMS(number, myOrderId, paymentId);
+                isOTPSent = SendMessage.OrderConfirmationSMS(number, myOrderId, orderedItems, paymentId);
                 isOTPSent = true;
             }
             catch (Exception ex)
@@ -177,8 +177,9 @@ namespace CoreProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult VerifyOTP(string OTP, string HashCode)
+        public ActionResult VerifyOTP(string OTP, string HashCode, string OrderedItems, string username, string userPhone, string userEmail, string address, string restaurant)
         {
+
             ArrayList arrStatus = new ArrayList();
             var rsa = new RSAHelper(RSAType.RSA2, Encoding.UTF8, privateKey, publicKey);
 
@@ -189,14 +190,68 @@ namespace CoreProject.Controllers
             if (VerifyOTP.OTP == OTP)
             {
                 // Insertion to tables and generation of order id code will go here..
-                string OrderId = GetOrderId();
-                return Json(OrderId);
+                var OrderId = CreateNewOrder(OrderedItems, username, userPhone, userEmail, address, 1,"", restaurant);// delivery mode is 1(COD) and paymentID is blank
+                if(OrderId != Guid.Empty)
+                {
+                    return Json(OrderId);
+                }
+                else
+                {
+                    return Json("00000000-0000-0000-0000-000000000000");
+                }
             }
             else
             {
                 return Json("Error");
             }
 
+        }
+
+        public Guid CreateNewOrder(string OrderedItems, string username, string userPhone, string userEmail, string address, int deliveryMode, string paymentId, string restaurant)
+        {            
+            try
+            {
+                var OrderId = Guid.NewGuid();
+                using (SqlCommand cmd = new SqlCommand(
+                "CreateNewOrder", new SqlConnection(dbConnectionString)))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@OrderId", SqlDbType.UniqueIdentifier);
+                    cmd.Parameters["@OrderId"].Value = OrderId;
+
+                    cmd.Parameters.Add("@OrderedItems", SqlDbType.VarChar);
+                    cmd.Parameters["@OrderedItems"].Value = OrderedItems;
+
+                    cmd.Parameters.Add("@username", SqlDbType.VarChar);
+                    cmd.Parameters["@username"].Value = username;
+
+                    cmd.Parameters.Add("@userPhone", SqlDbType.VarChar);
+                    cmd.Parameters["@userPhone"].Value = userPhone;
+
+                    cmd.Parameters.Add("@userEmail", SqlDbType.VarChar);
+                    cmd.Parameters["@userEmail"].Value = userEmail;
+
+                    cmd.Parameters.Add("@address", SqlDbType.NVarChar);
+                    cmd.Parameters["@address"].Value = address;
+
+                    cmd.Parameters.Add("@deliveryMode", SqlDbType.Int);
+                    cmd.Parameters["@deliveryMode"].Value = deliveryMode;
+
+                    cmd.Parameters.Add("@paymentId", SqlDbType.NVarChar);
+                    cmd.Parameters["@paymentId"].Value = paymentId;
+
+                    cmd.Parameters.Add("@restaurant", SqlDbType.NVarChar);
+                    cmd.Parameters["@restaurant"].Value = restaurant;
+
+                    cmd.Connection.Open();                    
+                    cmd.ExecuteReader();
+                }
+                return OrderId;
+            }
+            catch (Exception ex)
+            {
+                return Guid.Empty;
+            }            
         }
         public static string GetOrderId()
         {

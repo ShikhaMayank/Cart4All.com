@@ -64,6 +64,7 @@
                 data: { //Passing data
                     number: userPhone,
                     myOrderId: orderId,
+                    orderedItems: sessionStorage.getItem('COD_Items'),
                     userName: userName,
                     paymentId: paymentId
                 },
@@ -74,6 +75,7 @@
                             if ($('#OrderId')[0].innerHTML.length == 0) {
                                 $("#details").show();
                                 $('#OrderId').html("<strong>Order Id:</strong> " + sessionStorage.getItem('myOrderId'));
+                                $('#COD_Items').html("<strong>Items:</strong> " + sessionStorage.getItem('COD_Items'));                                
                                 $('#Price').html("\n<strong>Total Price:</strong> ₹" + sessionStorage.getItem('price'));
                                 $('#Address').html("\n<strong>Delivery Address:</strong> " + sessionStorage.getItem('FullAddress'));
                                 $('#ViewOrder')[0].innerHTML = "Click back to Hide Your Order Details";
@@ -98,8 +100,8 @@
             });
         }
         function SendMailToOwner() {
-            var body = '<!DOCTYPE html><html><head><style>table { font-family: arial, sans-serif; border-collapse: collapse; width: 100%;}td, th { border: 1px solid #dddddd; text-align: left; padding: 8px;}tr:nth-child(even) { background-color: #dddddd;}</style></head><body><table> <tr> <th>Order Id</th> <th>Name</th> <th>Address</th> </tr> <tr> <td>';
-            body += sessionStorage.getItem('myOrderId') + '</td> <td>' + sessionStorage.getItem('userName') + '</td> <td>' + sessionStorage.getItem('FullAddress')+'</td> </tr> </table></body></html>';
+            var body = '<!DOCTYPE html><html><head><style>table { font-family: arial, sans-serif; border-collapse: collapse; width: 100%;}td, th { border: 1px solid #dddddd; text-align: left; padding: 8px;}tr:nth-child(even) { background-color: #dddddd;}</style></head><body><table> <tr> <th>Order Id</th> <th>Name</th><th>Items</th> <th>Address</th> </tr> <tr> <td>';
+            body += sessionStorage.getItem('myOrderId') + '</td> <td>' + sessionStorage.getItem('userName') + '</td><td>' + sessionStorage.getItem('COD_Items') +'</td> <td>' + sessionStorage.getItem('FullAddress')+'</td> </tr> </table></body></html>';
             $.ajax(
                 {
                     type: "POST", //HTTP POST Method
@@ -138,7 +140,7 @@
                     </div>
                 </p>
                 <p class="btn-default">
-                    <a href="/home/index">Order Again..</a>
+                    <a href="/">Order Again..</a>
                 </p>
             </div>
         </div>

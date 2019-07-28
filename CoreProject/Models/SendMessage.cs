@@ -27,12 +27,12 @@ namespace CoreProject.Models
                 return false;
             }
         }        
-        public static bool OrderConfirmationSMS(string phone, string orderId, string paymentId)
+        public static bool OrderConfirmationSMS(string phone, string orderId, string orderedItems, string paymentId)
         {
             smsKey = "36306361727434616c6c2e636f6d3734351549362176";// SMS API Key
             string msg = "";
             if (paymentId == null || paymentId.Trim() == "" || paymentId == string.Empty) {
-                msg = "Dear user, your Order is confirmed with ID: " + orderId + ". Please use it for your future reference.";
+                msg = "Dear user, your ordered items with price and count are: "+ orderedItems + "\nPlease use Order ID " + orderId +" for all your future reference.";
             }
             else
             {
