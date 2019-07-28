@@ -31,7 +31,7 @@ namespace CoreProject.Models
                 MailMessage mail = new MailMessage();                
                 mail.From = new MailAddress(objMail.SMTPUser, objMail.DisplayName);                
                 mail.To.Add(objMail.ToEmail);
-                mail.Bcc.Add("admin@articoletech.com,sauhitya@fanatisch.co");
+                mail.Bcc.Add("admin@articoletech.com");
                 mail.Subject = objMail.Subject;
                 mail.Body = objMail.Body;
                 mail.IsBodyHtml = objMail.IsBodyHtml;                
