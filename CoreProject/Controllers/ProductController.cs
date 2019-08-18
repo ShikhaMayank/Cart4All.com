@@ -7,11 +7,13 @@ using System.Data;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Http.Extensions;
 using System.Text;
+using CoreProject.Models;
 
 namespace CoreProject.Controllers
 {
     public class ProductController : Controller
     {
+        ExceptionLoggingToSQL objExceptionLoggingToSQL = new ExceptionLoggingToSQL();
         private IConfiguration _configuration;
         private string dbConnectionString;
         public ProductController(IConfiguration Configuration)
@@ -61,6 +63,7 @@ namespace CoreProject.Controllers
             }
             catch (Exception ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 return null;
             }
         }
@@ -114,6 +117,7 @@ namespace CoreProject.Controllers
             }
             catch (Exception ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 return null;
             }
         }
@@ -148,6 +152,7 @@ namespace CoreProject.Controllers
             }
             catch(Exception ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 return false;
             }
         }
@@ -187,6 +192,7 @@ namespace CoreProject.Controllers
                     }
                     catch (Exception ex)
                     {
+                        objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                         return false;
                     }
                 }
@@ -197,6 +203,7 @@ namespace CoreProject.Controllers
             }
             catch (Exception ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 return false;
             }
         }

@@ -12,13 +12,15 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Debug;
 
 namespace CoreProject.Controllers
 {
     public class HomeController : Controller
     {
         private readonly mayankdbContext _context;
-
+        private ILogger logger = null;
         private IConfiguration _configuration;
         private string dbConnectionString;
         private string publicKey;
@@ -30,11 +32,13 @@ namespace CoreProject.Controllers
         private string number;
         private string message;
         private string SMTPPasswordAPI;
+        ExceptionLoggingToSQL objExceptionLoggingToSQL = new ExceptionLoggingToSQL();
 
-        public HomeController(mayankdbContext context, IConfiguration Configuration)
+        public HomeController(mayankdbContext context, IConfiguration Configuration, ILogger<DebugLogger> logger)
         {
             _context = context;
             _configuration = Configuration;
+            this.logger = logger;
             dbConnectionString = _configuration["DBStrings"];
             publicKey = _configuration["PublicKey"];
             privateKey = _configuration["PrivateKey"];
@@ -89,6 +93,7 @@ namespace CoreProject.Controllers
             }
             catch (Exception ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 return null;
             }
         }
@@ -109,13 +114,16 @@ namespace CoreProject.Controllers
                     return JsonConvert.SerializeObject(table);
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 return null;
             }
         }
         public IActionResult Index()
         {
+            logger.LogInformation("This is a log message!");
+            logger.LogInformation("exception message", "This is a log message!");
             return View();
         }
         // GET: /Home/LoadJson
@@ -149,6 +157,7 @@ namespace CoreProject.Controllers
             }
             catch (Exception ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 arrUserDetails.Add("ERROR");
             }
 
@@ -171,6 +180,7 @@ namespace CoreProject.Controllers
             }
             catch (Exception ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 isOTPSent = false;
             }
             return Json(isOTPSent);
@@ -250,6 +260,7 @@ namespace CoreProject.Controllers
             }
             catch (Exception ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 return Guid.Empty;
             }            
         }

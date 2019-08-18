@@ -10,7 +10,6 @@ namespace CoreProject.Models
         static string senderId;
         static string route;
         private static IConfiguration _configuration;
-
         public static bool SendSMS(string OTP, string Message)
         {            
             try
@@ -22,8 +21,7 @@ namespace CoreProject.Models
                 return true;
             }
             catch (Exception ex)
-            {
-                ex.ToString();
+            {                
                 return false;
             }
         }        
@@ -50,7 +48,6 @@ namespace CoreProject.Models
             }
             catch (Exception ex)
             {
-                ex.ToString();
                 return false;
             }
         }

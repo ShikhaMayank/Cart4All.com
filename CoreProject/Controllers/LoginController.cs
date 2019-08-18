@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using CoreProject.Models;
 
 namespace CoreProject.Controllers
 {
@@ -22,6 +23,7 @@ namespace CoreProject.Controllers
         private string number;
         private string message;
         private string SMTPPasswordAPI;
+        ExceptionLoggingToSQL objExceptionLoggingToSQL = new ExceptionLoggingToSQL();
         public LoginController(IConfiguration Configuration)
         {
             _configuration = Configuration;
@@ -76,6 +78,7 @@ namespace CoreProject.Controllers
             }
             catch (Exception ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 return false;
             }
 

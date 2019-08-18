@@ -32,6 +32,7 @@ namespace CoreProject.Controllers
         private string message;
         private string SMTPPasswordAPI;
         private string RazorPayKey;
+        ExceptionLoggingToSQL objExceptionLoggingToSQL = new ExceptionLoggingToSQL();
         public PaymentController(IConfiguration Configuration)
         {
             _configuration = Configuration;
@@ -114,6 +115,7 @@ namespace CoreProject.Controllers
             }
             catch(Exception ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 isOTPSent = false;
             }
             
@@ -138,6 +140,7 @@ namespace CoreProject.Controllers
             }
             catch (Exception ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 return false;
             }
         }
@@ -187,6 +190,7 @@ namespace CoreProject.Controllers
             }
             catch (Exception ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 return Guid.Empty;
             }
         }

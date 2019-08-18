@@ -22,7 +22,7 @@ namespace CoreProject.Models
         // On the left navigation panel, click Security.
         // On the bottom of the page, in the Less secure app access panel, click Turn on access.
         // If you don't see this setting, your administrator might have turned off less secure app account access.
-        
+        ExceptionLoggingToSQL objExceptionLoggingToSQL = new ExceptionLoggingToSQL();
         public bool Gmail(Credentials objMail)
         {
             bool flag = false;            
@@ -47,6 +47,7 @@ namespace CoreProject.Models
             }
             catch (SmtpException ex)
             {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 flag = false;
             }            
             return flag;

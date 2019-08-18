@@ -442,7 +442,7 @@ function AjaxDisplayString() {
     var domainNameList = getHostname.split('.');
     var subDomainName = domainNameList[0];
     if (subDomainName == 'localhost') {
-        subDomainName = 'puurnbhoj';
+        subDomainName = 'cart4all';
     }
     $.ajax(
         {
