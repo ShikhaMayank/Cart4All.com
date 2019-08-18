@@ -406,7 +406,7 @@ function getSubDomain() {
 function AjaxDisplayString() {
     var subDomainName = getSubDomain();
     $.ajax({
-        url: "/assets/json/Menu/Menu_" + subDomainName + ".json",
+        url: "/assets/json/Menu/" + subDomainName + ".json",
         method: 'GET',
         success: function (itemList) {
             localStorage.setItem('me', JSON.stringify(itemList));
