@@ -98,6 +98,24 @@ namespace CoreProject.Controllers
             }
         }
 
+        
+        [HttpPost]
+        public ActionResult BindRestaurantMenu(string MenuId)
+        {
+            ArrayList arr = new ArrayList();
+            arr.Add(MenuId);
+            try
+            {
+                var MenuItems = GetMenuList("BindRestaurantMenu", arr);
+                return Json(MenuItems);
+            }
+            catch (Exception ex)
+            {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
+                return null;
+            }
+        }
+
         public string GetRestaurantDetails(string StoredProc, string domainName)
         {
             try

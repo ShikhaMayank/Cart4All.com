@@ -26,7 +26,7 @@ $(function () {
                 type: "POST", //HTTP POST Method
                 url: "Home/GetFoodItemList", // Controller/View
                 data: { //Passing data
-                    MenuId: subDomainName, //Reading text box values using Jquery
+                    MenuId: subDomainName,
                 },
                 success: function (data) {
                     var products = JSON.parse(data);
@@ -47,13 +47,11 @@ $(function () {
                     
                 },
                 error: function () {
-                    alert("No Data");
+                    alert("Some issue in loading Food Items. Please contact support desk.");
                 }
             });
     $(document).ready(function () {
         AjaxDisplayString();
-        //Add to cart button click
-
         var $showProduct = $('.showProduct');
         var $cartListItems = $('.cartListItems');
         var $accordion = $('.accordion');
@@ -306,12 +304,6 @@ $(function () {
             }
 
         });
-        /*$("body").mouseup(function (e) {
-            var subject = $('.productListMobile');
-            if (e.target.id != subject.attr('id') && !subject.has(e.target).length) {
-                subject.fadeOut();
-            }
-        });*/
     });
 
     $(document).ready(function () {
@@ -378,18 +370,38 @@ $(function () {
 
 function AjaxDisplayString() {
     var subDomainName = getSubDomain();
-    $.ajax({
-        url: "/assets/json/Menu/" + subDomainName + ".json",
-        method: 'GET',
-        success: function (itemList) {
-            localStorage.setItem('me', JSON.stringify(itemList));
-            var storedData = JSON.parse(localStorage.getItem("me"));
-            var listDiv = $('.productList ul');
-            for (var i = 0; i < itemList.length; i++) {
-                listDiv.append('<li id="' + storedData[i].Id + '"><a class="toggleList" onClick="getFoodItem(' + storedData[i].Id + ')">' + storedData[i].Name + '</a></li>');
+    //$.ajax({
+    //    url: "/assets/json/Menu/" + subDomainName + ".json",
+    //    method: 'GET',
+    //    success: function (itemList) {
+    //        localStorage.setItem('me', JSON.stringify(itemList));
+    //        var storedData = JSON.parse(localStorage.getItem("me"));
+    //        var listDiv = $('.productList ul');
+    //        for (var i = 0; i < itemList.length; i++) {
+    //            listDiv.append('<li id="' + storedData[i].Id + '"><a class="toggleList" onClick="getFoodItem(' + storedData[i].Id + ')">' + storedData[i].Name + '</a></li>');
+    //        }
+    //    }
+    //});
+
+    $.ajax(
+        {
+            type: "POST", //HTTP POST Method
+            url: "Home/BindRestaurantMenu", // Controller/View
+            data: { //Passing data
+                MenuId: subDomainName,
+            },
+            success: function (data) {
+                localStorage.setItem('me', JSON.stringify(data));
+                var storedData = JSON.parse(data);
+                var listDiv = $('.productList ul');
+                for (var i = 0; i < data.length; i++) {
+                    listDiv.append('<li id="' + storedData[i].Id + '"><a class="toggleList" onClick="getFoodItem(' + storedData[i].Id + ')">' + storedData[i].Name + '</a></li>');
+                }
+            },
+            error: function () {
+                alert("Some issue in loading Menu. Please contact support desk.");
             }
-        }
-    });
+        });
     //$.ajax({
     //    url: "/Home/GetMenu",
     //    method: 'GET',

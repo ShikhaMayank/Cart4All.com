@@ -6,6 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\assets\Json\FoodItems\**" />
+    <Compile Remove="wwwroot\assets\Json\Menu\**" />
+    <Content Remove="wwwroot\assets\Json\FoodItems\**" />
+    <Content Remove="wwwroot\assets\Json\Menu\**" />
+    <EmbeddedResource Remove="wwwroot\assets\Json\FoodItems\**" />
+    <EmbeddedResource Remove="wwwroot\assets\Json\Menu\**" />
+    <None Remove="wwwroot\assets\Json\FoodItems\**" />
+    <None Remove="wwwroot\assets\Json\Menu\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Models\rsa.cs" />
   </ItemGroup>
 
@@ -30,6 +41,10 @@
     <Reference Include="paytm">
       <HintPath>..\..\..\..\Downloads\paytm.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\Json\" />
   </ItemGroup>
 
 </Project>
