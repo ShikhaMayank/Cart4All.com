@@ -370,19 +370,6 @@ $(function () {
 
 function AjaxDisplayString() {
     var subDomainName = getSubDomain();
-    //$.ajax({
-    //    url: "/assets/json/Menu/" + subDomainName + ".json",
-    //    method: 'GET',
-    //    success: function (itemList) {
-    //        localStorage.setItem('me', JSON.stringify(itemList));
-    //        var storedData = JSON.parse(localStorage.getItem("me"));
-    //        var listDiv = $('.productList ul');
-    //        for (var i = 0; i < itemList.length; i++) {
-    //            listDiv.append('<li id="' + storedData[i].Id + '"><a class="toggleList" onClick="getFoodItem(' + storedData[i].Id + ')">' + storedData[i].Name + '</a></li>');
-    //        }
-    //    }
-    //});
-
     $.ajax(
         {
             type: "POST", //HTTP POST Method
@@ -401,28 +388,7 @@ function AjaxDisplayString() {
             error: function () {
                 alert("Some issue in loading Menu. Please contact support desk.");
             }
-        });
-    //$.ajax({
-    //    url: "/Home/GetMenu",
-    //    method: 'GET',
-    //    success: function (itemList) {
-    //        localStorage.setItem('me', JSON.stringify(itemList));
-    //        var storedData = JSON.parse(localStorage.getItem("me"));
-    //        var listDiv = $('.productList ul');
-    //        for (var i = 0; i < itemList.length; i++) {
-    //            listDiv.append('<li id="' + itemList[i].id + '"><a class="toggleList" onClick="getFoodItem(' + itemList[i].id + ')">' + itemList[i].name + '</a></li>');
-    //        }
-    //    }
-    //});
-    //$.ajax({
-    //    url: "/Home/LoadJson",
-    //    method: 'GET',
-    //    success: function (data) {
-    //        $('.addressArea span').html(data[0]);//address
-    //        $('.offers span').html(data[1]);//offers
-    //        $('.phoneNumber span').html(data[2]);//mobile
-    //    }
-    //});
+        });    
     var getHostname = window.location.hostname;
     var domainNameList = getHostname.split('.');
     var subDomainName = domainNameList[0];
