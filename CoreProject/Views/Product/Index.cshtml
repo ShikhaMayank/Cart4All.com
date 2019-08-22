@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-
+    <script src="~/js/common.js"></script>
     <style>
         .loader {
             border: 16px solid #f3f3f3;
@@ -145,39 +144,47 @@
                         tr = table.getElementsByTagName("tr");
                         var count = products.length;
                         $('span#totalItems')[0].innerHTML = count;                        
-                        console.log(products[0].OnOff);
-                        if (products[0].OnOff == true) {
-                            $('#chkOnOff').prop("checked", true);
-                            $('#resON').show();
-                            $('#resOFF').hide();
-                        }
-                        else {
-                            $('#chkOnOff').prop("checked", false);
-                            $('#resON').hide();
-                            $('#resOFF').show();
-                        }                        
-                        for (i = 1; i < products.length; i++) {
-                            var status = '';                            
-                            if (products[i].isActive == true) {
-                                status = '<td> <input id="' + products[i].Id + '" type="checkbox" checked onclick=updateStatus(' + products[i].Id + ')>' + '</td>';
+                        if (products != undefined && products != null && products.length > 0) {
+                            if (products[0].OnOff == true) {
+                                $('#chkOnOff').prop("checked", true);
+                                $('#resON').show();
+                                $('#resOFF').hide();
                             }
                             else {
-                                status = '<td> <input id="' + products[i].Id + '" type="checkbox" onclick=updateStatus(' + products[i].Id + ')>' + '</td>';
+                                $('#chkOnOff').prop("checked", false);
+                                $('#resON').hide();
+                                $('#resOFF').show();
                             }
-                            var a = $(
-                                status +
-                                '<td colspan="1" class="productName">' + products[i].name + '</td>'
-                                + '<td colspan="1" >' + products[i].isActive + '</td>'
-                                + '<td colspan="1" >' + products[i].price + '</td>'
-                                + '<td colspan="1" >' + products[i].type + '</td>');
-                            $("#mytable").find('tbody')
-                                .append($('<tr id="row' + products[i].Id + '">')
-                                    .append(a)
-                                );
+                            for (i = 1; i < products.length; i++) {
+                                var status = '';
+                                if (products[i].isActive == true) {
+                                    status = '<td> <input id="' + products[i].Id + '" type="checkbox" checked onclick=updateStatus(' + products[i].Id + ')>' + '</td>';
+                                }
+                                else {
+                                    status = '<td> <input id="' + products[i].Id + '" type="checkbox" onclick=updateStatus(' + products[i].Id + ')>' + '</td>';
+                                }
+                                var a = $(
+                                    status +
+                                    '<td colspan="1" class="productName">' + products[i].name + '</td>'
+                                    + '<td colspan="1" >' + products[i].isActive + '</td>'
+                                    + '<td colspan="1" >' + products[i].price + '</td>'
+                                    + '<td colspan="1" >' + products[i].type + '</td>');
+                                $("#mytable").find('tbody')
+                                    .append($('<tr id="row' + products[i].Id + '">')
+                                        .append(a)
+                                    );
+                            }
+                            $('#itemGrid').show();
+                            $('#loading').hide();
+                            $('#backdrop').hide();
                         }
-                        $('#itemGrid').show();
-                        $('#loading').hide();
-                        $('#backdrop').hide();
+                        else {
+                            $('#itemGrid').hide();
+                            $('#loading').hide();
+                            $('#backdrop').hide();
+                            console.log('add new restaurant name value to restaurants table and accordingly insert that restaurant id and other fields in fooditems table.')
+                        }
+                        
                     },
                     error: function () {
                         alert("No Data");
@@ -326,16 +333,7 @@
             else {
                 return true;
             }
-        }
-        function getSubDomain() {
-            var getHostname = window.location.hostname;
-            var domainNameList = getHostname.split('.');
-            var subDomainName = domainNameList[0];
-            if (subDomainName == 'localhost') {
-                subDomainName = 'cart4all';
-            }
-            return subDomainName;
-        }
+        }        
         function OnOFFStatus(obj) {
             $('#backdrop').show();
             var restaurantName = getSubDomain();

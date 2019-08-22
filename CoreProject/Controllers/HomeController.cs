@@ -70,8 +70,8 @@ namespace CoreProject.Controllers
                 StoredProc, new SqlConnection(dbConnectionString)))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@RestaurantId", SqlDbType.Int);
-                cmd.Parameters["@RestaurantId"].Value = arr[0];
+                cmd.Parameters.Add("@domain", SqlDbType.NVarChar);
+                cmd.Parameters["@domain"].Value = arr[0];
                 cmd.Connection.Open();
                 DataTable table = new DataTable();
                 table.Load(cmd.ExecuteReader());

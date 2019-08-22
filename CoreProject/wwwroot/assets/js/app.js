@@ -21,31 +21,12 @@ $(function () {
         productDiv.append(Mustache.render(productTemplate, product));
     }
     var subDomainName = getSubDomain();
-    //$.ajax({
-    //    url: "/assets/json/fooditems/FoodItem_" + subDomainName + ".json",
-    //    success: function (data) {
-    //        //var products = JSON.parse(data);
-    //        var products = data;
-    //        sessionStorage.setItem("FoodItems", JSON.stringify(data));
-    //        $.each(products, function (i, product) {
-    //            loadProducts(product);
-    //            /*var productImage = $('#product'+ product.id +' .productImage');
-    //            if(product.imageUrl != ""){
-    //                productImage.show();
-    //            }*/
-    //        });
-    //    },
-    //    error: function (e) {
-    //        alert('some error in site, please contact Admin.');
-    //        console.log(e);
-    //    }
-    //});
-        $.ajax(
+    $.ajax(
             {
                 type: "POST", //HTTP POST Method
                 url: "Home/GetFoodItemList", // Controller/View
                 data: { //Passing data
-                    MenuId: 1, //Reading text box values using Jquery
+                    MenuId: subDomainName, //Reading text box values using Jquery
                 },
                 success: function (data) {
                     var products = JSON.parse(data);
@@ -394,15 +375,7 @@ $(function () {
     });
 
 });
-function getSubDomain() {
-    var getHostname = window.location.hostname;
-    var domainNameList = getHostname.split('.');
-    var subDomainName = domainNameList[0];
-    if (subDomainName == 'localhost') {
-        subDomainName = 'cart4all';
-    }
-    return subDomainName;
-}
+
 function AjaxDisplayString() {
     var subDomainName = getSubDomain();
     $.ajax({
