@@ -32,6 +32,8 @@
     <script src="~/assets/js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="~/assets/js/bootstrap.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="980167027207-3e8rq6ckk8fd68h4i384q7akpum563hg.apps.googleusercontent.com.apps.googleusercontent.com">
 </head>
 <body>
     <section class="loginPage">
@@ -47,22 +49,25 @@
                 <div class="form-group">
                     <button id="signIn" type="button" class="btn btn-success btn-lg btn-block signup-btn" onclick="authenticate();">Login</button>
                 </div>
+                <div class="form-group">
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                </div>
                 @*<div class="text-center small"><a href="#" data-toggle="modal" data-target="#forgotPassword">Forgot Your password?</a></div>
 
-                <div class="or-seperator"><b>or</b></div>
-                <center><h5>Sign in using OTP</h5></center>
-                <div class="form-group">
-                    <input type="number" class="form-control input-lg" name="mobile" placeholder="Enter your ten digit mobile number" maxlength="10">
-                </div>
-                <div class="form-group">
-                    <button id="getOTP" type="button" class="btn btn-success btn-lg btn-block signup-btn" onclick="javascript:alert('hi')">Get OTP</button>
-                </div>
-                <div class="text-center small"><a href="#">Resend OTP</a></div>*@
+        <div class="or-seperator"><b>or</b></div>
+        <center><h5>Sign in using OTP</h5></center>
+        <div class="form-group">
+            <input type="number" class="form-control input-lg" name="mobile" placeholder="Enter your ten digit mobile number" maxlength="10">
+        </div>
+        <div class="form-group">
+            <button id="getOTP" type="button" class="btn btn-success btn-lg btn-block signup-btn" onclick="javascript:alert('hi')">Get OTP</button>
+        </div>
+        <div class="text-center small"><a href="#">Resend OTP</a></div>*@
                 @*@<div class="social-btn text-center">
-                        <a href="#" class="btn btn-primary btn-lg" title="Facebook"><i class="fa fa-facebook"></i></a>
-                        <!--<a href="#" class="btn btn-info btn-lg" title="Twitter"><i class="fa fa-twitter"></i></a>-->
-                        <a href="#" class="btn btn-danger btn-lg" title="Google"><i class="fa fa-google"></i></a>
-                    </div>*@
+            <a href="#" class="btn btn-primary btn-lg" title="Facebook"><i class="fa fa-facebook"></i></a>
+            <!--<a href="#" class="btn btn-info btn-lg" title="Twitter"><i class="fa fa-twitter"></i></a>-->
+            <a href="#" class="btn btn-danger btn-lg" title="Google"><i class="fa fa-google"></i></a>
+        </div>*@
             </form>
             @*<div class="text-center small">Don't have an account? <a href="#">Sign up</a></div>*@
         </div>
@@ -95,11 +100,17 @@
             </div>
         </div>
     </div>
-
-
-
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="~/assets/js/bootstrap.js"></script>
     <script src="~/assets/js/login.js"></script>
+    <script type="text/javascript">
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+    </script>
 </body>
 </html>

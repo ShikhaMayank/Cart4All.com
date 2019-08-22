@@ -21,9 +21,6 @@
 
     <link href="/assets/css/iconFont.css" rel="stylesheet">
     <link href="/assets/css/style.css?v=1.1" rel="stylesheet">
-
-
-
     <!-- Google Fonts -->
     <!-- Prata for body  -->
     <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
@@ -39,7 +36,13 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js" crossorigin="anonymous" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+    </script>
+    <script>(window.jQuery || document.write("\u003Cscript src=\u0022\/lib\/jquery\/dist\/jquery.min.js\u0022 crossorigin=\u0022anonymous\u0022 integrity=\u0022sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV\u002BrXbYlF2cqB8txI\/8aZajjp4Bqd\u002BV6D5IgvKT\u0022\u003E\u003C\/script\u003E"));</script>
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js" crossorigin="anonymous" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+    </script>
+    <script>(window.jQuery && window.jQuery.fn && window.jQuery.fn.modal || document.write("\u003Cscript src=\u0022\/lib\/bootstrap\/dist\/js\/bootstrap.min.js\u0022 crossorigin=\u0022anonymous\u0022 integrity=\u0022sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\u0022\u003E\u003C\/script\u003E"));</script>
+    <script src="/js/site.min.js?v=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU"></script>
 </head>
 <body class='menuPage orderHistoryPage'>
     <div class="container body-content">
@@ -56,11 +59,10 @@
                         </button>
                     </div>
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Puurn Bhoj</a></li>
+                        <li><a href="/">Site</a></li>
                         <li><a href="/Product">Product List</a></li>
                         <li class='active'><a href="/Order">Orders</a></li>
                     </ul>
-
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
@@ -131,13 +133,6 @@
                 $("#endDate").val(finalDate);// from product view
                 $("#orderStartDate").val(finalDate);// from order view
                 $("#orderEndDate").val(finalDate);// from order view
-                //if (localStorage.getItem('userSession') == null) {
-                //    alert('UnAuthorized Login');
-                //    window.location.replace("/login");
-                //}
-                else {
-                    $('#spnUserName').text('Welcome Mr. ' + titleCase(localStorage.getItem('userSession')));
-                }
                 $('[data-toggle="tooltip"]').tooltip();
                 $('#discPercentage').prop('checked', true);
                 localStorage.setItem('DiscountType', 1);
@@ -216,43 +211,7 @@
 
 
 
-        <div class="container content-panel">
-            <div class="row">
-                <div class="col-xs-12 col-md-12">
-                    <h2 class="pageHeader">Order History</h2>
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
-                        <ul class="accordion">
-                            <li>
-                                <a class="toggleList" href="javascript:void(0);">Date Range</a>
-                                <div class='innerList'>
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Order ID</th>
-                                                <th scope="col">Order date</th>
-                                                <th scope="col">Payment method</th>
-                                                <th scope="col">Gross revenue</th>
-                                                <th scope="col">Net receivable</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>109039181</td>
-                                                <td>02 Mar 2019 10:20:25</td>
-                                                <td>Online</td>
-                                                <td>₹180</td>
-                                                <td>₹131.0</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
         <!-- Start Footer -->
         <!-- End Footer -->
@@ -262,7 +221,7 @@
         <script src="/assets/js/bootstrap.js"></script>
         <!-- Application js -->
 
-        <script type="text/javascript" src="/assets/js/app.js"></script>
+        @*<script type="text/javascript" src="/assets/js/app.js"></script>*@
         <script src="/assets/js/custom.js"></script>
         <script>
             function startHotel(btnId) {
@@ -286,8 +245,6 @@
 
         <div class="container content-panel">
             <div class="row">
-
-                <h2 class="pageHeader">Order History</h2>
                 <div class="row">
                     <div class='col-md-3'>
                         <div class="form-group">
@@ -589,17 +546,5 @@
     <footer>
         <p>All Rights Reserved &copy; 2019</p>
     </footer>
-
-
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js" crossorigin="anonymous" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-    </script>
-    <script>(window.jQuery || document.write("\u003Cscript src=\u0022\/lib\/jquery\/dist\/jquery.min.js\u0022 crossorigin=\u0022anonymous\u0022 integrity=\u0022sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV\u002BrXbYlF2cqB8txI\/8aZajjp4Bqd\u002BV6D5IgvKT\u0022\u003E\u003C\/script\u003E"));</script>
-    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js" crossorigin="anonymous" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-    </script>
-    <script>(window.jQuery && window.jQuery.fn && window.jQuery.fn.modal || document.write("\u003Cscript src=\u0022\/lib\/bootstrap\/dist\/js\/bootstrap.min.js\u0022 crossorigin=\u0022anonymous\u0022 integrity=\u0022sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\u0022\u003E\u003C\/script\u003E"));</script>
-    <script src="/js/site.min.js?v=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU"></script>
-
-
-
 </body>
 </html>
