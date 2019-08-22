@@ -381,7 +381,7 @@ function AjaxDisplayString() {
                 localStorage.setItem('me', JSON.stringify(data));
                 var storedData = JSON.parse(data);
                 var listDiv = $('.productList ul');
-                for (var i = 0; i < data.length; i++) {
+                for (var i = 0; i < storedData.length; i++) {
                     listDiv.append('<li id="' + storedData[i].Id + '"><a class="toggleList" onClick="getFoodItem(' + storedData[i].Id + ')">' + storedData[i].Name + '</a></li>');
                 }
             },
