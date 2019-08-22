@@ -378,11 +378,11 @@ function AjaxDisplayString() {
                 MenuId: subDomainName,
             },
             success: function (data) {
-                localStorage.setItem('me', JSON.stringify(data));
+                localStorage.setItem('menuList', JSON.stringify(data));
                 var storedData = JSON.parse(data);
                 var listDiv = $('.productList ul');
                 for (var i = 0; i < storedData.length; i++) {
-                    listDiv.append('<li id="' + storedData[i].Id + '"><a class="toggleList" onClick="getFoodItem(' + storedData[i].Id + ')">' + storedData[i].Name + '</a></li>');
+                    listDiv.append('<li id="' + storedData[i].id + '"><a class="toggleList" onClick="getFoodItem(' + storedData[i].id + ')">' + storedData[i].Name + '</a></li>');
                 }
             },
             error: function () {
