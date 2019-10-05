@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="~/js/common.js"></script>
+    <script src="~/assets/js/login.js"></script>
     <style>
         .loader {
             border: 16px solid #f3f3f3;
@@ -30,12 +31,11 @@
             border: 1px solid #ddd; /* Add a grey border */
             margin-bottom: 12px; /* Add some space below the input */
         }
-
-        
     </style>
-    
+
 </head>
 <body onload="LoadGrid();">
+    <a href="#" onclick="signOut();">Sign out</a>
     <div class="container">
         <div class="margin-top-10">
             <div class="float-left">
@@ -104,7 +104,7 @@
                     <div class="modal-footer">
                         <div class="form-group col-md-12 paymentOptions" style="align-items:center">
                             <div>
-                                <button type="button" class="btn btn-success" onclick="updateItems();" >Update</button>
+                                <button type="button" class="btn btn-success" onclick="updateItems();">Update</button>
                                 <button type="button" class="btn cancel" onclick="hideBox()">Cancel</button>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
                         table = document.getElementById("mytable");
                         tr = table.getElementsByTagName("tr");
                         var count = products.length;
-                        $('span#totalItems')[0].innerHTML = count;                        
+                        $('span#totalItems')[0].innerHTML = count;
                         if (products != undefined && products != null && products.length > 0) {
                             if (products[0].OnOff == true) {
                                 $('#chkOnOff').prop("checked", true);
@@ -184,7 +184,7 @@
                             $('#backdrop').hide();
                             console.log('add new restaurant name value to restaurants table and accordingly insert that restaurant id and other fields in fooditems table.')
                         }
-                        
+
                     },
                     error: function () {
                         alert("No Data");
@@ -226,7 +226,7 @@
                 $('#updateStatusBox').show();
 
                 $('input#txtName.form-control').val($('#row' + CheckId + ' td')[1].innerText);//Item Name poha
-                
+
                 // setting status
                 var isChecked = $('input#' + $('#hdnProductId').val()).prop("checked");
                 if (isChecked) {
@@ -293,13 +293,14 @@
                                 window.location.reload();
                             }
                             else {
-                                alert("Some problem occured while updating. Please logout and try after some time.");                                
+                                alert("Some problem occured while updating. Please logout and try after some time.");
                             }
                         },
                         error: function () {
                             alert("Some problem occured while updating. Please logout and try after some time.");
                         }
-                    });}
+                    });
+            }
             else {
                 alert('All fields are not properly field!');
             }
@@ -309,7 +310,7 @@
             var ItemPrice = $('#txtPrice').val();
             var ItemStatus = $('#itemStatus')[0].value;
             var ItemType = $('#itemType')[0].value;
-            
+
             if (ItemName.length < 1) {
                 alert('Item Name cannot be blank!');
                 return false;
@@ -320,7 +321,7 @@
             else if (!ItemPrice.match(/^\d+/)) {
                 alert("Please only enter numeric characters only! (Allowed input:0-9)");
                 return false;
-                
+
             }
             else if (ItemStatus == 'select') {
                 alert('Please select between true Active and Inactive!');
@@ -333,7 +334,7 @@
             else {
                 return true;
             }
-        }        
+        }
         function OnOFFStatus(obj) {
             $('#backdrop').show();
             var restaurantName = getSubDomain();

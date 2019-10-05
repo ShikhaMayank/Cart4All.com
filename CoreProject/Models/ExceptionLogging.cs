@@ -2,7 +2,6 @@
 using System.Data.SqlClient;
 using System.Data;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Http;
 
 namespace CoreProject.Models
 {

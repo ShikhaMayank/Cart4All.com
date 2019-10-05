@@ -4,9 +4,11 @@ using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using CoreProject.Models;
+
+
+
 
 namespace CoreProject.Controllers
 {
@@ -80,6 +82,29 @@ namespace CoreProject.Controllers
             {
                 objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
                 return false;
+            }
+
+        }
+        [HttpPost]
+        public ActionResult GmailLogin(string token)
+        {
+            
+            try
+            {
+                //return RedirectToAction("Index", "Product");
+                return Json(new
+                {
+                    newUrl = Url.Action("Index", "Product")  //Index as Action; Product as Controller
+                });
+            }
+            catch (Exception ex)
+            {
+                objExceptionLoggingToSQL.LogAppException(ex.StackTrace);
+                return Json(new
+                {
+                    newUrl = Url.Action("Index", "Login") //Payment as Action; Process as Controller
+                });
+
             }
 
         }

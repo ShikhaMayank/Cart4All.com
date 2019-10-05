@@ -5,8 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Data;
 using System.Data.SqlClient;
-using Microsoft.AspNetCore.Http.Extensions;
-using System.Text;
 using CoreProject.Models;
 
 namespace CoreProject.Controllers
@@ -22,18 +20,10 @@ namespace CoreProject.Controllers
             dbConnectionString = _configuration["DBStrings"];
         }
         public IActionResult Index()
-        {
-            //if (Request.Cookies["username"] != null)
-            //{
-            //    //Remove("username");
-            //    return View();
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Index", "Login");
-            //}
+        {            
             return View();
         }
+
         public string Get(string key)
         {
             return Request.Cookies[key];

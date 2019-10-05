@@ -40,6 +40,14 @@ namespace CoreProject
             //Get connection string from appsettings.json
             services.AddDbContext<mayankdbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddAuthentication()
+            .AddGoogle(options =>
+            {
+                IConfigurationSection googleAuthNSection =
+                    Configuration.GetSection("Authentication:Google");
+                options.ClientId = googleAuthNSection["980167027207-gr2123m5ii9g55g4vnblstcolqjhqm23.apps.googleusercontent.com"];
+                options.ClientSecret = googleAuthNSection["tgBCCsOGOeryTNVJ2dJQ4W_7"];
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
